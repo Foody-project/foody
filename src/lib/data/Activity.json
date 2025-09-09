@@ -1,0 +1,101 @@
+[
+  {
+    "type": "museum",
+    "name": "Louvre",
+    "quartier": "1er arrondissement, près du Palais Royal",
+    "prix": "€€€",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAxAYr3i59oEaKseE9XdX4atMPIWXbkyO4cw&s",
+    "description": "Le Louvre est le musée le plus emblématique de Paris, abritant des milliers d'œuvres allant de l'Antiquité au XIXe siècle. On y trouve des chefs-d'œuvre comme la Joconde, la Vénus de Milo et le Radeau de la Méduse. C’est un incontournable pour les amateurs d’art et d’histoire, offrant un parcours riche et varié à travers plusieurs siècles de civilisation.",
+    "instagram": "https://www.instagram.com/museelouvre/",
+    "website": "https://www.louvre.fr/",
+    "phone": "+33 1 40 20 50 50"
+  },
+  {
+    "type": "museum",
+    "name": "Musée d'Orsay",
+    "quartier": "7e arrondissement, quai de la Seine",
+    "prix": "€€",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAxAYr3i59oEaKseE9XdX4atMPIWXbkyO4cw&s",
+    "description": "Le Musée d'Orsay, installé dans une ancienne gare, est célèbre pour sa collection impressionniste et post-impressionniste. Des peintures de Monet, Van Gogh, Renoir et Degas y sont exposées. Le musée offre une expérience immersive et artistique, reliant architecture industrielle et chef-d'œuvre artistique, tout en permettant aux visiteurs de comprendre l’évolution de l’art européen entre 1848 et 1914.",
+    "instagram": "https://www.instagram.com/museeorsay/",
+    "website": "https://www.musee-orsay.fr/",
+    "phone": "+33 1 40 49 48 14"
+  },
+  {
+    "type": "museum",
+    "name": "Centre Pompidou",
+    "quartier": "4e arrondissement, Beaubourg",
+    "prix": "-",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAxAYr3i59oEaKseE9XdX4atMPIWXbkyO4cw&s",
+    "description": "Le Centre Pompidou est le musée d’art moderne et contemporain le plus connu de Paris. Avec sa structure architecturale innovante et ses tubes colorés, il abrite des collections variées, allant de Picasso à Kandinsky. Le musée offre également des expositions temporaires, des installations multimédias et une vue panoramique sur la capitale depuis sa terrasse.",
+    "instagram": "https://www.instagram.com/centrepompidou/",
+    "website": "https://www.centrepompidou.fr/",
+    "phone": "+33 1 44 78 12 33"
+  },
+  {
+    "type": "club",
+    "name": "Rex Club",
+    "quartier": "2e arrondissement, près des Grands Boulevards",
+    "prix": "€€€",
+    "image": "https://media.timeout.com/images/106056847/750/562/image.jpg",
+    "description": "Le Rex Club est une institution de la scène électronique parisienne, connue pour ses DJs internationaux et son ambiance underground. Le club attire des amateurs de techno et house dans un cadre intimiste et sonore. Chaque soirée promet une expérience musicale unique avec une acoustique optimale et une énergie vibrante.",
+    "instagram": "https://www.instagram.com/rexclubparis/",
+    "website": "https://www.rexclub.com/",
+    "phone": "+33 1 40 36 80 43"
+  },
+  {
+    "type": "club",
+    "name": "La Machine du Moulin Rouge",
+    "quartier": "18e arrondissement, Pigalle",
+    "prix": "€€€",
+    "image": "https://media.timeout.com/images/106056847/750/562/image.jpg",
+    "description": "La Machine du Moulin Rouge est un club parisien emblématique situé à Pigalle, mêlant soirées électro, techno et house. L’ambiance est festive et énergique, avec des décors industriels et une programmation musicale variée. C’est un lieu idéal pour danser toute la nuit et découvrir la scène électronique locale et internationale.",
+    "instagram": "https://www.instagram.com/lamachinedumoulinrouge/",
+    "website": "https://www.lamachinedumoulinrouge.com/",
+    "phone": "+33 1 42 64 03 03"
+  },
+  {
+    "type": "club",
+    "name": "Le Djoon",
+    "quartier": "13e arrondissement, quai de la Gare",
+    "prix": "€€",
+    "image": "https://media.timeout.com/images/106056847/750/562/image.jpg",
+    "description": "Le Djoon est un club mythique de Paris, réputé pour ses soirées soulful, house et disco. Le lieu attire un public passionné de musique, dans une atmosphère conviviale et chaleureuse. Les soirées sont rythmées par des DJ sets live et des performances qui créent une expérience musicale immersive.",
+    "instagram": "https://www.instagram.com/ledjoon/",
+    "website": "https://www.ledjoon.fr/",
+    "phone": "+33 1 44 06 34 44"
+  },
+  {
+    "type": "parc",
+    "name": "Jardin du Luxembourg",
+    "quartier": "6e arrondissement",
+    "prix": "-",
+    "image": "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nraLrP1wNEC7hNj0WaYMhkJ5XDWEgddvu-SxHfQR92FDtbwh8KJYgXDQ6_qg3q5uucTxYUHKoe36ikt0E5lUjApAlq-J8Dnt0AXeAixM-dTAo-XXvDKdIva-zo_1jNjhsUalr_N=s1360-w1360-h1020-rw",
+    "description": "Le Jardin du Luxembourg est un lieu paisible au cœur de Paris, idéal pour se promener ou se détendre. Il dispose de vastes pelouses, de statues et de fontaines magnifiques. Les visiteurs apprécient la combinaison de nature et d’architecture classique, ainsi que les activités pour enfants et les événements culturels organisés régulièrement.",
+    "instagram": "https://www.instagram.com/jardinduluxembourg/",
+    "website": "https://www.senat.fr/visite/jardin/index.html",
+    "phone": "+33 1 42 34 20 00"
+  },
+  {
+    "type": "parc",
+    "name": "Parc des Buttes-Chaumont",
+    "quartier": "19e arrondissement",
+    "prix": "-",
+    "image": "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nraLrP1wNEC7hNj0WaYMhkJ5XDWEgddvu-SxHfQR92FDtbwh8KJYgXDQ6_qg3q5uucTxYUHKoe36ikt0E5lUjApAlq-J8Dnt0AXeAixM-dTAo-XXvDKdIva-zo_1jNjhsUalr_N=s1360-w1360-h1020-rw",
+    "description": "Le Parc des Buttes-Chaumont est un parc vallonné et pittoresque offrant des vues panoramiques sur Paris. Ses sentiers sinueux, ses ponts suspendus et son lac artificiel créent une atmosphère romantique et unique. C’est un lieu parfait pour les promenades, le jogging et les pique-niques en famille ou entre amis.",
+    "instagram": "https://www.instagram.com/parcdesbutteschaumont/",
+    "website": "https://www.paris.fr/parcs-et-jardins/parc-des-buttes-chaumont-1799",
+    "phone": "+33 1 44 62 40 00"
+  },
+  {
+    "type": "parc",
+    "name": "Bois de Boulogne",
+    "quartier": "16e arrondissement",
+    "prix": "-",
+    "image": "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nraLrP1wNEC7hNj0WaYMhkJ5XDWEgddvu-SxHfQR92FDtbwh8KJYgXDQ6_qg3q5uucTxYUHKoe36ikt0E5lUjApAlq-J8Dnt0AXeAixM-dTAo-XXvDKdIva-zo_1jNjhsUalr_N=s1360-w1360-h1020-rw",
+    "description": "Le Bois de Boulogne est un grand espace vert offrant l’évasion et la nature en plein Paris. Il propose des sentiers de promenade, des lacs, des jardins et des installations sportives. Idéal pour le jogging, le vélo ou un pique-nique, le bois attire les familles et les sportifs qui recherchent un cadre paisible et naturel.",
+    "instagram": "https://www.instagram.com/boisdeboulogne/",
+    "website": "https://www.paris.fr/parcs-et-jardins/bois-de-boulogne-1804",
+    "phone": "+33 1 42 88 54 00"
+  }
+]

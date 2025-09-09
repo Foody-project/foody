@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Le Lavomatic",
+    "quartier": "Canal Saint-Martin",
+    "prix": "€€",
+    "type": "Speakeasy caché derrière une laverie",
+    "stars": 4,
+    "image": "https://www.hotel-lechapitre.com/bases/restaurant_image/grande/47/BestWesternPremierleChapitreHotelSpa_CecileLanglois__HD_19.jpg",
+    "description": "Découvrez Le Lavomatic, un speakeasy unique caché derrière une laverie animée. L’ambiance intimiste et ses cocktails créatifs en font un lieu incontournable pour les amateurs de mixologie. Profitez de soirées cosy avec une sélection musicale pointue et un service chaleureux, parfait pour un rendez-vous entre amis ou une sortie romantique dans le quartier branché du Canal Saint-Martin.",
+    "instagram": "https://www.instagram.com/lelavomatic",
+    "website": "https://www.lelavomatic.fr",
+    "phone": "+33 1 42 36 78 12"
+  },
+  {
+    "name": "La Lucha Libre",
+    "quartier": "Place Monge",
+    "prix": "€€€",
+    "type": "Bar avec ring de catch mexicain",
+    "stars": 5,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6AbZsDIlnGN1WJLGPovIxcdgbTfx9ipnIcQ&s",
+    "description": "La Lucha Libre vous plonge dans l’univers déjanté du catch mexicain avec son ring central et ses décorations colorées. Savourez des cocktails signature tout en assistant à des animations surprenantes. Un bar festif et original où l’énergie, la musique et les saveurs se rencontrent pour offrir une expérience mémorable au cœur de Place Monge.",
+    "instagram": "https://www.instagram.com/laluchalibre",
+    "website": "https://www.laluchalibre.fr",
+    "phone": "+33 1 43 25 11 22"
+  },
+  {
+    "name": "Le Cracra",
+    "quartier": "Jourdain",
+    "prix": "€€€",
+    "type": "Bar disco-pork avec cocktails originaux",
+    "stars": 4,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8AkndUnq7bT1xh0CXsgMFUMxGOkoe54IqaA&s",
+    "description": "Le Cracra est un bar disco-pork qui allie ambiance festive et cocktails innovants. Avec sa décoration rétro et sa piste de danse, il attire les amateurs de soirées animées et de saveurs uniques. Chaque cocktail est préparé avec créativité, offrant une expérience sensorielle originale dans le quartier dynamique de Jourdain.",
+    "instagram": "https://www.instagram.com/lecracra",
+    "website": "https://www.lecracra.fr",
+    "phone": "+33 1 44 78 33 44"
+  },
+  {
+    "name": "Ice Kube Bar",
+    "quartier": "La Villette",
+    "prix": "€€€",
+    "type": "Bar sculpté dans la glace",
+    "stars": 4,
+    "image": "https://www.hotel-lechapitre.com/bases/restaurant_image/grande/47/BestWesternPremierleChapitreHotelSpa_CecileLanglois__HD_19.jpg",
+    "description": "Ice Kube Bar offre une expérience unique dans un univers entièrement sculpté dans la glace. Les boissons servies dans des verres glacés et la décoration lumineuse créent une ambiance féerique et rafraîchissante. Parfait pour surprendre vos amis ou vivre un moment insolite au cœur de La Villette, loin de l’ordinaire.",
+    "instagram": "https://www.instagram.com/icekubebar",
+    "website": "https://www.icekubebar.fr",
+    "phone": "+33 1 45 78 99 01"
+  },
+  {
+    "name": "Le Moonshiner",
+    "quartier": "Bastille",
+    "prix": "€€€",
+    "type": "Speakeasy derrière une chambre froide",
+    "stars": 5,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6AbZsDIlnGN1WJLGPovIxcdgbTfx9ipnIcQ&s",
+    "description": "Le Moonshiner est un speakeasy secret niché derrière une chambre froide. Avec ses cocktails artisanaux et son ambiance rétro, c’est l’endroit idéal pour les amateurs de mixologie à la recherche d’un lieu confidentiel et unique. Profitez d’une expérience intimiste dans le quartier animé de Bastille.",
+    "instagram": "https://www.instagram.com/lemoonshiner",
+    "website": "https://www.lemoonshiner.fr",
+    "phone": "+33 1 46 89 55 33"
+  },
+  {
+    "name": "Le Moonshiner",
+    "quartier": "Bastille",
+    "prix": "€€€",
+    "type": "Speakeasy derrière une chambre froide",
+    "stars": 5,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6AbZsDIlnGN1WJLGPovIxcdgbTfx9ipnIcQ&s",
+    "description": "Le Moonshiner est un speakeasy secret niché derrière une chambre froide. Avec ses cocktails artisanaux et son ambiance rétro, c’est l’endroit idéal pour les amateurs de mixologie à la recherche d’un lieu confidentiel et unique. Profitez d’une expérience intimiste dans le quartier animé de Bastille.",
+    "instagram": "https://www.instagram.com/lemoonshiner",
+    "website": "https://www.lemoonshiner.fr",
+    "phone": "+33 1 46 89 55 33"
+  }
+]
