@@ -1,6 +1,0 @@
-import { createClient } from '@supabase/supabase-js';
-
-const NEXT_PUBLIC_SUPABASE_URL='https://wuenmuzroecianvlrdid.supabase.co'
-const NEXT_PUBLIC_SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1ZW5tdXpyb2VjaWFudmxyZGlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcyNzM4MTMsImV4cCI6MjA3Mjg0OTgxM30.SB3EPR_GOYOsNjlwJ0q0VdXSegWitCN3BUdVrf1_BsI'
-
-export const supabase = createClient(NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY);
