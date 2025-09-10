@@ -20,19 +20,22 @@ export const useRegister = () => {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:5000/user/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          first_name: data.firstName,
-          last_name: data.lastName,
-          email: data.email,
-          password: data.password,
-          role: "user",
-        }),
-      });
+      const response = await fetch(
+        "https://foody-api-production-b7f6.up.railway.app/user/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            first_name: data.firstName,
+            last_name: data.lastName,
+            email: data.email,
+            password: data.password,
+            role: "user",
+          }),
+        }
+      );
 
       const result = await response.json();
 

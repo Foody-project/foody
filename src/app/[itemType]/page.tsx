@@ -37,13 +37,16 @@ export default function ItemTypePage() {
         <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
       </div>
 
-      <section className="text-white">
-        <h1 className="uppercase font-bold text-3xl">
+      <section className="">
+        <h1
+          className="uppercase font-bold text-3xl bg-clip-text text-transparent"
+          style={{ backgroundImage: "var(--background-linear-texte)" }}
+        >
           {itemTypeLabel} in Paris
         </h1>
 
         <div className="flex flex-rows gap-1 items-center mt-2">
-          <h4 className="text-gray-300 text-sm font-normal">
+          <h4 className="text-gray-500 text-sm font-normal">
             {places.length} deals to discover
           </h4>
         </div>
@@ -60,20 +63,10 @@ export default function ItemTypePage() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
-                className="flex flex-rows flex-wrap justify-between w-full"
+                className="flex flex-rows flex-wrap justify-between pl-[5rem] pr-[5rem] w-full"
               >
                 {places.map((place: Place, index: number) => (
-                  <Card
-                    key={index}
-                    id={place.id}
-                    name={place.name}
-                    district={place.district}
-                    type={place.type}
-                    price={place.price}
-                    flag={place.flag}
-                    image={place.image}
-                    stars={place.stars}
-                  />
+                  <Card key={index} id={place.id} />
                 ))}
               </motion.div>
             )}

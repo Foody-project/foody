@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useControllableState } from '@radix-ui/react-use-controllable-state';
-import { type LucideProps, StarIcon } from 'lucide-react';
-import type { KeyboardEvent, MouseEvent, ReactElement, ReactNode } from 'react';
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { type LucideProps, StarIcon } from "lucide-react";
+import type { KeyboardEvent, MouseEvent, ReactElement, ReactNode } from "react";
 import {
   Children,
   cloneElement,
@@ -12,8 +12,8 @@ import {
   useEffect,
   useRef,
   useState,
-} from 'react';
-import { cn } from '@/lib/utils';
+} from "react";
+import { cn } from "@/lib/utils";
 
 type RatingContextValue = {
   value: number;
@@ -34,7 +34,7 @@ const RatingContext = createContext<RatingContextValue | null>(null);
 const useRating = () => {
   const context = useContext(RatingContext);
   if (!context) {
-    throw new Error('useRating must be used within a Rating component');
+    throw new Error("useRating must be used within a Rating component");
   }
   return context;
 };
@@ -48,7 +48,7 @@ export const RatingButton = ({
   index: providedIndex,
   size = 17,
   className,
-  icon = <StarIcon/>,
+  icon = <StarIcon />,
 }: RatingButtonProps) => {
   const {
     value,
@@ -93,10 +93,10 @@ export const RatingButton = ({
   return (
     <button
       className={cn(
-        'rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-        'p-0.5',
-        'text-color-500',
-        readOnly && 'cursor-default',
+        "rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "p-0.5",
+        "text-color-500",
+        readOnly && "cursor-default",
         className
       )}
       disabled={readOnly}
@@ -111,13 +111,11 @@ export const RatingButton = ({
       {cloneElement(icon, {
         size,
         className: cn(
-          'transition-colors duration-200',
-          isActive
-            ? 'fill-current opacity-70'
-            : 'opacity-40',
-          !readOnly && 'cursor-pointer'
+          "transition-colors duration-200",
+          isActive ? "fill-current opacity-90" : "opacity-80",
+          !readOnly && "cursor-pointer"
         ),
-        'aria-hidden': 'true',
+        "aria-hidden": "true",
       })}
     </button>
   );
@@ -134,7 +132,7 @@ export type RatingProps = {
   readOnly?: boolean;
   className?: string;
   children?: ReactNode;
-  number?: number
+  number?: number;
 };
 
 export const Rating = ({
@@ -177,17 +175,17 @@ export const Rating = ({
       }
 
       const total = Children.count(children);
-      let newValue = focusedStar !== null ? focusedStar : (value ?? 0);
+      let newValue = focusedStar !== null ? focusedStar : value ?? 0;
 
       switch (event.key) {
-        case 'ArrowRight':
+        case "ArrowRight":
           if (event.shiftKey || event.metaKey) {
             newValue = total;
           } else {
             newValue = Math.min(total, newValue + 1);
           }
           break;
-        case 'ArrowLeft':
+        case "ArrowLeft":
           if (event.shiftKey || event.metaKey) {
             newValue = 1;
           } else {
@@ -207,7 +205,7 @@ export const Rating = ({
 
   useEffect(() => {
     if (focusedStar !== null && containerRef.current) {
-      const buttons = containerRef.current.querySelectorAll('button');
+      const buttons = containerRef.current.querySelectorAll("button");
       buttons[focusedStar - 1]?.focus();
     }
   }, [focusedStar]);
@@ -227,7 +225,7 @@ export const Rating = ({
     <RatingContext.Provider value={contextValue}>
       <div
         aria-label="Rating"
-        className={cn('inline-flex items-center', className)}
+        className={cn("inline-flex items-center", className)}
         onMouseLeave={() => setHoverValue(null)}
         ref={containerRef}
         role="radiogroup"
@@ -244,7 +242,9 @@ export const Rating = ({
         })}
 
         {number && (
-          <span className="text-[10px] text-gray-500 italic relative top-[5px]">({number})</span>
+          <span className="text-[10px] text-gray-500 italic relative top-[5px]">
+            ({number})
+          </span>
         )}
       </div>
     </RatingContext.Provider>

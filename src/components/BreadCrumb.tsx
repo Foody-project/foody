@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import Link from "next/link";
 import { SlashIcon } from "lucide-react";
 import {
@@ -21,26 +21,29 @@ export function BreadcrumbWithCustomSeparator({
   items: BreadcrumbItem[];
 }) {
   return (
-    <Breadcrumb className="text-white">
+    <Breadcrumb className="text-gray-500">
       <BreadcrumbList>
         {items.map((item, index) => (
           <React.Fragment key={`item-${index}`}>
             <BreadcrumbItem>
               {item.href ? (
                 <BreadcrumbLink asChild>
-                  <Link href={item.href} className="text-white hover:text-white">
+                  <Link
+                    href={item.href}
+                    className="text-gray-500 hover:text-black"
+                  >
                     {item.label}
                   </Link>
                 </BreadcrumbLink>
               ) : (
-                <BreadcrumbPage className="text-white">
+                <BreadcrumbPage className="text-gray-500">
                   {item.label}
                 </BreadcrumbPage>
               )}
             </BreadcrumbItem>
             {index < items.length - 1 && (
               <BreadcrumbSeparator key={`sep-${index}`}>
-                <SlashIcon className="text-white" />
+                <SlashIcon className="text-gray-500" />
               </BreadcrumbSeparator>
             )}
           </React.Fragment>

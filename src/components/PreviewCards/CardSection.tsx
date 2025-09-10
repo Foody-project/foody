@@ -37,7 +37,7 @@ export default function CardSection({ data }: CardSectionProps) {
   return (
     <div>
       <div className="text-3xl font-semibold uppercase mt-24 flex items-center justify-between gap-2">
-        <span className="text-white">{selected.text}</span>
+        <span className="text-[var(--text-orange)]">{selected.text}</span>
         <SelectType onSelect={handleSelect} />
       </div>
 
@@ -62,7 +62,7 @@ export default function CardSection({ data }: CardSectionProps) {
         <Button
           size="sm"
           variant="outline"
-          className="font-light text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-400 hover:text-purple-400"
+          className="font-light text-[var(--text-orange)] hover:text-[var(--text-orange)]"
           onClick={handleMoreClick}
         >
           More

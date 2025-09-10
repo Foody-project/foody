@@ -2,7 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { Place } from "@/interfaces";
 
 const fetchPlaces = async (): Promise<Place[]> => {
-  const res = await fetch("http://localhost:5000/places/get");
+  const res = await fetch(
+    "https://foody-api-production-b7f6.up.railway.app/places/get"
+  );
   if (!res.ok) {
     throw new Error(`Erreur API : ${res.status}`);
   }

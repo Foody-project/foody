@@ -25,7 +25,7 @@ export default function Home() {
 
       <Separator
         orientation="horizontal"
-        className="mt-[100px] mb-[100px] !w-[500px] bg-gradient-to-r from-[#663396] to-[#26549e] mx-auto"
+        className="mt-[100px] mb-[100px] !w-[500px] mx-auto [background:var(--background-button)]"
       />
 
       <CardSectionLanding />
