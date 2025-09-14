@@ -94,7 +94,6 @@ export const RatingButton = ({
     <button
       className={cn(
         "rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-        "p-0.5",
         "text-color-500",
         readOnly && "cursor-default",
         className
@@ -241,11 +240,9 @@ export const Rating = ({
           });
         })}
 
-        {number && (
-          <span className="text-[10px] text-gray-500 italic relative top-[5px]">
-            ({number})
-          </span>
-        )}
+        <span className="text-[10px] text-gray-500 italic relative top-[5px] pr-1">
+          ({number ?? 0})
+        </span>
       </div>
     </RatingContext.Provider>
   );

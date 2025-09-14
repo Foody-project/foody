@@ -21,21 +21,21 @@ export default function Header() {
           <Button
             variant="outline"
             size="sm"
-            className="text-[var(--text-orange-secondary)] font-light text-[0.75rem]"
+            className="text-[var(--text-orange-secondary)] font-light text-[0.75rem] hover:!text-[var(--text-orange-secondary)] hover:!bg-input/30"
           >
             <Check color="var(--text-orange)" /> International food
           </Button>
           <Button
             variant="outline"
             size="sm"
-            className="text-[var(--text-orange-secondary)] font-light text-[0.75rem]"
+            className="text-[var(--text-orange-secondary)] font-light text-[0.75rem] hover:!text-[var(--text-orange-secondary)] hover:!bg-input/30"
           >
             <Check color="var(--text-orange)" /> Offers
           </Button>
           <Button
             variant="outline"
             size="sm"
-            className="text-[var(--text-orange-secondary)] font-light text-[0.75rem]"
+            className="text-[var(--text-orange-secondary)] font-light text-[0.75rem] hover:!text-[var(--text-orange-secondary)] hover:!bg-input/30"
           >
             <Check color="var(--text-orange)" /> Unforgettable moments
           </Button>

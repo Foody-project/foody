@@ -20,8 +20,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { Lexend } from "next/font/google";
+
+const lexend = Lexend({
+  weight: ["300", "400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export function ComboboxDropdownMenu() {
-  const [label, setLabel] = React.useState("feature");
   const [open, setOpen] = React.useState(false);
 
   const labels: Record<string, { name: string; img: string; link: string }> = {
@@ -45,13 +52,15 @@ export function ComboboxDropdownMenu() {
   const router = useRouter();
 
   return (
-    <div className="flex w-full flex-col items-start justify-between rounded-md px-4 py-3 sm:flex-row sm:items-center">
+    <div
+      className={`flex w-full flex-col items-start justify-between rounded-md px-4 py-3 sm:flex-row sm:items-center`}
+    >
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <Button
             variant="secondary"
             size="sm"
-            className="text-white [background-image:var(--background-button)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.2)]"
+            className={`${lexend.className} text-white [background-image:var(--background-button)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.2)] font-[400]`}
           >
             Explore
             <ChevronDown />

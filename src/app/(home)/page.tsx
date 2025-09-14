@@ -12,7 +12,7 @@ import { useAllPlaces } from "@/lib/hooks/places/useAllPlaces";
 
 export default function Home() {
   const isHomePage = true;
-  const { data: places = [] } = useAllPlaces();
+  const { data: places = [], isLoading, error } = useAllPlaces();
 
   console.log(useAllPlaces());
 

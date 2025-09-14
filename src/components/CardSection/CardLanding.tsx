@@ -46,7 +46,7 @@ export default function CardLanding({
                 key={index}
                 variant="outline"
                 size="sm"
-                className="text-black font-normal text-[0.75rem] shadow shadow-black transition-shadow hover:shadow-lg"
+                className="text-black font-normal text-[0.75rem] shadow shadow-black transition-shadow hover:text-gray-800 hover:!bg-input/30"
               >
                 <Check className="mr-2" color={colorButtons} /> {item}
               </Button>
@@ -71,7 +71,7 @@ export default function CardLanding({
                 key={index}
                 variant="outline"
                 size="sm"
-                className="text-[var(--text-orange)] font-normal text-[0.75rem] shadow shadow-black transition-shadow hover:shadow-lg"
+                className="text-[var(--text-orange)] font-normal text-[0.75rem] shadow shadow-black transition-shadow hover:text-[var(--text-orange)] hover:!bg-input/30"
               >
                 <Check className="mr-2" color={"var(--text-orange)"} /> {item}
               </Button>

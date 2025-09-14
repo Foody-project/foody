@@ -11,6 +11,7 @@ import type { Place } from "@/interfaces";
 import Navbar from "@/components/Navbar/Navbar";
 import { Card } from "@/components/PreviewCards/Card";
 import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumb";
+import Loader from "@/components/PreviewCards/Loader";
 
 import { useAllPlaces } from "@/lib/hooks/places/useAllPlaces";
 
@@ -47,14 +48,14 @@ export default function ItemTypePage() {
 
         <div className="flex flex-rows gap-1 items-center mt-2">
           <h4 className="text-gray-500 text-sm font-normal">
-            {places.length} deals to discover
+            {!isLoading && <span>{places.length} deals to discover</span>}
           </h4>
         </div>
       </section>
       <section>
         {itemTypeLabel === "Restaurants" && (
           <>
-            {isLoading && <p>Chargement...</p>}
+            {isLoading && <Loader />}
             {error && <p>Erreur: {error?.message}</p>}
             {!isLoading && !error && (
               <motion.div

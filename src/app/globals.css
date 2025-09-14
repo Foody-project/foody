@@ -44,6 +44,7 @@
 :root {
   --radius: 0.625rem;
   --background: rgb(250, 243, 226);
+  --background-secondary: rgb(251, 229, 204);
   --background-button: linear-gradient(180deg,rgba(207, 6, 6, 1) 0%, rgba(255, 140, 0, 1) 100%);
   --background-button-secondary: rgb(249, 218, 218);
   --background-linear-texte: linear-gradient(180deg,rgba(207, 6, 6, 1) 0%, rgb(245, 188, 118) 100%);
@@ -83,9 +84,6 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
   body {
     background: var(--background);
   }

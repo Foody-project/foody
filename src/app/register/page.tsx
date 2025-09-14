@@ -9,8 +9,17 @@ import { PasswordInput } from "@/components/Login/PasswordInput";
 import Footer from "@/components/Footer/Footer";
 import { CornerUpLeft } from "lucide-react";
 import "../../app/globals.css";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { useRegister } from "../../lib/hooks/register/useRegister";
+
+import { Lexend } from "next/font/google";
+
+const lexend = Lexend({
+  weight: ["300", "400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function RegisterModal() {
   const router = useRouter();
@@ -73,34 +82,34 @@ export default function RegisterModal() {
             value={formData.firstName}
             onChange={handleChange}
             placeholder="First name"
-            className="w-full rounded-md mt-5 mb-3 text-black font-[400] border border-[#807f7e] focus:border-[var(--text-orange)]"
+            className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] placeholder:text-[0.8rem]"
           />
           <Input
             type="text"
             placeholder="Last name"
-            className="w-full rounded-md mt-5 mb-3 text-black font-[400] border border-[#807f7e] focus:border-[var(--text-orange)]"
+            className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] placeholder:text-[0.8rem]"
             name="lastName"
-            value={formData.firstName}
+            value={formData.lastName}
             onChange={handleChange}
           />
           <Input
             type="email"
             placeholder="Email"
-            className="w-full rounded-md mt-5 mb-3 text-black font-[400] border border-[#807f7e] focus:border-[var(--text-orange)]"
+            className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] placeholder:text-[0.8rem]"
             name="email"
             value={formData.email}
             onChange={handleChange}
           />
           <PasswordInput
             placeholder="Password"
-            className="w-full rounded-md text-black font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] mb-3"
+            className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] placeholder:text-[0.8rem]"
             name="password"
             value={formData.password}
             onChange={handleChange}
           />
           <PasswordInput
             placeholder="Rewrite your password"
-            className="w-full rounded-md text-black font-[400] border border-[#807f7e] focus:border-[var(--text-orange)]"
+            className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] placeholder:text-[0.8rem]"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
@@ -141,11 +150,21 @@ export default function RegisterModal() {
           </div>
           <div className="mt-5 flex flex-col justify-center items-center">
             <Button
-              type="submit"
               variant="secondary"
-              className=" mt-5 [background-image:var(--background-button)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.2)] text-white"
+              className={`${lexend.className} text-white [background-image:var(--background-button)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.2)] font-[400] flex items-center justify-center gap-2`}
+              onClick={handleSubmit}
+              disabled={loading}
             >
-              {loading ? "Signing up..." : "Sign up"}
+              <span className="relative flex items-center justify-center w-[5rem] h-[1.5rem]">
+                {loading && (
+                  <CircularProgress
+                    size={20}
+                    sx={{ color: "white" }}
+                    className="absolute"
+                  />
+                )}
+                <span className={`${loading ? "invisible" : ""}`}>Login</span>
+              </span>
             </Button>
 
             {error && <p className="text-red-500 mt-2">{error}</p>}

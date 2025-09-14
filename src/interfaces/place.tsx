@@ -5,13 +5,17 @@ export interface Place {
   type: string;
   price?: string;
   flag?: string;
+  cuisine?: string;
   stars?: number;
   totalNotation?: number;
   image?: string;
   description?: string;
+  address?: string;
   instagram?: string;
   website?: string;
   phone?: string;
+  spokenLanguages?: string[];
+  paymentMethods?: string[];
   categoryId?: number;
   userId?: number;
   createdAt?: string;

@@ -7,6 +7,15 @@ import { PasswordInput } from "@/components/Login/PasswordInput";
 import Footer from "@/components/Footer/Footer";
 import { CornerUpLeft } from "lucide-react";
 import "../../app/globals.css";
+import CircularProgress from "@mui/material/CircularProgress";
+
+import { Lexend } from "next/font/google";
+
+const lexend = Lexend({
+  weight: ["300", "400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function LoginModal() {
   const router = useRouter();
@@ -92,11 +101,20 @@ export default function LoginModal() {
         <div className="mt-5 flex flex-col justify-center items-center">
           <Button
             variant="secondary"
-            className=" mt-5 [background-image:var(--background-button)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.2)] text-white"
+            className={`${lexend.className} text-white [background-image:var(--background-button)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.2)] font-[400] flex items-center justify-center gap-2`}
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? "Loading..." : "Login"}
+            <span className="relative flex items-center justify-center w-[5rem] h-[1.5rem]">
+              {loading && (
+                <CircularProgress
+                  size={20}
+                  sx={{ color: "white" }}
+                  className="absolute"
+                />
+              )}
+              <span className={`${loading ? "invisible" : ""}`}>Login</span>
+            </span>
           </Button>
           <span
             className="block text-center mt-2 text-[12px] font-thin text-black cursor-pointer hover:underline"

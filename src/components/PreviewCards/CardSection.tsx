@@ -36,9 +36,11 @@ export default function CardSection({ data }: CardSectionProps) {
 
   return (
     <div>
-      <div className="text-3xl font-semibold uppercase mt-24 flex items-center justify-between gap-2">
-        <span className="text-[var(--text-orange)]">{selected.text}</span>
+      <div className="text-3xl font-semibold mt-12 flex flex-col text-left justify-between gap-2">
         <SelectType onSelect={handleSelect} />
+        <span className="text-[var(--text-orange)] text-left">
+          {selected.text}
+        </span>
       </div>
 
       <div className="flex flex-rows justify-between">

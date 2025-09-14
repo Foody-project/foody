@@ -2,6 +2,14 @@
 
 import { useRouter } from "next/navigation";
 
+import { Lexend } from "next/font/google";
+
+const lexend = Lexend({
+  weight: ["300", "400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { ComboboxDropdownMenu } from "../PreviewCards/ComboboxDropdownMenu";
@@ -17,7 +25,7 @@ export default function Navbar() {
     <nav>
       <div className="flex items-center justify-between p-4 max-w-7xl mx-auto gap-4">
         <a href="/" className="text-3xl font-bold text-[var(--text-orange)]">
-          FIND
+          FOODY
         </a>
 
         <div className="flex-1 mx-4">
@@ -33,10 +41,10 @@ export default function Navbar() {
           <ComboboxDropdownMenu />
           <Button
             size="sm"
-            className="bg-white hover:bg-white text-black cursor-pointer [box-shadow:4px_4px_6px_rgba(0,0,0,0.1)]"
+            className={`${lexend.className} bg-white hover:bg-white text-gray-700 cursor-pointer [box-shadow:4px_4px_6px_rgba(0,0,0,0.1)] font-[300]`}
             onClick={() => router.replace("/login")}
           >
-            Login / Register
+            Login
           </Button>
         </div>
         <SubMenuRedirection />
