@@ -22,8 +22,11 @@ export function OffersPreview({ place }: OffersPreviewProps) {
       collapsible
       className="w-full border border-black/5 rounded-md group mt-5"
     >
-      <AccordionItem value="item-1">
-        <AccordionTrigger className="flex flex-row items-center p-2 hover:no-underline bg-[var(--background-secondary)]">
+      <AccordionItem
+        value="item-1"
+        className="bg-[var(--background-secondary)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.1)] rounded-lg"
+      >
+        <AccordionTrigger className="flex flex-row items-center p-2 hover:no-underline">
           {place && (
             <div className="flex flex-row justify-start items-center flex-1">
               <Gift size={38} style={{ color: "black" }} />
