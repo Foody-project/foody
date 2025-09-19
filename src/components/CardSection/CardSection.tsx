@@ -11,8 +11,8 @@ export default function CardSectionLanding() {
   return (
     <div>
       <div className="flex flex-col items-center">
-        <span className="text-[var(--text-orange-secondary)] text-3xl font-bold uppercase">
-          Don't want to miss anything in Paris ?
+        <span className="text-[var(--text-basic)] text-4xl font-bold uppercase">
+          Want to miss anything in Paris ?
         </span>
         <Button
           variant="default"
@@ -21,26 +21,26 @@ export default function CardSectionLanding() {
             router.push("/register");
           }}
         >
-          Login
+          Sign up
         </Button>
       </div>
       <div className="flex flex-row justify-around mt-[100px]">
         <CardLanding
           type="User"
           gradient="linear-gradient(180deg, #CF0606 0%, #D11406 25%, #E53906 50%, #F27306 75%, #FF8C00 100%)"
-          title="You want discover tips in Paris ?"
+          title="Want discover tips in Paris ?"
           color="#000000"
           textes={[
             "Amazing offers !",
-            "Discover others cultures",
-            "You'll know all about the coolest places in Paris !",
+            "Discover other cultures",
+            "Know all about the coolest places in Paris !",
           ]}
         />
         <CardLanding
           type="Professionnal"
-          title="You want to work with us ?"
+          title="Want to work with us ?"
           textes={[
-            "You'll give your business a real boost with the community power !",
+            "Give your business a real boost with the community power !",
             "Unlimited new customers !",
             "Submit your own offers!",
           ]}

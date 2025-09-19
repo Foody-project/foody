@@ -7,20 +7,23 @@ import {
 
 import { Gift, CaretRight } from "@phosphor-icons/react";
 import { Place } from "@/interfaces";
-import { useOffersCount } from "@/lib/hooks/places/useOffersCount";
+import { getOffersCount } from "@/lib/hooks/places/useOffersCount";
 
 interface OffersPreviewProps {
   place?: Place;
 }
 
 export function OffersPreview({ place }: OffersPreviewProps) {
-  const { data } = useOffersCount(place!.id);
+  if (!place) {
+    return null;
+  }
+  const { data } = getOffersCount(place?.id);
 
   return (
     <Accordion
       type="single"
       collapsible
-      className="w-full border border-black/5 rounded-md group mt-5"
+      className="w-full border border-black/5 rounded-md group mt-5 mb-8"
     >
       <AccordionItem
         value="item-1"
@@ -29,12 +32,12 @@ export function OffersPreview({ place }: OffersPreviewProps) {
         <AccordionTrigger className="flex flex-row items-center p-2 hover:no-underline">
           {place && (
             <div className="flex flex-row justify-start items-center flex-1">
-              <Gift size={38} style={{ color: "black" }} />
+              <Gift size={38} style={{ color: "var(--icon-basic)" }} />
               <div className="flex flex-col pl-5">
                 <span className="font-[500] text-lg text-[var(--text-orange)]">
                   {data?.totalOffers} offer(s) to discover
                 </span>
-                <span className="font-[200]">
+                <span className="font-[200] text-[var(--text-basic)]">
                   {place.name} gives you great deals!
                 </span>
               </div>

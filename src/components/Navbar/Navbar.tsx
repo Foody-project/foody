@@ -1,8 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { Lexend } from "next/font/google";
+
+import { Button } from "../ui/button";
+import { Search, ChevronRight } from "lucide-react";
+
+import "../../app/globals.css";
 
 const lexend = Lexend({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -10,44 +15,81 @@ const lexend = Lexend({
   display: "swap",
 });
 
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { ComboboxDropdownMenu } from "../PreviewCards/ComboboxDropdownMenu";
-import { SubMenuRedirection } from "./SubMenuRedirection";
-
-import { Search } from "lucide-react";
-import "../../app/globals.css";
-
 export default function Navbar() {
   const router = useRouter();
+  const [showSearch, setShowSearch] = useState(false);
 
   return (
     <nav>
-      <div className="flex items-center justify-between p-4 max-w-7xl mx-auto gap-4">
-        <a href="/" className="text-3xl font-bold text-[var(--text-orange)]">
+      <div className="flex items-center justify-between pt-5 pb-10 px-6">
+        <a href="/" className="text-4xl font-bold text-[var(--text-orange)]">
           FOODY
         </a>
 
-        <div className="flex-1 mx-4">
-          <Input
-            type="text"
-            placeholder="Search..."
-            icon={<Search size={16} color="var(--text-orange)" />}
-            className="w-full focus:outline-none [box-shadow:0px_0px_26px_rgba(0,0,0,0.15)]"
-          />
+        <div className="flex gap-8 text-md font-medium text-gray-700">
+          <a
+            href="/restaurants"
+            className="hover:text-[var(--text-orange)] transition-colors"
+          >
+            Where to eat ?
+          </a>
         </div>
 
-        <div className="flex items-center gap-2">
-          <ComboboxDropdownMenu />
+        <div className="flex items-center gap-6 relative">
+          <div
+            className="relative"
+            onMouseEnter={() => setShowSearch(true)}
+            onMouseLeave={() => setShowSearch(false)}
+          >
+            <Search
+              size={20}
+              className="text-[var(--text-orange)] cursor-pointer transition-transform duration-200 hover:scale-110"
+            />
+
+            <div
+              className={`absolute top-1/2 -translate-y-1/2 right-0 transition-all duration-300 ease-in-out ${
+                showSearch
+                  ? "opacity-100 translate-x-4"
+                  : "opacity-0 translate-x-0 pointer-events-none"
+              }`}
+            >
+              <div className="relative">
+                <div
+                  className="w-64 rounded-full p-[2px]"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, rgba(207,6,6,0.5) 0%, rgba(255,140,0,0.5) 100%)",
+                  }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Search for a document"
+                    className="w-full pl-10 pr-4 py-2 rounded-full bg-white/85 text-gray-700 placeholder-gray-400 placeholder:font-thin placeholder:text-[0.95rem] focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all duration-200"
+                  />
+                  <Search
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-500 pointer-events-none"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
           <Button
             size="sm"
-            className={`${lexend.className} bg-white hover:bg-white text-gray-700 cursor-pointer [box-shadow:4px_4px_6px_rgba(0,0,0,0.1)] font-[300]`}
+            className={`${lexend.className} text-white font-[300] w-25 h-10 text-md cursor-pointer flex items-center justify-center`}
+            style={{
+              background: "var(--background-button)",
+              boxShadow: "4px 4px 6px rgba(0,0,0,0.1)",
+            }}
             onClick={() => router.replace("/login")}
           >
-            Login
+            <span className="flex items-center gap-1">
+              Login
+              <ChevronRight size={20} strokeWidth={2} />
+            </span>
           </Button>
         </div>
-        <SubMenuRedirection />
       </div>
     </nav>
   );

@@ -1,27 +1,55 @@
-import { usePlaceAddress } from "@/lib/hooks/places/usePlaceAddress";
-import { OffersPreview } from "@/components/tip/OffersPreview";
-import { DescriptionPart } from "./DescriptionPart";
-
+import React, { forwardRef } from "react";
+import DiscoverMenu from "./DiscoverMenu";
+import HeaderPresentationPart from "./HeaderPresentationPart";
+import { OffersPreview } from "./OffersPreview";
+import GoogleMapEmbedding from "./GoogleMapEmbedding";
 import { Place } from "@/interfaces";
+import Schedules from "./Schedules";
 
-interface PresentationProps {
-  place?: Place;
+interface PresentationPartProps {
+  readonly place?: Place;
 }
 
-export default function PresentationPart({ place }: PresentationProps) {
-  if (!place?.id) return null;
-
-  const { address } = usePlaceAddress(place.id);
+const PresentationPart = forwardRef<
+  Record<string, HTMLDivElement>,
+  PresentationPartProps
+>(({ place }, ref) => {
+  const setRef = (key: string, el: HTMLDivElement | null) => {
+    if (ref && typeof ref !== "function") {
+      ref.current = {
+        ...(ref.current ?? {}),
+        [key]: el!,
+      };
+    }
+  };
 
   return (
-    <div>
-      <span className="text-2xl uppercase font-bold">For you</span>
-      <OffersPreview place={place} />
-      <DescriptionPart place={place} />
+    <div className="w-full flex flex-col space-y-8">
+      <div ref={(el) => setRef("offers", el)}>
+        <span className="text-2xl uppercase font-bold text-[var(--text-basic)]">
+          For you
+        </span>
+        <OffersPreview place={place} />
+      </div>
 
-      <span className="text-2xl uppercase font-bold mt-7 block">
-        Discover the menu
-      </span>
+      <div className="flex flex-row justify-between gap-15">
+        <div ref={(el) => setRef("headerMenu", el)} className="w-[60%]">
+          <HeaderPresentationPart place={place} />
+          <DiscoverMenu place={place} />
+        </div>
+        <div
+          ref={(el) => setRef("sidebar", el)}
+          className="w-[40%] bg-white/50 p-2 rounded-xl flex items-center"
+        >
+          <Schedules place={place} />
+        </div>
+      </div>
+
+      <div ref={(el) => setRef("map", el)}>
+        <GoogleMapEmbedding place={place} />
+      </div>
     </div>
   );
-}
+});
+
+export default PresentationPart;

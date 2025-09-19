@@ -43,8 +43,9 @@
 
 :root {
   --radius: 0.625rem;
-  --background: rgb(250, 243, 226);
-  --background-secondary: rgb(251, 229, 204);
+  --background: rgb(252, 246, 231);
+  --background-secondary: rgb(252, 246, 231);
+  --background-third: #f8a48387;
   --background-button: linear-gradient(180deg,rgba(207, 6, 6, 1) 0%, rgba(255, 140, 0, 1) 100%);
   --background-button-secondary: rgb(249, 218, 218);
   --background-linear-texte: linear-gradient(180deg,rgba(207, 6, 6, 1) 0%, rgb(245, 188, 118) 100%);
@@ -78,9 +79,15 @@
   --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
   --sidebar-border: oklch(0.923 0.003 48.717);
   --sidebar-ring: oklch(0.709 0.01 56.259);
+  --text-basic: #353434;
+  --icon-basic: #676565;
   --text-orange: #f57542;
   --hover-orange: #b95731;
   --text-orange-secondary:rgb(250, 152, 114);
+  --text-orange-third: #965a43;
+  --text-orange-fourth: #f56026;
+  --grey-opacity: #8585852d;
+  --background-linear: linear-gradient(180deg, rgb(252, 246, 231) 0%, rgb(230, 120, 0) 100%);
 }
 
 @layer base {

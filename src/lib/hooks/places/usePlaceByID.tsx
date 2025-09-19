@@ -12,9 +12,9 @@ const fetchPlace = async (id: number): Promise<Place> => {
 };
 
 export const usePlaceByID = (id: number) => {
-  return useQuery<Place, Error>(["place", id], () => fetchPlace(id), {
-    staleTime: 5 * 60 * 1000,
-    cacheTime: 10 * 60 * 1000,
-    enabled: !!id,
+  return useQuery({
+    queryKey: ["place", id],
+    queryFn: () => fetchPlace(id),
+    staleTime: 1000 * 60 * 5,
   });
 };

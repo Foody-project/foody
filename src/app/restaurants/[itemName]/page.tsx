@@ -7,6 +7,7 @@ import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumb";
 import Header from "@/components/tip/Header";
 import Loader from "@/components/PreviewCards/Loader";
 import TabDescription from "@/components/tip/TabDescription";
+import Footer from "@/components/Footer/Footer";
 
 import { usePlaceByID } from "@/lib/hooks/places/usePlaceByID";
 
@@ -35,8 +36,13 @@ export default function ItemPage() {
         )}
       </div>
 
-      <Header place={place || null} />
-      <TabDescription place={place} />
+      {place && (
+        <div>
+          <Header place={place} />
+          <TabDescription place={place} />
+        </div>
+      )}
+      <Footer />
     </div>
   );
 }

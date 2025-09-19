@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Funnel_Display } from "next/font/google";
-import ReactQueryProvider from "../../lib/ReactQueryComponent";
+import ReactQueryProvider from "@/lib/ReactQueryComponent";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -15,9 +15,9 @@ const funnel = Funnel_Display({
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className={funnel.className}>
       <body style={{ minHeight: "100vh" }} className="dark">

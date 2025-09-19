@@ -11,7 +11,7 @@ const fetchPlaces = async (): Promise<Place[]> => {
   return res.json();
 };
 
-export const useAllPlaces = () => {
+export const getAllPlaces = () => {
   return useQuery<Place[], Error>({
     queryKey: ["places"],
     queryFn: fetchPlaces,

@@ -49,7 +49,7 @@ export default function ImageDisplayer({ images, place }: ImageDisplayerProps) {
             ref={mainImageRef}
             src={images[0].url}
             alt={place.name}
-            className="w-[86rem] h-[30rem] rounded-xl shadow-[0px_0px_26px_rgba(0,0,0,0.4)] cursor-pointer object-cover"
+            className="w-[79rem] h-[30rem] rounded-xl shadow-[0px_0px_26px_rgba(0,0,0,0.4)] cursor-pointer object-cover"
             onClick={() => setSelectedIndex(0)}
           />
         )}

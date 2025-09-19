@@ -15,7 +15,7 @@ const fetchOffersCount = async (id: number): Promise<OfferCount> => {
   return res.json();
 };
 
-export const useOffersCount = (id: number) => {
+export const getOffersCount = (id: number) => {
   return useQuery<OfferCount, Error>({
     queryKey: ["offersCount", id],
     queryFn: () => fetchOffersCount(id),

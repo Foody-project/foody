@@ -15,7 +15,7 @@ export default function Header() {
 
       <div className="relative z-10 flex flex-col items-start justify-center h-full text-left text-white px-8 [box-shadow:4px_4px_30px_rgba(0,0,0,0.4)] rounded-lg">
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight text-balance">
-          The best places in Paris, at your fingertips !
+          The best spots in Paris, at your fingertips !
         </h1>
         <div className="flex gap-2 mt-5">
           <Button

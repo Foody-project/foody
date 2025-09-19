@@ -60,16 +60,13 @@ export function ComboboxDropdownMenu() {
           <Button
             variant="secondary"
             size="sm"
-            className={`${lexend.className} text-white [background-image:var(--background-button)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.2)] font-[400]`}
+            className={`${lexend.className} text-white [background-image:var(--background-button)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.2)] font-[400] w-28 h-10 text-md`}
           >
             Explore
             <ChevronDown />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent
-          align="start"
-          className="w-[200px] bg-black border-black"
-        >
+        <DropdownMenuContent align="start" className="w-[200px] bg-black">
           <DropdownMenuGroup>
             {Object.keys(labels).map((key) => (
               <DropdownMenuItem
@@ -82,10 +79,6 @@ export function ComboboxDropdownMenu() {
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator className="bg-[var(--text-orange)]" />
-            <DropdownMenuItem className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-green-500 flex flex-row justify-between">
-              <span className="text-[var(--text-orange)]">Deals</span>
-              <Handshake size="17" color="var(--text-orange)" />
-            </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>

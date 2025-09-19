@@ -3,35 +3,41 @@
 import * as React from "react";
 
 import { Place } from "@/interfaces";
-import translatePrice from "@/lib/hooks/translatePrice";
-import { useImagesByPlaceId } from "../../lib/hooks/places/useImagesByID";
+import { getImagesByPlaceId } from "../../lib/hooks/places/useImagesByID";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 import { Button } from "@/components/ui/button";
 
 import ImageDisplayer from "./ImageDisplayer";
 import ButtonTips from "./ButtonsTips";
+import IsOpen from "./IsOpen";
+import { getOpenPlaces } from "@/lib/hooks/places/useIsOpeningNow";
 
 interface HeaderProps {
-  place: Place | null;
+  place?: Place;
 }
 
 export default function Header({ place }: HeaderProps) {
   if (!place) return null;
 
-  const { data: images } = useImagesByPlaceId(place.id);
+  const { data: images } = getImagesByPlaceId(place.id);
+  const { data: openPlaces } = getOpenPlaces();
+  const isOpen =
+    openPlaces?.some((openPlace: Place) => openPlace.id === place.id) ?? false;
+
+  console.log("ISOPEN", isOpen);
 
   if (!images) return null;
+  console.log("OPEN", openPlaces);
 
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="flex flex-col justify-between items-start gap-6">
         <div className="flex flex-row justify-between w-full items-center">
           <div className="flex flex-col items-start gap-2">
-            <span className="uppercase font-bold text-3xl text-[var(--text-orange)]">
-              {place.name}
-            </span>
-
-            <div className="flex flex-row text-[0.9rem] opacity-90">
+            <div className="flex flex-row items-end gap-3">
+              <span className="uppercase font-bold text-4xl text-[var(--text-basic)]">
+                {place.name}
+              </span>
               <Rating
                 defaultValue={place.stars}
                 number={place.totalNotation}
@@ -44,19 +50,25 @@ export default function Header({ place }: HeaderProps) {
                   />
                 ))}
               </Rating>
-              <div className="flex flex-row items-center gap-2 pl-3 text-base">
-                <Button
-                  variant="link"
-                  className="p-0 flex items-center text-black/90 underline hover:text-[var(--hover-orange)]"
-                >
-                  {place.cuisine}
-                </Button>
-                <Button
-                  variant="link"
-                  className="p-0 flex items-center text-black/90 underline hover:text-[var(--hover-orange)]"
-                >
-                  {place.price}
-                </Button>
+            </div>
+
+            <div className="flex flex-row gap-10 text-[0.9rem] opacity-90">
+              <div className="flex flex-row items-center">
+                <IsOpen isOpen={isOpen} />
+                <div className="flex flex-row items-center gap-2 pl-3 text-base">
+                  <Button
+                    variant="link"
+                    className="p-0 flex items-center text-[var(--text-basic)] underline hover:text-[var(--hover-orange)]"
+                  >
+                    {place.cuisine}
+                  </Button>
+                  <Button
+                    variant="link"
+                    className="p-0 flex items-center text-[var(--text-basic)] underline hover:text-[var(--hover-orange)]"
+                  >
+                    {place.price}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

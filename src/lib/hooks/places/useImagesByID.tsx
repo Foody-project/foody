@@ -11,7 +11,7 @@ const fetchImagesByPlaceId = async (placeId: number): Promise<Image[]> => {
   return res.json();
 };
 
-export const useImagesByPlaceId = (placeId: number) => {
+export const getImagesByPlaceId = (placeId: number) => {
   return useQuery<Image[], Error>(
     ["images", placeId],
     () => fetchImagesByPlaceId(placeId),

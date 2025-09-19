@@ -2,6 +2,7 @@
 
 import { Export, Pencil, Heart, Warning } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
+import { ShareModal } from "./ShareModal";
 import { useState } from "react";
 
 export default function ButtonTips() {
@@ -11,24 +12,25 @@ export default function ButtonTips() {
 
   return (
     <div className="flex gap-3">
-      <Button variant="link" className="font-[400]">
-        <Warning size={32} color="grey" />
+      <Button variant="link">
+        <Warning size={32} color="var(--icon-basic)" />
       </Button>
-      <Button variant="link" className="font-[400]">
-        <Export size={32} /> Share
-      </Button>
-      <Button variant="link" className="font-[400]">
-        <Pencil size={32} /> Review
+      <ShareModal />
+      <Button
+        variant="link"
+        style={{ color: "var(--text-basic)", fontWeight: 400 }}
+      >
+        <Pencil size={32} color="var(--icon-basic)" /> Review
       </Button>
       <Button
         variant="outline"
         onClick={toggleSaved}
-        className="hover:bg-red-200 flex items-center gap-2 font-[600] border-[var(--text-orange)]"
+        className="hover:bg-red-200 flex items-center gap-2 font-[400] border-[var(--text-orange)]"
       >
         <Heart
           size={64}
           weight={saved ? "fill" : "regular"}
-          color={saved ? "red" : "currentColor"}
+          color={saved ? "red" : "var(--icon-basic)"}
         />
         Save
       </Button>

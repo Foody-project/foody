@@ -18,16 +18,15 @@ import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 import { MoveDiagonal2, Instagram, Globe, Phone } from "lucide-react";
 
 import { usePlaceByID } from "@/lib/hooks/places/usePlaceByID";
-import { useImagesByPlaceId } from "@/lib/hooks/places/useImagesByID";
+import { getImagesByPlaceId } from "@/lib/hooks/places/useImagesByID";
 
 interface PlaceModalProps {
   id: number;
 }
 
 export default function PlaceModal({ id }: PlaceModalProps) {
-  const router = useRouter();
-  const { data: place, isLoading, error } = usePlaceByID(id);
-  const { data: images } = useImagesByPlaceId(id);
+  const { data: place, error } = usePlaceByID(id);
+  const { data: images } = getImagesByPlaceId(id);
 
   if (error || !place)
     return <div className="text-red-500">Error loading place</div>;

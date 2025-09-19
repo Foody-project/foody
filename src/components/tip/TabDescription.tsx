@@ -1,8 +1,8 @@
+"use client";
+
 import * as React from "react";
 import { Lexend } from "next/font/google";
-
 import { Place } from "@/interfaces";
-
 import PresentationPart from "./PresentationPart";
 
 const lexend = Lexend({
@@ -15,48 +15,39 @@ interface TabProps {
   place?: Place;
 }
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  active: boolean;
-}
-
-function TabPanel({ children, active }: TabPanelProps) {
-  return (
-    <div
-      role="tabpanel"
-      hidden={!active}
-      className={`p-4 transition-all duration-300 ${
-        active ? "block opacity-100" : "hidden opacity-0"
-      }`}
-    >
-      {children}
-    </div>
-  );
-}
-
 export default function TabDescription({ place }: TabProps) {
   const [activeIndex, setActiveIndex] = React.useState(0);
 
+  const sectionRefs = React.useRef<Record<string, HTMLDivElement>>({});
+
   const tabs = [
-    { label: "Presentation", content: <PresentationPart place={place} /> },
-    { label: "Where is it ?", content: "Item Two" },
-    { label: "It's open ?", content: "Item Three" },
-    { label: "Card", content: "Item Four" },
+    { label: "Offers", section: "offers" },
+    { label: "Menu", section: "headerMenu" },
+    { label: "Schedules", section: "sidebar" },
+    { label: "Where is it ?", section: "map" },
   ];
+
+  const handleTabClick = (index: number, section: string) => {
+    setActiveIndex(index);
+    const target = sectionRefs.current[section];
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <div className="w-full">
-      <div className="flex border-b border-gray-300">
+      <div className="flex sticky top-0 z-10 backdrop-blur-sm pt-1 mb-3">
         {tabs.map((tab, index) => (
           <button
             key={index}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => handleTabClick(index, tab.section)}
             className={`${
               lexend.className
-            } px-4 py-3 border-b-4 transition-all duration-300 text-[0.9rem]
+            } px-4 py-3 border-b-4 transition-all duration-300 text-md text-[var(--text-basic)]
               ${
                 activeIndex === index
-                  ? "border-orange-500 font-[500]"
+                  ? "border-[var(--text-orange)] font-[500]"
                   : "border-transparent font-[300]"
               }`}
           >
@@ -65,11 +56,7 @@ export default function TabDescription({ place }: TabProps) {
         ))}
       </div>
 
-      {tabs.map((tab, index) => (
-        <TabPanel key={index} active={activeIndex === index}>
-          {tab.content}
-        </TabPanel>
-      ))}
+      <PresentationPart place={place} ref={sectionRefs} />
     </div>
   );
 }

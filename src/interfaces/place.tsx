@@ -1,3 +1,5 @@
+import { OpeningHour } from "./openingHour";
+
 export interface Place {
   id: number;
   name: string;
@@ -8,14 +10,18 @@ export interface Place {
   cuisine?: string;
   stars?: number;
   totalNotation?: number;
+  foodysNotation: string;
   image?: string;
   description?: string;
   address?: string;
+  longitude: number;
+  latitude: number;
   instagram?: string;
   website?: string;
   phone?: string;
   spokenLanguages?: string[];
   paymentMethods?: string[];
+  openingHours?: OpeningHour[];
   categoryId?: number;
   userId?: number;
   createdAt?: string;
