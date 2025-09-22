@@ -8,6 +8,8 @@ import { useAddFavorite } from "@/hooks/places/useSavePlace";
 import { useDeleteFavorite } from "@/hooks/places/useDeleteSavingPlace";
 import { Toast } from "../Toast";
 import { Place } from "@/types";
+import { ReportModal } from "./ReportModal";
+import { useState } from "react";
 
 export default function ButtonTips({ place }: { place: Place }) {
   const { mutate: addFavorite } = useAddFavorite();
@@ -56,9 +58,7 @@ export default function ButtonTips({ place }: { place: Place }) {
 
   return (
     <div className="flex gap-3">
-      <Button variant="link">
-        <Warning size={32} color="var(--icon-basic)" />
-      </Button>
+      <ReportModal />
       <ShareModal />
       <Button
         variant="link"
