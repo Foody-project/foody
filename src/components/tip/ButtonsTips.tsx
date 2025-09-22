@@ -1,6 +1,6 @@
 "use client";
 
-import { Pencil, Heart } from "@phosphor-icons/react";
+import { Pencil, Heart, Warning } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { ShareModal } from "./ShareModal";
 import { useState } from "react";
