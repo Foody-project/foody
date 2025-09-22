@@ -3,7 +3,6 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDown } from "lucide-react";
-import { Handshake } from "@phosphor-icons/react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -11,12 +10,7 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 

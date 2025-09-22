@@ -3,7 +3,6 @@ import { Place } from "@/types";
 import { Info } from "@phosphor-icons/react";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 interface ReviewRecapProps {
   place?: Place;

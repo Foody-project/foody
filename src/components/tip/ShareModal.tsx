@@ -11,7 +11,6 @@ import {
 import { Export, Copy } from "@phosphor-icons/react";
 import { Send, Link2 } from "lucide-react";
 import Snackbar from "@mui/material/Snackbar";
-import { Input } from "../ui/input";
 
 export function ShareModal() {
   const [url, setUrl] = useState("");
