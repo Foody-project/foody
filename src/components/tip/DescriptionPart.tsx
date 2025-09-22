@@ -1,17 +1,10 @@
 import {
   Accordion,
-  AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import {
-  Gift,
-  CaretRight,
-  ForkKnife,
-  Translate,
-  CreditCard,
-} from "@phosphor-icons/react";
+import { ForkKnife, Translate, CreditCard } from "@phosphor-icons/react";
 import { Place } from "@/types";
 
 interface DescriptionPartProps {
