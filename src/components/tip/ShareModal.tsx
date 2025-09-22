@@ -57,13 +57,13 @@ export function ShareModal() {
           </Button>
         </PopoverTrigger>
 
-        <PopoverContent className="w-[20rem] rounded-md shadow-md shadow-[rgba(0,0,0,0.2)] bg-[#FCF6E7]">
+        <PopoverContent className="w-[22.5rem] rounded-md shadow-md shadow-[rgba(0,0,0,0.2)] bg-[#FCF6E7]">
           <div className="grid gap-4">
             <div className="space-y-1">
               <div className="bg-[var(--text-orange-third)] p-3 rounded-lg inline-flex shadow-[0_0_10px_2px_rgba(150,112,98,0.8)]">
                 <Send size={25} className="text-white" />
               </div>
-              <h4 className="leading-none font-medium text-xl pt-2">
+              <h4 className="leading-none font-medium text-2xl pt-2">
                 Share this spot to a friend !
               </h4>
               <p className="text-muted-foreground text-sm font-thin">
