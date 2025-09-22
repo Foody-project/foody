@@ -109,25 +109,18 @@
   }
 }
 
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) blur(4px);
-  }
-  10% {
-    opacity: 1;
-    transform: translateY(0) blur(0);
-  }
-  90% {
-    opacity: 1;
-    transform: translateY(0) blur(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(20px) blur(4px);
-  }
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
 }
 
-.animate-fade-in-out {
-  animation: fadeInOut 3s ease-in-out forwards;
+@keyframes gradient-slide {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-slide 8s ease infinite;
 }
