@@ -83,7 +83,7 @@ export function ReportModal() {
                   Other
                 </Label>
               </div>
-              {other && (
+              {other === true && (
                 <Textarea
                   placeholder="Describe the reason here."
                   className="mt-4 placeholder:font-thin placeholder:text-[0.85rem]"
