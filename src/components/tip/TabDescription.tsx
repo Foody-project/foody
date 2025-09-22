@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Lexend } from "next/font/google";
-import { Place } from "@/interfaces";
+import { Place } from "@/types";
 import PresentationPart from "./PresentationPart";
 
 const lexend = Lexend({

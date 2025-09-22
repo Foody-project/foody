@@ -1,9 +1,6 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 
-import {
-  Footer,
-  FooterBottom
-} from "@/components/ui/footer";
+import { Footer, FooterBottom } from "@/components/ui/footer";
 
 interface FooterLink {
   text: string;
@@ -19,8 +16,8 @@ interface FooterProps {
 export default function FooterSection({
   copyright = "© 2025 Corentin Deldalle. All rights reserved",
   policies = [
-    { text: "Privacy Policy", href: '' },
-    { text: "Terms of Service", href: '' },
+    { text: "Privacy Policy", href: "" },
+    { text: "Terms of Service", href: "" },
   ],
   className,
 }: FooterProps) {

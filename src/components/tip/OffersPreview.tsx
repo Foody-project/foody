@@ -6,8 +6,8 @@ import {
 } from "@/components/ui/accordion";
 
 import { Gift, CaretRight } from "@phosphor-icons/react";
-import { Place } from "@/interfaces";
-import { getOffersCount } from "@/lib/hooks/places/useOffersCount";
+import { Place } from "@/types";
+import { getOffersCount } from "@/hooks/places/useOffersCount";
 
 interface OffersPreviewProps {
   place?: Place;

@@ -4,7 +4,7 @@ import ScrollBaseAnimation from "../../../components/uilayouts/scroll-text-marqu
 function Texts() {
   return (
     <>
-      <div className="h-[500px] w-[100%] scale-[1.025] grid place-content-center rotate-[-10deg]">
+      <div className="h-[500px] w-[100%] scale-[1.035] grid place-content-center rotate-[-10deg]">
         <ScrollBaseAnimation
           delay={500}
           baseVelocity={-3}

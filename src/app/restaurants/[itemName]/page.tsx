@@ -9,16 +9,16 @@ import Loader from "@/components/PreviewCards/Loader";
 import TabDescription from "@/components/tip/TabDescription";
 import Footer from "@/components/Footer/Footer";
 
-import { usePlaceByID } from "@/lib/hooks/places/usePlaceByID";
+import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 
 export default function ItemPage() {
   const searchParams = useSearchParams();
-
   const idString = searchParams ? searchParams.get("extraInfo") : "";
-
   const idNumber = idString ? parseInt(idString, 10) : 0;
 
-  const { data: place, isLoading } = usePlaceByID(idNumber);
+  const { data: places = [], isLoading } = getAllPlaces();
+
+  const place = places.find((p) => p.id === idNumber);
 
   const itemsBreadcrumb = [
     { label: "Home", href: "/" },

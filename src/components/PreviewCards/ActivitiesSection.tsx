@@ -1,20 +1,26 @@
-import * as React from 'react';
+import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CardActivity } from './Card';
-import { SelectTypeOfActivity } from '../PreviewCards/SelectTypeOfActivity';
-import { Activity } from '@/interfaces';
+import { CardActivity } from "./Card";
+import { SelectTypeOfActivity } from "../PreviewCards/SelectTypeOfActivity";
+import { Activity } from "@/types";
 
-import { getActivityData } from '@/lib/hooks/getActivityData';
+import { getActivityData } from "@/lib/hooks/getActivityData";
 
 interface ActivitiesSectionProps {
   isHomePage: boolean;
 }
 
-export default function ActivitiesSection({ isHomePage }: ActivitiesSectionProps) {
-  const [selectedTypeOfActivity, setSelectedTypeOfActivity] = React.useState<{ icon: string; text: string; category: string } | null>({
+export default function ActivitiesSection({
+  isHomePage,
+}: ActivitiesSectionProps) {
+  const [selectedTypeOfActivity, setSelectedTypeOfActivity] = React.useState<{
+    icon: string;
+    text: string;
+    category: string;
+  } | null>({
     icon: "🏛️",
     text: "Museums 🏛️",
-    category: "museum"
+    category: "museum",
   });
 
   const activities = getActivityData();
@@ -22,7 +28,9 @@ export default function ActivitiesSection({ isHomePage }: ActivitiesSectionProps
   const filteredData = React.useMemo(
     () =>
       selectedTypeOfActivity
-        ? activities.filter((cat) => cat.type === selectedTypeOfActivity.category)
+        ? activities.filter(
+            (cat) => cat.type === selectedTypeOfActivity.category
+          )
         : activities,
     [selectedTypeOfActivity]
   );
@@ -44,21 +52,23 @@ export default function ActivitiesSection({ isHomePage }: ActivitiesSectionProps
         >
           <div className="mb-6">
             <div className="flex flex-rows justify-between">
-              {activities.slice(0, 3).map((activity: Activity, index: number) => (
-                <CardActivity
-                  key={index}
-                  id={index}
-                  name={activity.name}
-                  quartier={activity.quartier}
-                  prix={activity.prix}
-                  image={activity.image}
-                  type={selectedTypeOfActivity?.icon ?? ""}
-                  isHomePage={isHomePage}
-                />
-              ))}
+              {activities
+                .slice(0, 3)
+                .map((activity: Activity, index: number) => (
+                  <CardActivity
+                    key={index}
+                    id={index}
+                    name={activity.name}
+                    quartier={activity.quartier}
+                    prix={activity.prix}
+                    image={activity.image}
+                    type={selectedTypeOfActivity?.icon ?? ""}
+                    isHomePage={isHomePage}
+                  />
+                ))}
             </div>
           </div>
-          </motion.div>
+        </motion.div>
       </AnimatePresence>
     </div>
   );

@@ -5,14 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { PasswordInput } from "@/components/Login/PasswordInput";
+import { PasswordInput } from "@/features/Login/PasswordInput";
 import Footer from "@/components/Footer/Footer";
 import { CornerUpLeft } from "lucide-react";
 import "../../app/globals.css";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import { useRegister } from "../../lib/hooks/register/useRegister";
-
+import { useRegister } from "@/hooks/register/useRegister";
 import { Lexend } from "next/font/google";
 
 const lexend = Lexend({

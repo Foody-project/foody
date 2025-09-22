@@ -6,7 +6,7 @@ import "../globals.css";
 
 import Footer from "@/components/Footer/Footer";
 
-import type { Place } from "@/interfaces";
+import type { Place } from "@/types";
 
 import Navbar from "@/components/Navbar/Navbar";
 import { Card } from "@/components/PreviewCards/Card";
@@ -15,7 +15,7 @@ import Loader from "@/components/PreviewCards/Loader";
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal } from "lucide-react";
 
-import { getAllPlaces } from "@/lib/hooks/places/useAllPlaces";
+import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 
 export default function ItemTypePage() {
   const params = useParams();

@@ -4,7 +4,7 @@ import * as React from "react";
 import { Input, type InputProps } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 
 interface PasswordInputProps extends InputProps {
   className?: string;

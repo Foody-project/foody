@@ -1,5 +1,5 @@
-import { usePlaceByID } from "@/lib/hooks/places/usePlaceByID";
-import { Place } from "@/interfaces";
+import { getPlaceByID } from "@/hooks/places/usePlaceByID";
+import { Place } from "@/types";
 
 interface SchedulesProps {
   place?: Place;
@@ -69,14 +69,14 @@ const ScheduleDay = ({ day, dayHours }: { day: string; dayHours: Hour[] }) => {
 export default function Schedules({ place }: SchedulesProps) {
   if (!place) return null;
 
-  const { data: fetchedPlace, isLoading, isError } = usePlaceByID(place.id);
+  const { data: fetchedPlace, isLoading, isError } = getPlaceByID(place.id);
+
   if (isLoading) return <p>Chargement...</p>;
   if (isError) return <p>Erreur lors du chargement</p>;
   if (!fetchedPlace) return null;
 
   const openingHours = fetchedPlace.openingHours || [];
 
-  // Regrouper les horaires par jour
   const hoursByDay: Record<string, Hour[]> = {};
   openingHours.forEach((hour: Hour) => {
     const day = hour.dayOfWeek;

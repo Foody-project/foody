@@ -12,7 +12,7 @@ import {
   Translate,
   CreditCard,
 } from "@phosphor-icons/react";
-import { Place } from "@/interfaces";
+import { Place } from "@/types";
 
 interface DescriptionPartProps {
   place?: Place;

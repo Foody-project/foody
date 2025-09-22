@@ -6,10 +6,9 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 
-import { usePlaceByID } from "@/lib/hooks/places/usePlaceByID";
 import PlaceModal from "@/components/Event/PlaceModal";
-
-import { getImagesByPlaceId } from "@/lib/hooks/places/useImagesByID";
+import { getImagesByPlaceId } from "@/hooks/places/useImagesByID";
+import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 
 interface CardProps {
   id: number;
@@ -17,8 +16,10 @@ interface CardProps {
 
 export function Card({ id }: CardProps) {
   const router = useRouter();
-  const { data: place } = usePlaceByID(id);
+  const { data: places = [] } = getAllPlaces();
   const { data: images } = getImagesByPlaceId(id);
+
+  const place = places.find((p) => p.id === id);
 
   const redirectToItemPage = (name: string, id: number) => {
     const redirectName = name.trim().toLowerCase().replace(/\s+/g, "-");
@@ -32,7 +33,7 @@ export function Card({ id }: CardProps) {
   if (!place) return null;
 
   return (
-    <div className="text-white w-[25rem] h-[22.5rem] mt-10 [box-shadow:10px_10px_6px_rgba(0,0,0,0.07)] rounded-xl transition-transform duration-300 hover:scale-101">
+    <div className="text-white bg-white/70 w-[25rem] h-[22.5rem] mt-10 [box-shadow:10px_10px_6px_rgba(0,0,0,0.07)] rounded-xl transition-transform duration-300 hover:scale-101">
       <div onClick={() => redirectToItemPage(place.name, place.id)}>
         {images && images.length > 0 && (
           <img

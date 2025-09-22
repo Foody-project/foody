@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Image } from "@/interfaces";
+import { Image } from "@/types";
 
 const fetchImagesByPlaceId = async (placeId: number): Promise<Image[]> => {
   const res = await fetch(

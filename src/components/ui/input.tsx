@@ -1,8 +1,8 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/utils/utils";
 
 export interface InputProps extends React.ComponentProps<"input"> {
-  icon?: React.ReactNode
+  icon?: React.ReactNode;
 }
 
 function Input({ className, type, icon, ...props }: InputProps) {
@@ -26,7 +26,7 @@ function Input({ className, type, icon, ...props }: InputProps) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export { Input }
+export { Input };

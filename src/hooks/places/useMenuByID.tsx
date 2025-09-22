@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Menu } from "@/interfaces";
+import { Menu } from "@/types";
 
 const fetchMenusByID = async (placeId: number): Promise<Menu[]> => {
   const res = await fetch(

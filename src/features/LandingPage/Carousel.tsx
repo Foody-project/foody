@@ -7,9 +7,9 @@ import {
 } from "@/components/ui/carousel";
 import { useRouter } from "next/navigation";
 
-import type { Place } from "@/interfaces";
-import { Card } from "../PreviewCards/Card";
-import { Button } from "../ui/button";
+import type { Place } from "@/types";
+import { Card } from "../../components/PreviewCards/Card";
+import { Button } from "../../components/ui/button";
 
 interface CarouselSpacingProps {
   places: Place[];

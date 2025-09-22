@@ -1,6 +1,6 @@
 import { DescriptionPart } from "./DescriptionPart";
 import ReviewRecap from "./ReviewRecap";
-import { Place } from "@/interfaces";
+import { Place } from "@/types";
 
 interface HeaderPresentationProps {
   readonly place?: Place;

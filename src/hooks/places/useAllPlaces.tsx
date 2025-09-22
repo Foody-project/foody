@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Place } from "@/interfaces";
+import { Place } from "@/types";
 
 const fetchPlaces = async (): Promise<Place[]> => {
   const res = await fetch(

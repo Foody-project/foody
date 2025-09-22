@@ -1,5 +1,5 @@
 import CircularProgress from "@mui/material/CircularProgress";
-import { Place } from "@/interfaces";
+import { Place } from "@/types";
 import { Info } from "@phosphor-icons/react";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";

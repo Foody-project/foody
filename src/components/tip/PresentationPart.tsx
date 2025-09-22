@@ -3,7 +3,7 @@ import DiscoverMenu from "./DiscoverMenu";
 import HeaderPresentationPart from "./HeaderPresentationPart";
 import { OffersPreview } from "./OffersPreview";
 import GoogleMapEmbedding from "./GoogleMapEmbedding";
-import { Place } from "@/interfaces";
+import { Place } from "@/types";
 import Schedules from "./Schedules";
 
 interface PresentationPartProps {

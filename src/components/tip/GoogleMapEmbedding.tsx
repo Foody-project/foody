@@ -8,7 +8,7 @@ import {
   InfoWindow,
 } from "@vis.gl/react-google-maps";
 import React from "react";
-import { Place } from "@/interfaces";
+import { Place } from "@/types";
 
 interface GoogleMapsProps {
   place?: Place;

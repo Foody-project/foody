@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Place } from "@/interfaces";
+import { Place } from "@/types";
 
 const fetchOpenPlaces = async (): Promise<Place[]> => {
   // Obtenir l'heure actuelle à Paris au format HH:mm

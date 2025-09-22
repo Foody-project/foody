@@ -2,15 +2,15 @@
 
 import * as React from "react";
 
-import { Place } from "@/interfaces";
-import { getImagesByPlaceId } from "../../lib/hooks/places/useImagesByID";
+import { Place } from "@/types";
+import { getImagesByPlaceId } from "@/hooks/places/useImagesByID";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 import { Button } from "@/components/ui/button";
 
 import ImageDisplayer from "./ImageDisplayer";
 import ButtonTips from "./ButtonsTips";
 import IsOpen from "./IsOpen";
-import { getOpenPlaces } from "@/lib/hooks/places/useIsOpeningNow";
+import { getOpenPlaces } from "@/hooks/places/useIsOpeningNow";
 
 interface HeaderProps {
   place?: Place;

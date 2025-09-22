@@ -3,7 +3,7 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { PasswordInput } from "@/components/Login/PasswordInput";
+import { PasswordInput } from "@/features/Login/PasswordInput";
 import Footer from "@/components/Footer/Footer";
 import { CornerUpLeft } from "lucide-react";
 import "../../app/globals.css";

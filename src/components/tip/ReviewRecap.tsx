@@ -1,5 +1,5 @@
 import ProgressBarCircle from "./ProgressionBarCircle";
-import { Place } from "@/interfaces";
+import { Place } from "@/types";
 
 interface ReviewRecapProps {
   place?: Place;

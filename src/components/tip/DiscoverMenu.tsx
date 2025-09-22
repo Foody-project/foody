@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 
-import { useMenusByPlaceId } from "@/lib/hooks/places/useMenuByID";
-import { getImagesByPlaceId } from "@/lib/hooks/places/useImagesByID";
-import { Place } from "@/interfaces";
+import { useMenusByPlaceId } from "@/hooks/places/useMenuByID";
+import { getImagesByPlaceId } from "@/hooks/places/useImagesByID";
+import { Place } from "@/types";
 
 interface DiscoverMenuProps {
   readonly place?: Place;

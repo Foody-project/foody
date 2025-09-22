@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
+import { getAllPlaces } from "@/hooks/places/useAllPlaces";
+import { getImagesByPlaceId } from "@/hooks/places/useImagesByID";
 
 import {
   Dialog,
@@ -17,16 +18,15 @@ import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 
 import { MoveDiagonal2, Instagram, Globe, Phone } from "lucide-react";
 
-import { usePlaceByID } from "@/lib/hooks/places/usePlaceByID";
-import { getImagesByPlaceId } from "@/lib/hooks/places/useImagesByID";
-
 interface PlaceModalProps {
   id: number;
 }
 
 export default function PlaceModal({ id }: PlaceModalProps) {
-  const { data: place, error } = usePlaceByID(id);
+  const { data: places = [], isLoading, error } = getAllPlaces();
   const { data: images } = getImagesByPlaceId(id);
+
+  const place = places.find((p) => p.id === id);
 
   if (error || !place)
     return <div className="text-red-500">Error loading place</div>;

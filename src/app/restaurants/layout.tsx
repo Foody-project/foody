@@ -1,4 +1,4 @@
-import ReactQueryProvider from "../../lib/ReactQueryComponent";
+import ReactQueryProvider from "../../utils/ReactQueryComponent";
 import { Funnel_Display, Lexend } from "next/font/google";
 
 export const metadata = {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Funnel_Display } from "next/font/google";
 import "../globals.css";
-import ReactQueryProvider from "../../lib/ReactQueryComponent";
+import ReactQueryProvider from "../../utils/ReactQueryComponent";
 
 export const metadata: Metadata = {
   title: "Discover - Find",
