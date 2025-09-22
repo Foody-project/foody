@@ -3,6 +3,7 @@
 import { Export, Pencil, Heart, Warning } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { ShareModal } from "./ShareModal";
+import { ReportModal } from "./ReportModal";
 import { useState } from "react";
 
 export default function ButtonTips() {
@@ -12,9 +13,7 @@ export default function ButtonTips() {
 
   return (
     <div className="flex gap-3">
-      <Button variant="link">
-        <Warning size={32} color="var(--icon-basic)" />
-      </Button>
+      <ReportModal />
       <ShareModal />
       <Button
         variant="link"
