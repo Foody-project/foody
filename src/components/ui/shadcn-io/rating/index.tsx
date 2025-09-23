@@ -129,6 +129,7 @@ export type RatingProps = {
   ) => void;
   onValueChange?: (value: number) => void;
   readOnly?: boolean;
+  displayNumber?: boolean;
   className?: string;
   children?: ReactNode;
   number?: number;
@@ -137,9 +138,10 @@ export type RatingProps = {
 export const Rating = ({
   value: controlledValue,
   onValueChange: controlledOnValueChange,
-  defaultValue = 0,
+  defaultValue,
   onChange,
   readOnly = false,
+  displayNumber = false,
   className,
   children,
   number,
@@ -149,7 +151,7 @@ export const Rating = ({
   const [focusedStar, setFocusedStar] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [value, onValueChange] = useControllableState({
-    defaultProp: defaultValue,
+    defaultProp: defaultValue ?? 0,
     prop: controlledValue,
     onChange: controlledOnValueChange,
   });
@@ -240,9 +242,11 @@ export const Rating = ({
           });
         })}
 
-        <span className="text-[10px] text-gray-500 italic relative top-[5px] pr-1">
-          ({number ?? 0})
-        </span>
+        {displayNumber && (
+          <span className="text-[10px] text-gray-500 italic relative top-[5px] pr-1">
+            ({number})
+          </span>
+        )}
       </div>
     </RatingContext.Provider>
   );

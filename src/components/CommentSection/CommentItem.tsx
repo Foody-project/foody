@@ -1,5 +1,7 @@
 import { Separator } from "../ui/separator";
 import { Comment } from "@/types";
+import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
+
 interface CommentProps {
   comment: Comment;
 }
@@ -31,13 +33,23 @@ export function CommentItem({ comment }: CommentProps) {
               <span>{comment.comment}</span>
             </div>
           </div>
-          <span className="text-xs font-light text-[var(--text-basic)]/50 px-2 py-1">
-            {new Date(comment.createdAt).toLocaleTimeString("fr-FR", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: false,
-            })}
-          </span>
+          <div className="flex flex-col">
+            <Rating defaultValue={comment.rating} readOnly>
+              {Array.from({ length: 5 }).map((_, index) => (
+                <RatingButton
+                  key={index}
+                  className="text-[var(--text-orange)]"
+                />
+              ))}
+            </Rating>
+            <span className="text-xs font-light text-[var(--text-basic)]/50 px-2 py-1 flex flex-row justify-end">
+              {new Date(comment.createdAt).toLocaleTimeString("fr-FR", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+              })}
+            </span>
+          </div>
         </div>
         <Separator />
       </div>

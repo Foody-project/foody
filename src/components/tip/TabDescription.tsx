@@ -21,7 +21,7 @@ export default function TabDescription({ place }: TabProps) {
   const sectionRefs = React.useRef<Record<string, HTMLDivElement>>({});
 
   const tabs = [
-    { label: "Offers", section: "offers" },
+    // { label: "Offers", section: "offers" },
     { label: "Menu", section: "headerMenu" },
     { label: "Schedules", section: "sidebar" },
     { label: "Where is it ?", section: "map" },

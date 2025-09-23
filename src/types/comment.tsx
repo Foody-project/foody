@@ -3,8 +3,7 @@ export interface Comment {
   userId: number;
   placeId: number;
   comment: string;
-  likes: number;
-  dislikes: number;
+  rating: number;
   createdAt: Date;
   author: {
     id: number;
