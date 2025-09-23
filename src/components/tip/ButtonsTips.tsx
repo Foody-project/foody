@@ -7,7 +7,6 @@ import { useState } from "react";
 
 export default function ButtonTips() {
   const [saved, setSaved] = useState(false);
-
   const toggleSaved = () => setSaved(!saved);
 
   return (
