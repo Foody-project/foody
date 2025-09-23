@@ -73,7 +73,7 @@ export default function Header({ place }: HeaderProps) {
             </div>
           </div>
 
-          <ButtonTips place={place} />
+          <ButtonTips />
         </div>
 
         <ImageDisplayer images={images} place={place} />
