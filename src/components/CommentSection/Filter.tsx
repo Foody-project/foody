@@ -20,7 +20,7 @@ export default function Filters() {
       <SelectContent className="font-thin text-[0.9rem] text-[var(--text-basic)]">
         <SelectGroup>
           <SelectItem value="default">Default</SelectItem>
-          <SelectItem value="mostLiked">Most liked</SelectItem>
+          <SelectItem value="mostLiked">Recent</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
