@@ -5,6 +5,7 @@ import { OffersPreview } from "./OffersPreview";
 import GoogleMapEmbedding from "./GoogleMapEmbedding";
 import { Place } from "@/types";
 import Schedules from "./Schedules";
+import CommentSection from "../CommentSection/CommentSection";
 
 interface PresentationPartProps {
   readonly place?: Place;
@@ -45,8 +46,14 @@ const PresentationPart = forwardRef<
         </div>
       </div>
 
-      <div ref={(el) => setRef("map", el)}>
-        <GoogleMapEmbedding place={place} />
+      <div className="flex flex-row items-start gap-6">
+        <div className="flex-1 pr-10">
+          <CommentSection />
+        </div>
+
+        <div ref={(el) => setRef("map", el)} className="w-[32.5rem] ml-auto">
+          <GoogleMapEmbedding place={place} />
+        </div>
       </div>
     </div>
   );
