@@ -24,7 +24,7 @@ const PresentationPart = forwardRef<
     }
   };
 
-  if (!place) return null;
+  if (!place) return;
 
   return (
     <div className="w-full flex flex-col space-y-8">

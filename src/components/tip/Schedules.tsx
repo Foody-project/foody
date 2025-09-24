@@ -67,13 +67,12 @@ const ScheduleDay = ({ day, dayHours }: { day: string; dayHours: Hour[] }) => {
 };
 
 export default function Schedules({ place }: SchedulesProps) {
-  if (!place) return null;
+  if (!place) return;
 
-  const { data: fetchedPlace, isLoading, isError } = getPlaceByID(place.id);
+  const { data: fetchedPlace, isLoading } = getPlaceByID(place.id);
 
-  if (isLoading) return <p>Chargement...</p>;
-  if (isError) return <p>Erreur lors du chargement</p>;
-  if (!fetchedPlace) return null;
+  if (isLoading) return <p>Loading...</p>;
+  if (!fetchedPlace) return;
 
   const openingHours = fetchedPlace.openingHours || [];
 

@@ -28,8 +28,7 @@ export default function PlaceModal({ id }: PlaceModalProps) {
 
   const place = places.find((p) => p.id === id);
 
-  if (error || !place)
-    return <div className="text-red-500">Error loading place</div>;
+  if (error || !place) return;
 
   return (
     <Dialog>

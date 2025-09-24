@@ -14,9 +14,7 @@ interface OffersPreviewProps {
 }
 
 export function OffersPreview({ place }: OffersPreviewProps) {
-  if (!place) {
-    return null;
-  }
+  if (!place) return;
   const { data } = getOffersCount(place?.id);
 
   return (

@@ -12,7 +12,7 @@ interface DiscoverMenuProps {
 }
 
 export default function DiscoverMenu({ place }: DiscoverMenuProps) {
-  if (!place?.id) return null;
+  if (!place?.id) return;
 
   const { data: menus, isLoading, error } = useMenusByPlaceId(place.id);
   const { data: images } = getImagesByPlaceId(place.id);

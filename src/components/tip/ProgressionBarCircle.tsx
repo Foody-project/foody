@@ -9,7 +9,7 @@ interface ReviewRecapProps {
 }
 
 export default function ProgressBarCircle({ place }: ReviewRecapProps) {
-  if (!place) return <span className="text-gray-500">Doesn't exist</span>;
+  if (!place) return;
 
   const value = (place?.stars ?? 0) * 20;
   const valueFoody = (parseFloat(place?.foodysNotation ?? "0") || 0) * 20;

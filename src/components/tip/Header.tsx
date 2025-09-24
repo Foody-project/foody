@@ -17,7 +17,7 @@ interface HeaderProps {
 }
 
 export default function Header({ place }: HeaderProps) {
-  if (!place) return null;
+  if (!place) return;
 
   const { data: images } = getImagesByPlaceId(place.id);
   const { data: openPlaces } = getOpenPlaces();
@@ -26,7 +26,7 @@ export default function Header({ place }: HeaderProps) {
 
   console.log("ISOPEN", isOpen);
 
-  if (!images) return null;
+  if (!images) return;
   console.log("OPEN", openPlaces);
 
   return (

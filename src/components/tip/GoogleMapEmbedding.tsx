@@ -15,9 +15,7 @@ interface GoogleMapsProps {
 }
 
 export default function GoogleMapEmbedding({ place }: GoogleMapsProps) {
-  if (!place?.latitude || !place?.longitude) {
-    return <p>Aucune coordonnée disponible</p>;
-  }
+  if (!place?.latitude || !place?.longitude) return;
 
   const position = { lat: place?.latitude, lng: place?.longitude };
   const [open, setOpen] = React.useState(false);

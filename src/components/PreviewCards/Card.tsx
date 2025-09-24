@@ -30,7 +30,7 @@ export function Card({ id }: CardProps) {
     );
   };
 
-  if (!place) return null;
+  if (!place) return;
 
   return (
     <div className="text-white bg-white/70 w-[25rem] h-[22.5rem] mt-10 [box-shadow:10px_10px_6px_rgba(0,0,0,0.07)] rounded-xl transition-transform duration-300 hover:scale-101">
