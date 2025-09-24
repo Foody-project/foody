@@ -25,7 +25,7 @@ export function CarouselSpacing({ places }: CarouselSpacingProps) {
   return (
     <Carousel className="w-full p-5">
       <CarouselContent className="-ml-1">
-        {places.map((place) => (
+        {places.slice(0, 3).map((place) => (
           <CarouselItem key={place.id} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1 pb-5">
               <Card id={place.id} />
