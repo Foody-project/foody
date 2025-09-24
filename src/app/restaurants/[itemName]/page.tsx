@@ -10,6 +10,13 @@ import TabDescription from "@/components/tip/TabDescription";
 import Footer from "@/components/Footer/Footer";
 
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
+import { Lexend } from "next/font/google";
+
+const lexend = Lexend({
+  weight: ["300", "400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function ItemPage() {
   const searchParams = useSearchParams();
@@ -27,7 +34,7 @@ export default function ItemPage() {
   ];
 
   return (
-    <div className="w-4/5 mx-auto">
+    <div className={`${lexend.className} w-4/5 mx-auto`}>
       <Navbar />
       <div className="pb-3">
         {isLoading && <Loader />}

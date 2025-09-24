@@ -63,8 +63,8 @@ export default function Navbar() {
                 >
                   <input
                     type="text"
-                    placeholder="Search the best place..."
-                    className="w-full pl-10 pr-4 py-2 rounded-full bg-white/95 text-gray-700 placeholder-gray-400 placeholder:font-thin placeholder:text-[0.95rem] focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all duration-200"
+                    placeholder="Search for a document"
+                    className="w-full pl-10 pr-4 py-2 rounded-full bg-white/85 text-gray-700 placeholder-gray-400 placeholder:font-thin placeholder:text-[0.95rem] focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all duration-200"
                   />
                   <Search
                     size={18}
