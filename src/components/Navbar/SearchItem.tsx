@@ -2,12 +2,27 @@ import { Place } from "@/types";
 import { getImagesByPlaceId } from "@/hooks/places/useImagesByID";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 import { Badge } from "../ui/badge";
+import { useRouter } from "next/navigation";
 
 export default function SearchItem({ place }: { place: Place }) {
   const { data: images } = getImagesByPlaceId(place.id);
+  const router = useRouter();
+
+  const redirectToItemPage = (name: string, id: number) => {
+    const redirectName = name.trim().toLowerCase().replace(/\s+/g, "-");
+    router.push(
+      `/restaurants/${redirectName}?extraInfo=${encodeURIComponent(
+        id.toString()
+      )}`
+    );
+  };
 
   return (
-    <div className="flex flex-row gap-2 items-center p-2">
+    <div
+      className="flex flex-row gap-2 items-center p-2 cursor-pointer"
+      onClick={() => redirectToItemPage(place.name, place.id)}
+    >
+      {""}
       <img
         src={images?.[0]?.url ?? ""}
         alt=""

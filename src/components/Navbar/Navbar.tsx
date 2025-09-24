@@ -7,10 +7,9 @@ import { Lexend } from "next/font/google";
 import { Button } from "../ui/button";
 import { Search, ChevronRight } from "lucide-react";
 import SearchFirstStep from "./SearchFirstStep";
+import { Place } from "@/types";
 
 import "../../app/globals.css";
-import { Separator } from "../ui/separator";
-import SearchItem from "./SearchItem";
 
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 
@@ -20,12 +19,26 @@ const lexend = Lexend({
   display: "swap",
 });
 
-export default function Navbar() {
-  const router = useRouter();
-  const [isHovered, setIsHovered] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
+const getFilteredPlaces = (query: string, items: Place[]): Place[] => {
+  if (!query) return items;
 
-  const showSearch = isHovered || isFocused;
+  const lowerQuery = query.toLowerCase();
+
+  return items.filter((place: Place) => {
+    const words = place.name?.toLowerCase().split(/\s+/) || [];
+    return words.some((word) => word.startsWith(lowerQuery));
+  });
+};
+
+export default function Navbar() {
+  const { data: places } = getAllPlaces();
+  const router = useRouter();
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [query, setQuery] = useState<string>("");
+
+  const filteredPlaces = getFilteredPlaces(query, places ?? []);
+  const showSearch: boolean = isHovered || isFocused;
 
   return (
     <nav className="relative z-[9999]">
@@ -75,9 +88,10 @@ export default function Navbar() {
                 >
                   <input
                     type="text"
-                    placeholder="Search for a document"
+                    placeholder="Search a spot"
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
+                    onChange={(e) => setQuery(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 rounded-full bg-white/85 text-gray-700 placeholder-gray-400 placeholder:font-thin placeholder:text-[0.95rem] focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all duration-200"
                   />
                   <Search
@@ -85,9 +99,12 @@ export default function Navbar() {
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-500 pointer-events-none"
                   />
                 </div>
-
-                <div className="absolute mt-2 w-[30rem] h-[25rem] overflow-y-auto bg-white shadow-lg rounded-lg border border-gray-200">
-                  <SearchFirstStep />
+                <div className="absolute mt-2 w-[30rem] max-h-[25rem] overflow-y-auto bg-white shadow-lg rounded-lg border border-gray-200">
+                  <SearchFirstStep
+                    items={filteredPlaces}
+                    query={query}
+                    onItemClick={() => setQuery("")}
+                  />
                 </div>
               </div>
             </div>

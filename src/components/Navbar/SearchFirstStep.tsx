@@ -1,15 +1,25 @@
 import { Badge } from "@/components/ui/badge";
-import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import { Separator } from "../ui/separator";
 import SearchItem from "./SearchItem";
 import { useRouter } from "next/navigation";
+import { Place } from "@/types";
 
-export default function SearchFirstStep() {
-  const { data: places } = getAllPlaces();
+interface SearchFirstStepProps {
+  items?: Place[];
+  query?: string;
+  onItemClick?: () => void;
+}
 
-  const getThreeUniqueDistricts = (places: any[]) => {
+export default function SearchFirstStep({
+  items = [],
+  query = "",
+  onItemClick,
+}: SearchFirstStepProps) {
+  const router = useRouter();
+
+  const getThreeUniqueDistricts = (places: Place[]) => {
     const districtsSeen = new Set();
-    const result: any[] = [];
+    const result: Place[] = [];
 
     for (const place of places) {
       if (!districtsSeen.has(place.district)) {
@@ -22,9 +32,7 @@ export default function SearchFirstStep() {
     return result;
   };
 
-  const placesToDisplay = places ? getThreeUniqueDistricts(places) : [];
-
-  const router = useRouter();
+  const placesToDisplay = getThreeUniqueDistricts(items);
 
   function formatSlug(name: string) {
     return name
@@ -39,30 +47,41 @@ export default function SearchFirstStep() {
   const handleClick = (name: string) => {
     const formattedName = formatSlug(name);
     router.push(`/district/${formattedName}`);
+    onItemClick?.();
   };
 
   return (
     <div className="p-3">
-      <div className="flex flex-row flex-wrap gap-3 pb-2">
-        {placesToDisplay.map((place) => (
-          <Badge
-            key={place.id}
-            variant="secondary"
-            className="font-thin text-[0.85rem] hover:bg-[var(--text-orange-secondary)] transition-colors duration-300 ease-in-out cursor-pointer"
-            onClick={() => handleClick(`${place.district}`)}
-          >
-            {place.district}
-          </Badge>
-        ))}
-      </div>
-      <div>
-        <Separator />
-      </div>
-      <div className="flex flex-col mt-3">
-        {places?.slice(0, 3).map((place) => (
-          <SearchItem key={place.id} place={place} />
-        ))}
-      </div>
+      {query.trim() === "" ? (
+        <>
+          <div className="flex flex-row flex-wrap gap-3 pb-2">
+            {placesToDisplay.map((place) => (
+              <Badge
+                key={place.id}
+                variant="secondary"
+                className="font-thin text-[0.85rem] hover:bg-[var(--text-orange-secondary)] transition-colors duration-300 ease-in-out cursor-pointer"
+                onClick={() => handleClick(place.district)}
+              >
+                {place.district}
+              </Badge>
+            ))}
+          </div>
+          <Separator />
+          <div className="flex flex-col mt-3">
+            {items.slice(0, 3).map((place) => (
+              <SearchItem key={place.id} place={place} />
+            ))}
+          </div>
+        </>
+      ) : items.length > 0 ? (
+        <div className="flex flex-col gap-2 mt-2">
+          {items.map((place) => (
+            <SearchItem key={place.id} place={place} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-gray-500 italic mt-2">No results found</div>
+      )}
     </div>
   );
 }
