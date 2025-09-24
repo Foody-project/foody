@@ -6,8 +6,12 @@ import { Lexend } from "next/font/google";
 
 import { Button } from "../ui/button";
 import { Search, ChevronRight } from "lucide-react";
+import SearchFirstStep from "./SearchFirstStep";
+import { Place } from "@/types";
 
 import "../../app/globals.css";
+
+import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 
 const lexend = Lexend({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -15,12 +19,29 @@ const lexend = Lexend({
   display: "swap",
 });
 
+const getFilteredPlaces = (query: string, items: Place[]): Place[] => {
+  if (!query) return items;
+
+  const lowerQuery = query.toLowerCase();
+
+  return items.filter((place: Place) => {
+    const words = place.name?.toLowerCase().split(/\s+/) || [];
+    return words.some((word) => word.startsWith(lowerQuery));
+  });
+};
+
 export default function Navbar() {
+  const { data: places } = getAllPlaces();
   const router = useRouter();
-  const [showSearch, setShowSearch] = useState(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [query, setQuery] = useState<string>("");
+
+  const filteredPlaces = getFilteredPlaces(query, places ?? []);
+  const showSearch: boolean = isHovered || isFocused;
 
   return (
-    <nav>
+    <nav className="relative z-[9999]">
       <div className="flex items-center justify-between pt-5 pb-10 px-6">
         <a href="/" className="text-4xl font-bold text-[var(--text-orange)]">
           FOODY
@@ -38,8 +59,8 @@ export default function Navbar() {
         <div className="flex items-center gap-6 relative">
           <div
             className="relative"
-            onMouseEnter={() => setShowSearch(true)}
-            onMouseLeave={() => setShowSearch(false)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             <Search
               size={20}
@@ -53,7 +74,11 @@ export default function Navbar() {
                   : "opacity-0 translate-x-0 pointer-events-none"
               }`}
             >
-              <div className="relative">
+              <div
+                className="relative z-[9999]"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
                 <div
                   className="w-[30rem] rounded-full p-[2px]"
                   style={{
@@ -63,12 +88,22 @@ export default function Navbar() {
                 >
                   <input
                     type="text"
-                    placeholder="Search for a document"
+                    placeholder="Search a spot"
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    onChange={(e) => setQuery(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 rounded-full bg-white/85 text-gray-700 placeholder-gray-400 placeholder:font-thin placeholder:text-[0.95rem] focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all duration-200"
                   />
                   <Search
                     size={18}
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-500 pointer-events-none"
+                  />
+                </div>
+                <div className="absolute mt-2 w-[30rem] max-h-[25rem] overflow-y-auto bg-white shadow-lg rounded-lg border border-gray-200">
+                  <SearchFirstStep
+                    items={filteredPlaces}
+                    query={query}
+                    onItemClick={() => setQuery("")}
                   />
                 </div>
               </div>

@@ -56,7 +56,7 @@ export default function ImageDisplayer({ images, place }: ImageDisplayerProps) {
 
         {images.length > 1 && columnHeight > 0 && (
           <div
-            className="flex flex-col flex-1 gap-3"
+            className="flex flex-col gap-3"
             style={{ height: `${columnHeight}px` }}
           >
             {images.slice(1, 5).map((img, index) => {
