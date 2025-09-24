@@ -54,6 +54,7 @@ export default function Navbar() {
               }`}
             >
               <div className="relative">
+                {/* Search bar */}
                 <div
                   className="w-64 rounded-full p-[2px]"
                   style={{
@@ -71,6 +72,8 @@ export default function Navbar() {
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-500 pointer-events-none"
                   />
                 </div>
+
+                <div className="absolute mt-2 w-[30rem] h-[20rem] overflow-y-auto bg-white shadow-lg rounded-lg border border-gray-200 z-10"></div>
               </div>
             </div>
           </div>
