@@ -55,7 +55,7 @@ export default function Navbar() {
             >
               <div className="relative">
                 <div
-                  className="w-64 rounded-full p-[2px]"
+                  className="w-[30rem] rounded-full p-[2px]"
                   style={{
                     background:
                       "linear-gradient(90deg, rgba(207,6,6,0.5) 0%, rgba(255,140,0,0.5) 100%)",
