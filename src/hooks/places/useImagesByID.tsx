@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Image } from "@/types";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 const fetchImagesByPlaceId = async (placeId: number): Promise<Image[]> => {
-  const res = await fetch(
-    `https://foody-api-production-b7f6.up.railway.app/images/get/${placeId}`
-  );
+  const res = await fetch(`${apiUrl}/images/get/${placeId}`);
   if (!res.ok) {
     throw new Error(`Erreur API : ${res.status}`);
   }

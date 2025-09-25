@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Menu } from "@/types";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 const fetchMenusByID = async (placeId: number): Promise<Menu[]> => {
-  const res = await fetch(
-    `https://foody-api-production-b7f6.up.railway.app/menus/place/${placeId}`
-  );
+  const res = await fetch(`${apiUrl}/menus/place/${placeId}`);
   if (!res.ok) {
     throw new Error(`Erreur API : ${res.status}`);
   }

@@ -5,10 +5,10 @@ interface OfferCount {
   totalOffers: number;
 }
 
+const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 const fetchOffersCount = async (id: number): Promise<OfferCount> => {
-  const res = await fetch(
-    `https://foody-api-production-b7f6.up.railway.app/offers/${id}/offers/count`
-  );
+  const res = await fetch(`${apiUrl}/offers/${id}/offers/count`);
   if (!res.ok) {
     throw new Error(`Erreur API : ${res.status}`);
   }

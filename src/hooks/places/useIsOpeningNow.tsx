@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { Place } from "@/types";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 const fetchOpenPlaces = async (): Promise<Place[]> => {
   const parisTime = new Intl.DateTimeFormat("fr-FR", {
     hour: "2-digit",
@@ -9,9 +11,7 @@ const fetchOpenPlaces = async (): Promise<Place[]> => {
     timeZone: "Europe/Paris",
   }).format(new Date());
 
-  const url = new URL(
-    "https://foody-api-production-b7f6.up.railway.app/places/opening-places"
-  );
+  const url = new URL(`${apiUrl}/places/opening-places`);
   url.searchParams.append("time", parisTime);
 
   const response = await fetch(url.toString(), {

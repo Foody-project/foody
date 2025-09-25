@@ -1,4 +1,5 @@
 import { cn } from "@/utils/utils";
+import ReportAProblem from "./ReportAProblem";
 
 import { Footer, FooterBottom } from "@/components/ui/footer";
 
@@ -27,12 +28,15 @@ export default function FooterSection({
         <Footer className="bg-transparent">
           <FooterBottom>
             <div>{copyright}</div>
-            <div className="flex items-center gap-4">
-              {policies.map((policy, index) => (
-                <a key={index} href={policy.href}>
-                  {policy.text}
-                </a>
-              ))}
+            <div className="flex flex-row justify-around gap-4">
+              <ReportAProblem />
+              <div className="flex items-center gap-4">
+                {policies.map((policy, index) => (
+                  <a key={index} href={policy.href}>
+                    {policy.text}
+                  </a>
+                ))}
+              </div>
             </div>
           </FooterBottom>
         </Footer>
