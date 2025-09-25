@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 
-import PlaceModal from "@/components/Event/PlaceModal";
 import { getImagesByPlaceId } from "@/hooks/places/useImagesByID";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 
@@ -33,7 +32,7 @@ export function Card({ id }: CardProps) {
   if (!place) return;
 
   return (
-    <div className="text-white bg-white/70 w-[25rem] h-[22.5rem] mt-10 [box-shadow:10px_10px_6px_rgba(0,0,0,0.07)] rounded-xl transition-transform duration-300 hover:scale-101">
+    <div className="text-white bg-white/70 w-[25rem] h-[22.5rem] mt-10 [box-shadow:10px_10px_6px_rgba(0,0,0,0.07)] rounded-xl transition-transform duration-300 hover:scale-101 cursor-pointer">
       <div onClick={() => redirectToItemPage(place.name, place.id)}>
         {images && images.length > 0 && (
           <img
@@ -69,7 +68,6 @@ export function Card({ id }: CardProps) {
             {place.price}
           </Button>
         </div>
-        <PlaceModal id={place.id} />
       </div>
     </div>
   );
