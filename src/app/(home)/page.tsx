@@ -13,6 +13,7 @@ import { ChevronRight } from "lucide-react";
 
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import Texts from "@/features/LandingPage/Texts";
+import Loader from "@/components/PreviewCards/Loader";
 
 const lexend = Lexend({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -22,7 +23,7 @@ const lexend = Lexend({
 
 export default function Home() {
   const router = useRouter();
-  const { data: places = [] } = getAllPlaces();
+  const { data: places = [], isLoading } = getAllPlaces();
 
   return (
     <div className="overflow-x-hidden">
@@ -80,7 +81,7 @@ export default function Home() {
         </div>
 
         <div className="w-4/5 mx-auto">
-          <CarouselSpacing places={places} />
+          {isLoading ? <Loader /> : <CarouselSpacing places={places} />}
           <Separator
             orientation="horizontal"
             className="mt-[100px] mb-[100px] !w-[500px] mx-auto [background:var(--background-button)]"

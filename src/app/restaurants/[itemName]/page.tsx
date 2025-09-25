@@ -33,6 +33,8 @@ export default function ItemPage() {
     { label: place?.name || "" },
   ];
 
+  if (isLoading) return <Loader />;
+
   return (
     <div className={`${lexend.className} w-4/5 mx-auto`}>
       <Navbar />
