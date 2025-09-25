@@ -16,16 +16,20 @@ export default function HeaderPresentationPart({
       <div className="flex flex-row gap-3 pb-3">
         <Badge
           variant="secondary"
-          className="bg-[var(--text-orange)]/80 font-thin text-[0.8rem]"
+          className="bg-[var(--text-orange)]/80 font-thin text-[0.9rem]"
         >
-          <House />
+          <span className="flex items-center">
+            <House size={16} />
+          </span>
           {place?.address}
         </Badge>
         <Badge
           variant="secondary"
-          className="bg-[var(--text-orange)]/80 font-thin text-[0.7rem] flex flex-row justify-center"
+          className="bg-[var(--text-orange)]/80 font-thin text-[0.9rem] flex flex-row justify-center"
         >
-          <Phone size={38} />
+          <span className="flex items-center">
+            <Phone size={16} />
+          </span>
           {place?.phone}
         </Badge>
       </div>
