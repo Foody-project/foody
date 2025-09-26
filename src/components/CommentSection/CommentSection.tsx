@@ -12,10 +12,11 @@ import Label from "../Label";
 
 export default function CommentSection({ place }: { place: Place }) {
   const { mutate, isPending } = useCreateComment();
-  const { data: comments, refetch } = getAllComments();
+  const { data: comments = [], refetch } = getAllComments();
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [visibleCount, setVisibleCount] = useState(3);
 
   const placeholderReview = `What did you think of ${place.name} ?`;
   const placeId = place.id;
@@ -42,7 +43,7 @@ export default function CommentSection({ place }: { place: Place }) {
         <div className="flex flex-row gap-2 items-center">
           <span className="text-2xl">Comments</span>
           <div>
-            <Label label={comments?.length?.toString()} color="red-500" />
+            <Label label={comments.length.toString()} color="red-500" />
           </div>
         </div>
         {/**
@@ -84,21 +85,30 @@ export default function CommentSection({ place }: { place: Place }) {
       </div>
 
       <div className="flex flex-col gap-1 mt-3">
-        {comments?.slice(0, 3).map((comment) => (
+        {comments.slice(0, visibleCount).map((comment) => (
           <CommentItem key={comment.id} comment={comment} />
         ))}
       </div>
 
-      <div className="flex justify-center w-full">
-        <Button
-          size="lg"
-          variant="ghost"
-          className="font-light flex items-center gap-1 text-[0.8rem] text-[var(--text-orange)] hover:text-[var(--text-orange)] px-3 !py-0 hover:bg-[var(--text-orange)]/20 transition duration-200 ease-in-out"
-        >
-          Load more
-          <ChevronDown />
-        </Button>
-      </div>
+      {visibleCount < 6 ? (
+        <div className="flex justify-center w-full">
+          <Button
+            onClick={() => setVisibleCount((prev) => prev + 3)}
+            size="lg"
+            variant="ghost"
+            className="font-light flex items-center gap-1 text-[0.8rem] text-[var(--text-orange)] hover:text-[var(--text-orange)] px-3 !py-0 hover:bg-[var(--text-orange)]/20 transition duration-200 ease-in-out"
+          >
+            Load more
+            <ChevronDown />
+          </Button>
+        </div>
+      ) : (
+        <div className="flex justify-end w-full">
+          <span className="text-[0.8rem] font-thin text-muted-foreground mt-3">
+            And some others...
+          </span>
+        </div>
+      )}
     </section>
   );
 }

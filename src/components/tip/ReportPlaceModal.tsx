@@ -45,10 +45,17 @@ export function ReportPlaceModal({ userId, placeId }: ReportPlaceModalProps) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="link">
+        <Button
+          variant="link"
+          onClick={() => {
+            setSelectedReason(null);
+            setOtherText("");
+          }}
+        >
           <Warning size={32} color="var(--icon-basic)" />
         </Button>
       </AlertDialogTrigger>
+
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className="text-2xl text-[var(--text-basic)]">
