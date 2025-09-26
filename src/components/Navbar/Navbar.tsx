@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import { Search, ChevronRight } from "lucide-react";
 import SearchFirstStep from "./SearchFirstStep";
 import { Place } from "@/types";
+import { ConnectedIcon } from "@/features/ConnectedIcon/ConnectedIcon";
 
 import "../../app/globals.css";
 
@@ -46,15 +47,6 @@ export default function Navbar() {
         <a href="/" className="text-4xl font-bold text-[var(--text-orange)]">
           FOODY
         </a>
-
-        <div className="flex gap-8 text-md font-medium text-gray-700">
-          <a
-            href="/restaurants"
-            className="hover:text-[var(--text-orange)] transition-colors"
-          >
-            Where to eat ?
-          </a>
-        </div>
 
         <div className="flex items-center gap-6 relative">
           <div
@@ -109,6 +101,8 @@ export default function Navbar() {
               </div>
             </div>
           </div>
+
+          <ConnectedIcon />
 
           <Button
             size="sm"

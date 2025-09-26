@@ -85,9 +85,12 @@ export default function CommentSection({ place }: { place: Place }) {
       </div>
 
       <div className="flex flex-col gap-1 mt-3">
-        {comments.slice(0, visibleCount).map((comment) => (
-          <CommentItem key={comment.id} comment={comment} />
-        ))}
+        {comments
+          .filter((c) => c.placeId === place.id)
+          .slice(0, visibleCount)
+          .map((comment) => (
+            <CommentItem key={comment.id} comment={comment} />
+          ))}
       </div>
 
       {visibleCount < 6 ? (
