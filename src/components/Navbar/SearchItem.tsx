@@ -24,8 +24,11 @@ export default function SearchItem({ place }: { place: Place }) {
     >
       <img src={images?.[0]?.url} alt="" className="w-30 h-20 rounded-lg" />
       <div className="flex flex-col">
-        <span className="text-sm">{place.name}</span>
-        <Badge variant="secondary" className="font-thin text-[0.7rem]">
+        <span className="text-sm text-[var(--text-basic)]">{place.name}</span>
+        <Badge
+          variant="secondary"
+          className="font-thin text-[0.7rem] text-[var(--text-basic)]"
+        >
           {place.district}
         </Badge>
         <Rating

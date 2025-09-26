@@ -41,7 +41,7 @@ export default function Navbar() {
   const showSearch: boolean = isHovered || isFocused;
 
   return (
-    <nav className="relative z-[9999]">
+    <nav className="relative z-[9]">
       <div className="flex items-center justify-between pt-5 pb-10 px-6">
         <a href="/" className="text-4xl font-bold text-[var(--text-orange)]">
           FOODY

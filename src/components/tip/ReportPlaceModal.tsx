@@ -51,10 +51,10 @@ export function ReportPlaceModal({ userId, placeId }: ReportPlaceModalProps) {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle className="text-2xl">
+          <AlertDialogTitle className="text-2xl text-[var(--text-basic)]">
             Report this spot ?
           </AlertDialogTitle>
-          <AlertDialogDescription className="font-thin">
+          <AlertDialogDescription className="font-thin text-[var(--text-basic)]">
             Tell us why this place should no longer be on Foody ?
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -67,7 +67,10 @@ export function ReportPlaceModal({ userId, placeId }: ReportPlaceModalProps) {
               id="close"
               className="border-[var(--text-orange)] data-[state=checked]:bg-[var(--text-orange)] data-[state=checked]:border-[var(--text-orange)]"
             />
-            <Label htmlFor="close" className="font-normal">
+            <Label
+              htmlFor="close"
+              className="font-normal text-[var(--text-basic)]"
+            >
               It's definitively closed.
             </Label>
           </div>
@@ -79,7 +82,10 @@ export function ReportPlaceModal({ userId, placeId }: ReportPlaceModalProps) {
               id="other"
               className="border-[var(--text-orange)] data-[state=checked]:bg-[var(--text-orange)] data-[state=checked]:border-[var(--text-orange)]"
             />
-            <Label htmlFor="other" className="font-normal">
+            <Label
+              htmlFor="other"
+              className="font-normal text-[var(--text-basic)]"
+            >
               Other
             </Label>
           </div>
@@ -89,13 +95,15 @@ export function ReportPlaceModal({ userId, placeId }: ReportPlaceModalProps) {
               placeholder="Tell us more..."
               value={otherText}
               onChange={(e) => setOtherText(e.target.value)}
-              className="mt-2 w-full min-h-16 px-3 py-2 text-base rounded-md border bg-transparent focus:outline-none focus:ring-0 shadow-none font-thin"
+              className="mt-2 w-full text-[var(--text-basic)] font-thin"
             />
           )}
         </div>
 
         <AlertDialogFooter>
-          <AlertDialogCancel className="font-thin">Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="font-thin text-[var(--text-basic)] border-[var(--text-basic)]">
+            Cancel
+          </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleReport}
             disabled={

@@ -59,7 +59,7 @@ export default function SearchFirstStep({
               <Badge
                 key={place.id}
                 variant="secondary"
-                className="font-thin text-[0.85rem] hover:bg-[var(--text-orange-secondary)] transition-colors duration-300 ease-in-out cursor-pointer"
+                className="font-thin text-[0.85rem] text-[var(--text-basic)] hover:bg-[var(--text-orange-secondary)] transition-colors duration-300 ease-in-out cursor-pointer"
                 onClick={() => handleClick(place.district)}
               >
                 {place.district}
