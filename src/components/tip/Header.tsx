@@ -24,10 +24,9 @@ export default function Header({ place }: HeaderProps) {
   const isOpen =
     openPlaces?.some((openPlace: Place) => openPlace.id === place.id) ?? false;
 
-  console.log("ISOPEN", isOpen);
+  const userId = 1;
 
   if (!images) return;
-  console.log("OPEN", openPlaces);
 
   return (
     <div className="flex flex-col gap-6 w-full">
@@ -73,7 +72,7 @@ export default function Header({ place }: HeaderProps) {
             </div>
           </div>
 
-          <ButtonTips />
+          <ButtonTips userId={userId} placeId={place.id} />
         </div>
 
         <ImageDisplayer images={images} place={place} />

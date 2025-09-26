@@ -1,29 +1,57 @@
 "use client";
 
-import { Pencil, Heart, Warning } from "@phosphor-icons/react";
+import { Heart, Warning } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { ShareModal } from "./ShareModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAddFavoritePlace } from "@/hooks/places/useAddFavoritePlace";
+import { useRemoveFavoritePlace } from "@/hooks/places/useRemoveFavoritePlace";
+import { useIsPlaceSaved } from "@/hooks/places/useIsSavedPlace";
 
-export default function ButtonTips() {
+interface ButtonTipsProps {
+  userId: number;
+  placeId: number;
+}
+
+export default function ButtonTips({ userId, placeId }: ButtonTipsProps) {
+  const { isSaved, isLoading } = useIsPlaceSaved(userId, placeId);
+  const { mutate: addFavorite, isPending: isAdding } = useAddFavoritePlace(
+    userId,
+    placeId
+  );
+  const { mutate: removeFavorite, isPending: isRemoving } =
+    useRemoveFavoritePlace(userId, placeId);
+
   const [saved, setSaved] = useState(false);
-  const toggleSaved = () => setSaved(!saved);
+
+  // Synchronise l’état local avec la base
+  useEffect(() => {
+    if (!isLoading) {
+      setSaved(isSaved);
+    }
+  }, [isSaved, isLoading]);
+
+  const toggleSaved = () => {
+    if (saved) {
+      removeFavorite();
+    } else {
+      addFavorite();
+    }
+    setSaved(!saved);
+  };
 
   return (
     <div className="flex gap-3">
       <Button variant="link">
         <Warning size={32} color="var(--icon-basic)" />
       </Button>
+
       <ShareModal />
-      <Button
-        variant="link"
-        style={{ color: "var(--text-basic)", fontWeight: 400 }}
-      >
-        <Pencil size={32} color="var(--icon-basic)" /> Review
-      </Button>
+
       <Button
         variant="outline"
         onClick={toggleSaved}
+        disabled={isAdding || isRemoving}
         className="hover:bg-red-200 flex items-center gap-2 font-[400] border-[var(--text-orange)]"
       >
         <Heart
