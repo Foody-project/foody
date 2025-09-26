@@ -1,6 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export function useCreateComment() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async ({
       userId,
@@ -13,22 +17,22 @@ export function useCreateComment() {
       comment: string;
       rating: number;
     }) => {
-      const response = await fetch(
-        "https://foody-api-production-b7f6.up.railway.app/comments/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userId, placeId, comment, rating }),
-        }
-      );
+      const response = await fetch(`${apiUrl}/comments/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, placeId, comment, rating }),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to create comment");
       }
 
       return response.json();
+    },
+    onSuccess: (_, { placeId }) => {
+      queryClient.invalidateQueries({ queryKey: ["place", placeId] });
     },
   });
 }

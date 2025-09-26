@@ -44,7 +44,7 @@ const PresentationPart = forwardRef<
         </div>
         <div
           ref={(el) => setRef("sidebar", el)}
-          className="w-[40%] bg-white/50 p-2 rounded-xl flex items-center"
+          className="w-[40%] h-[100%] bg-white/40 p-2 rounded-xl flex items-center"
         >
           <Schedules place={place} />
         </div>

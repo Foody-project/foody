@@ -94,7 +94,7 @@ export default function Schedules({ place }: SchedulesProps) {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full pt-10 pb-10">
       <span className="uppercase text-4xl font-bold mb-4 text-[var(--text-basic)]">
         Hours
       </span>
