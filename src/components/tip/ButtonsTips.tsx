@@ -8,6 +8,8 @@ import { useAddFavoritePlace } from "@/hooks/places/useAddFavoritePlace";
 import { useRemoveFavoritePlace } from "@/hooks/places/useRemoveFavoritePlace";
 import { useIsPlaceSaved } from "@/hooks/places/useIsSavedPlace";
 
+import { ReportPlaceModal } from "./ReportPlaceModal";
+
 interface ButtonTipsProps {
   userId: number;
   placeId: number;
@@ -24,7 +26,6 @@ export default function ButtonTips({ userId, placeId }: ButtonTipsProps) {
 
   const [saved, setSaved] = useState(false);
 
-  // Synchronise l’état local avec la base
   useEffect(() => {
     if (!isLoading) {
       setSaved(isSaved);
@@ -42,9 +43,7 @@ export default function ButtonTips({ userId, placeId }: ButtonTipsProps) {
 
   return (
     <div className="flex gap-3">
-      <Button variant="link">
-        <Warning size={32} color="var(--icon-basic)" />
-      </Button>
+      <ReportPlaceModal placeId={placeId} userId={userId} />
 
       <ShareModal />
 
