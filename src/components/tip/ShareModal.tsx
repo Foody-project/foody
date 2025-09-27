@@ -11,6 +11,7 @@ import {
 import { Export, Copy } from "@phosphor-icons/react";
 import { Send, Link2 } from "lucide-react";
 import Snackbar from "@mui/material/Snackbar";
+import Toast from "@/features/Toasts/Toast";
 
 export function ShareModal() {
   const [url, setUrl] = useState("");
@@ -99,20 +100,7 @@ export function ShareModal() {
         </PopoverContent>
       </Popover>
 
-      <Snackbar
-        open={openSnackbar}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        message="Link copied to clipboard!"
-        ContentProps={{
-          sx: {
-            backgroundColor: "rgba(0,0,0,0.7)",
-            backdropFilter: "blur(8px)",
-            color: "white",
-            borderRadius: "0.5rem",
-          },
-        }}
-      />
+      {openSnackbar && <Toast title="Link copied" />}
     </>
   );
 }

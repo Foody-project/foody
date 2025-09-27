@@ -84,7 +84,6 @@ export default function RegisterModal() {
     }
 
     await registerUser({ ...formData, avatar: formData.avatar || images[0] });
-    // navigation on success is handled in the effect below
   };
 
   React.useEffect(() => {
@@ -93,7 +92,6 @@ export default function RegisterModal() {
 
   return (
     <div className="w-4/5 mx-auto">
-      {/* If registration has succeeded we might redirect; but keep a minimal success UI */}
       {success && (
         <>
           <div className="w-2/5 h-screen flex flex-col justify-center mx-auto">
@@ -119,7 +117,6 @@ export default function RegisterModal() {
         </>
       )}
 
-      {/* Show the form when we are NOT in the avatar-selection step and registration not yet succeeded */}
       {!showAvatarSelection && !success && (
         <div className="w-2/5 h-screen flex flex-col justify-center mx-auto">
           <div className="w-full flex justify-start mb-6">

@@ -9,10 +9,12 @@ import { Place } from "@/types";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 import { useCreateComment } from "@/hooks/places/comments/useCreateComment";
 import Label from "../Label";
+import Toast from "@/features/Toasts/Toast";
 
 export default function CommentSection({ place }: { place: Place }) {
   const { mutate, isPending } = useCreateComment();
   const { data: comments = [], refetch } = getAllComments();
+  const [showToast, setShowToast] = useState(false);
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -32,6 +34,8 @@ export default function CommentSection({ place }: { place: Place }) {
           refetch();
           setComment("");
           setRating(0);
+          setShowToast(true);
+          setTimeout(() => setShowToast(false), 3000);
         },
       }
     );
@@ -112,6 +116,7 @@ export default function CommentSection({ place }: { place: Place }) {
           </span>
         </div>
       )}
+      {showToast && <Toast title="Comment submitted" type="Success" />}
     </section>
   );
 }

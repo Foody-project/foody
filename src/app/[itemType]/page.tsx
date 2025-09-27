@@ -11,6 +11,7 @@ import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumb";
 import Loader from "@/components/PreviewCards/Loader";
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal } from "lucide-react";
+import Toast from "@/features/Toasts/Toast";
 
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import type { Place } from "@/types";
@@ -77,6 +78,7 @@ export default function ItemTypePage() {
         </motion.div>
       </section>
 
+      <Toast title="Success" subtitle="This is a subtitle" type="Success" />
       <Footer />
     </div>
   );

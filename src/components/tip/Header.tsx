@@ -72,7 +72,11 @@ export default function Header({ place }: HeaderProps) {
             </div>
           </div>
 
-          <ButtonTips userId={userId} placeId={place.id} />
+          <ButtonTips
+            userId={userId}
+            placeId={place.id}
+            placeName={place.name}
+          />
         </div>
 
         <ImageDisplayer images={images} place={place} />

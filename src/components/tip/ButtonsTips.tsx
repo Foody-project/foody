@@ -9,13 +9,19 @@ import { useRemoveFavoritePlace } from "@/hooks/places/useRemoveFavoritePlace";
 import { useIsPlaceSaved } from "@/hooks/places/useIsSavedPlace";
 
 import { ReportPlaceModal } from "./ReportPlaceModal";
+import Toast from "@/features/Toasts/Toast";
 
 interface ButtonTipsProps {
   userId: number;
   placeId: number;
+  placeName: string;
 }
 
-export default function ButtonTips({ userId, placeId }: ButtonTipsProps) {
+export default function ButtonTips({
+  userId,
+  placeId,
+  placeName,
+}: ButtonTipsProps) {
   const { isSaved, isLoading } = useIsPlaceSaved(userId, placeId);
   const { mutate: addFavorite, isPending: isAdding } = useAddFavoritePlace(
     userId,
@@ -25,6 +31,8 @@ export default function ButtonTips({ userId, placeId }: ButtonTipsProps) {
     useRemoveFavoritePlace(userId, placeId);
 
   const [saved, setSaved] = useState(false);
+  const [savedPlace, setSavedPlace] = useState(false);
+  const [removePlace, setRemovePlace] = useState(false);
 
   useEffect(() => {
     if (!isLoading) {
@@ -35,8 +43,12 @@ export default function ButtonTips({ userId, placeId }: ButtonTipsProps) {
   const toggleSaved = () => {
     if (saved) {
       removeFavorite();
+      setRemovePlace(true);
+      setTimeout(() => setRemovePlace(false), 3000);
     } else {
       addFavorite();
+      setSavedPlace(true);
+      setTimeout(() => setSavedPlace(false), 3000);
     }
     setSaved(!saved);
   };
@@ -60,6 +72,13 @@ export default function ButtonTips({ userId, placeId }: ButtonTipsProps) {
         />
         Save
       </Button>
+      {savedPlace && <Toast title="You have saved this spot !" />}
+      {removePlace && (
+        <Toast
+          title={`${placeName} is no longer one of your favorites!`}
+          type="Error"
+        />
+      )}
     </div>
   );
 }
