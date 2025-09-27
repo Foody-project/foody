@@ -102,7 +102,7 @@ export default function ImageDisplayer({ images, place }: ImageDisplayerProps) {
           <img
             src={images[selectedIndex].url}
             alt="Agrandie"
-            className="w-[40vw] h-[40vh] rounded-xl shadow-2xl transform transition-all duration-300 scale-100"
+            className="max-w-[50%] rounded-xl shadow-2xl transform transition-all duration-300 scale-100"
             onClick={(e) => e.stopPropagation()}
           />
 

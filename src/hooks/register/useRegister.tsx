@@ -8,6 +8,7 @@ interface RegisterData {
   confirmPassword: string;
   terms: boolean;
   newsletter: boolean;
+  avatar: string;
 }
 
 export const useRegister = () => {
@@ -33,6 +34,7 @@ export const useRegister = () => {
             email: data.email,
             password: data.password,
             role: "user",
+            avatar: data.avatar,
           }),
         }
       );

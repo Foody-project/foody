@@ -16,7 +16,7 @@ export default function HeaderPresentationPart({
       <div className="flex flex-row gap-3 pb-3">
         <Badge
           variant="secondary"
-          className="bg-[var(--text-orange)]/80 font-thin text-[0.9rem]"
+          className="bg-[var(--text-orange)]/60 font-thin text-[0.9rem]"
         >
           <span className="flex items-center">
             <House size={16} />
@@ -25,7 +25,7 @@ export default function HeaderPresentationPart({
         </Badge>
         <Badge
           variant="secondary"
-          className="bg-[var(--text-orange)]/80 font-thin text-[0.9rem] flex flex-row justify-center"
+          className="bg-[var(--text-orange)]/60 font-thin text-[0.9rem] flex flex-row justify-center"
         >
           <span className="flex items-center">
             <Phone size={16} />

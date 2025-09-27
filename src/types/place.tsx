@@ -24,6 +24,7 @@ export interface Place {
   openingHours?: OpeningHour[];
   categoryId?: number;
   userId?: number;
+  keywords?: { name: string }[];
   createdAt?: string;
   updatedAt?: string;
 }
