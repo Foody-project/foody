@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "../globals.css";
 
@@ -9,18 +10,32 @@ import Navbar from "@/components/Navbar/Navbar";
 import { Card } from "@/components/PreviewCards/Card";
 import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumb";
 import Loader from "@/components/PreviewCards/Loader";
-import { Button } from "@/components/ui/button";
-import { SlidersHorizontal } from "lucide-react";
 import Toast from "@/features/Toasts/Toast";
 
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import type { Place } from "@/types";
+import { FiltersModal } from "@/components/tip/FiltersModal";
+
+type Filters = {
+  districts: string[];
+  cuisines: string[];
+  price: number;
+  stars: number;
+};
+
+// ✅ Convertit "€", "€€", "€€€" en niveau numérique
+const priceToLevel = (price: string): number => {
+  if (price === "€") return 1;
+  if (price === "€€") return 2;
+  if (price === "€€€") return 3;
+  return 0;
+};
 
 export default function ItemTypePage() {
   const params = useParams();
   const { itemType } = params;
 
-  const { data: places = [], isLoading, error } = getAllPlaces();
+  const { data: places = [], isLoading } = getAllPlaces();
 
   const itemTypeLabel =
     typeof itemType === "string"
@@ -31,6 +46,48 @@ export default function ItemTypePage() {
     { label: "Home", href: "/" },
     { label: itemTypeLabel },
   ];
+
+  const [activeFilters, setActiveFilters] = useState<Filters>({
+    districts: [],
+    cuisines: [],
+    price: 0,
+    stars: 0,
+  });
+
+  const [filteredPlaces, setFilteredPlaces] = useState<Place[]>([]);
+
+  useEffect(() => {
+    if (places.length > 0) {
+      setFilteredPlaces(places);
+    }
+  }, [places]);
+
+  const handleFiltersApply = (filters: Filters) => {
+    setActiveFilters(filters);
+
+    const filtered = places.filter((place) => {
+      const matchDistrict =
+        filters.districts.length === 0 ||
+        (place.district && filters.districts.includes(place.district));
+
+      const cuisineLabel =
+        place.flag && place.cuisine ? `${place.flag} | ${place.cuisine}` : "";
+
+      const matchCuisine =
+        filters.cuisines.length === 0 ||
+        filters.cuisines.includes(cuisineLabel);
+
+      const matchPrice =
+        filters.price === 0 ||
+        (place.price && priceToLevel(place.price) <= filters.price);
+
+      const matchStars = filters.stars === 0 || place.stars === filters.stars;
+
+      return matchDistrict && matchCuisine && matchPrice && matchStars;
+    });
+
+    setFilteredPlaces(filtered);
+  };
 
   if (isLoading) return <Loader />;
 
@@ -53,26 +110,29 @@ export default function ItemTypePage() {
 
           <div className="flex flex-row gap-1 items-center mt-2">
             <h4 className="text-gray-500 text-sm font-normal">
-              <span>{places.length} deals to discover</span>
+              <span>{filteredPlaces.length} deals to discover</span>
             </h4>
           </div>
         </div>
 
-        <Button variant="outline">
-          <SlidersHorizontal size={12} color="var(--text-basic)" />
-        </Button>
+        <FiltersModal
+          key={JSON.stringify(activeFilters)}
+          places={places}
+          onApply={handleFiltersApply}
+          initialFilters={activeFilters}
+        />
       </section>
 
       <section>
         <motion.div
-          key="restaurants"
+          key="filtered-places"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
           className="flex flex-row flex-wrap justify-between w-full"
         >
-          {places.map((place: Place, index: number) => (
+          {filteredPlaces.map((place: Place, index: number) => (
             <Card key={index} id={place.id} />
           ))}
         </motion.div>
