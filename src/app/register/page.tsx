@@ -92,31 +92,6 @@ export default function RegisterModal() {
 
   return (
     <div className="w-4/5 mx-auto">
-      {success && (
-        <>
-          <div className="w-2/5 h-screen flex flex-col justify-center mx-auto">
-            <div className="w-full flex justify-start mb-6">
-              <Button
-                variant="outline"
-                className="text-white font-normal flex items-center gap-2 !border-[var(--text-orange)]"
-                onClick={() => router.replace("/")}
-              >
-                <CornerUpLeft size={18} color="black" />
-              </Button>
-            </div>
-            <span className="uppercase font-bold text-3xl text-center text-[var(--text-orange)]">
-              Register
-            </span>
-            <div className="mt-6 text-center">
-              <p className="text-black/80">
-                Registration successful — redirecting to login...
-              </p>
-            </div>
-          </div>
-          <Footer />
-        </>
-      )}
-
       {!showAvatarSelection && !success && (
         <div className="w-2/5 h-screen flex flex-col justify-center mx-auto">
           <div className="w-full flex justify-start mb-6">
@@ -245,14 +220,14 @@ export default function RegisterModal() {
               choose an avatar
             </span>
           </div>
-          <div className="flex flex-row justify-around gap-4 mt-4">
+          <div className="flex flex-row flex-wrap justify-around gap-4 mt-4">
             {images.map((src, index) => (
               <img
                 key={index}
                 src={src}
                 alt={`image-${index}`}
                 onClick={() => handleAvatarChange(index)}
-                className={`w-43 h-43 object-cover rounded-full border-4 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 ${
+                className={`w-25 h-25 sm:w-43 sm:h-43 object-cover rounded-full border-4 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 ${
                   selectedIndex === index
                     ? "border-[var(--text-orange)] scale-110"
                     : "border-gray-300/0"

@@ -29,9 +29,9 @@ export default function Header({ place }: HeaderProps) {
   if (!images) return;
 
   return (
-    <div className="flex flex-col gap-6 w-full">
+    <div className="flex flex-col gap-6 w-full ">
       <div className="flex flex-col justify-between items-start gap-6">
-        <div className="flex flex-row justify-between w-full items-center">
+        <div className="flex flex-row flex-wrap justify-between w-full items-center">
           <div className="flex flex-col items-start gap-2">
             <div className="flex flex-row items-end gap-3">
               <span className="uppercase font-bold text-4xl text-[var(--text-basic)]">
@@ -72,11 +72,13 @@ export default function Header({ place }: HeaderProps) {
             </div>
           </div>
 
-          <ButtonTips
-            userId={userId}
-            placeId={place.id}
-            placeName={place.name}
-          />
+          <div className="mt-5 sm:mt-0">
+            <ButtonTips
+              userId={userId}
+              placeId={place.id}
+              placeName={place.name}
+            />
+          </div>
         </div>
 
         <ImageDisplayer images={images} place={place} />

@@ -4,18 +4,18 @@ import ScrollBaseAnimation from "../../../components/uilayouts/scroll-text-marqu
 function Texts() {
   return (
     <>
-      <div className="h-[500px] w-[100%] scale-[1.035] grid place-content-center rotate-[-10deg]">
+      <div className="h-[500px] w-[100%] scale-[1.055] grid place-content-center rotate-[-10deg]">
         <ScrollBaseAnimation
           delay={500}
           baseVelocity={-3}
-          clasname="font-bold tracking-[-0.07em] leading-[90%] text-[var(--text-orange-third)]"
+          clasname="font-bold text-[6rem] tracking-[-0.07em] leading-[90%] text-[var(--text-orange-third)]"
         >
           Great spots - Better food - Awesome times -
         </ScrollBaseAnimation>
         <ScrollBaseAnimation
           delay={500}
           baseVelocity={3}
-          clasname="font-medium tracking-[-0.07em] leading-[90%] !text-[5vw]"
+          clasname="font-medium tracking-[-0.07em] leading-[90%] sm:!text-[5vw]"
         >
           You can only find it here.
         </ScrollBaseAnimation>

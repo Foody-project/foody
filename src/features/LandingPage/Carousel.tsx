@@ -23,7 +23,7 @@ export function CarouselSpacing({ places }: CarouselSpacingProps) {
   };
 
   return (
-    <Carousel className="w-full p-5">
+    <Carousel className="w-full sm:p-5">
       <CarouselContent className="-ml-1">
         {places.slice(0, 3).map((place) => (
           <CarouselItem key={place.id} className="md:basis-1/2 lg:basis-1/3">
@@ -33,8 +33,8 @@ export function CarouselSpacing({ places }: CarouselSpacingProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="text-[var(--text-orange)] hover:text-[var(--text-orange)]" />
-      <CarouselNext className="text-[var(--text-orange)] hover:text-[var(--text-orange)]" />
+      <CarouselPrevious className="text-[var(--text-orange)] hover:text-[var(--text-orange)] ml-5 sm:hidden" />
+      <CarouselNext className="text-[var(--text-orange)] hover:text-[var(--text-orange)] mr-3.5 sm:hidden" />
       <div className="flex justify-center mt-10">
         <Button
           size="lg"

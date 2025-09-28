@@ -13,7 +13,7 @@ export default function HeaderPresentationPart({
 }: HeaderPresentationProps) {
   return (
     <div className="flex flex-col justify-between mb-10">
-      <div className="flex flex-row gap-3 pb-3">
+      <div className="flex flex-row flex-wrap gap-3 pb-3">
         <Badge
           variant="secondary"
           className="bg-[var(--text-orange)]/60 font-thin text-[0.9rem]"

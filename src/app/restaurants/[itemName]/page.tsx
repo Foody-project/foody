@@ -36,7 +36,7 @@ export default function ItemPage() {
   if (isLoading) return <Loader />;
 
   return (
-    <div className={`${lexend.className} w-4/5 mx-auto`}>
+    <div className={`${lexend.className} sm:w-4/5 mx-auto`}>
       <Navbar />
       <div className="pb-3">
         {isLoading && <Loader />}
@@ -46,7 +46,7 @@ export default function ItemPage() {
       </div>
 
       {place && (
-        <div>
+        <div className="p-3 sm:pd-0">
           <Header place={place} />
           <TabDescription place={place} />
         </div>

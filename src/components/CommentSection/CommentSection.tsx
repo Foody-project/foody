@@ -45,7 +45,7 @@ export default function CommentSection({ place }: { place: Place }) {
     <section className="w-full">
       <div className="flex flex-row justify-between items-center pb-3">
         <div className="flex flex-row gap-2 items-center">
-          <span className="text-2xl">Comments</span>
+          <span className="text-2xl uppercase font-bold">Comments</span>
           <div>
             <Label label={comments.length.toString()} color="red-500" />
           </div>
@@ -57,13 +57,13 @@ export default function CommentSection({ place }: { place: Place }) {
          */}
       </div>
 
-      <div className="w-full flex flex-col gap-2 h-[15rem] p-5 bg-[var(--background-secondary)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.05)] rounded-lg">
+      <div className="w-full flex flex-col gap-2 h-[17rem] sm:h-[15rem] p-5 bg-[var(--background-secondary)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.05)] rounded-lg">
         <span className="text-xl text-[var(--text-basic)]">Add a review</span>
         <Textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder={placeholderReview}
-          className="placeholder:font-thin border border-black/25"
+          className="min-h-[6rem] sm:min-h-[4rem] placeholder:font-thin border border-black/25 placeholder:text-sm"
         />
         <span className="text-[var(--text-basic)]">Assign a rating</span>
         <Rating onValueChange={(value) => setRating(value)}>

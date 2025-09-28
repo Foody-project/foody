@@ -27,11 +27,11 @@ export default function Home() {
 
   return (
     <div className="overflow-x-hidden">
-      <div className="w-4/5 mx-auto">
+      <div className="w-full sm:w-4/5 sm:mx-auto">
         <Navbar />
-        <div className="relative h-[60rem] flex items-center justify-center overflow-hidden">
+        <div className="relative h-[40rem] sm:h-[60rem] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0 flex items-center justify-center scale-[1.025] blur-[36px]">
-            <div className="grid grid-cols-2 grid-rows-2 gap-1 w-[40rem] h-[40rem] animate-[spin_20s_linear_infinite]">
+            <div className="grid grid-cols-2 grid-rows-2 gap-1 w-[20rem] h-[20rem] sm:w-[40rem] sm:h-[40rem] animate-[spin_20s_linear_infinite]">
               <div className="bg-[var(--text-orange)]/80 rounded-[50rem] hover:scale-[1.35] transition-all duration-1000 ease-in-out"></div>
               <div className="bg-[var(--text-orange)]/0 rounded-lg"></div>
               <div className="bg-[var(--text-orange)]/0 rounded-lg"></div>
@@ -39,16 +39,16 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative z-10 flex flex-col items-center justify-center text-center px-4">
+          <div className="relative z-1 flex flex-col items-center justify-center text-center px-4">
             <div className="font-bold">
-              <span className="text-8xl uppercase text-[var(--text-basic)]">
+              <span className="text-7xl sm:text-8xl uppercase text-[var(--text-basic)]">
                 We love food
               </span>
-              <span className="text-5xl font-medium rotate-[-10deg] text-[var(--text-basic)]/70">
+              <span className="text-3xl sm:text-5xl font-medium rotate-[-10deg] text-[var(--text-basic)]/70">
                 (y)
               </span>
             </div>
-            <span className="text-2xl text-[var(--text-orange-third)] mt-2">
+            <span className="text-xl sm:text-2xl text-[var(--text-orange-third)] mt-2">
               and Paris is the city for it
             </span>
             <Button
@@ -76,18 +76,20 @@ export default function Home() {
         }}
         className="min-h-screen"
       >
-        <div className="w-full pb-20">
+        <div className="w-full sm:pb-20">
           <Texts />
         </div>
 
         <div className="w-4/5 mx-auto">
           {isLoading ? <Loader /> : <CarouselSpacing places={places} />}
+          {/*
           <Separator
             orientation="horizontal"
             className="mt-[100px] mb-[100px] !w-[500px] mx-auto [background:var(--background-button)]"
           />
 
           <CardSectionLanding />
+          */}
           <Footer />
         </div>
       </div>

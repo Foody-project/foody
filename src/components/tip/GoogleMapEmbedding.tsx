@@ -20,30 +20,32 @@ export default function GoogleMapEmbedding({ place }: GoogleMapsProps) {
   const position = { lat: place?.latitude, lng: place?.longitude };
   const [open, setOpen] = React.useState(false);
   return (
-    <div>
+    <div className="flex flex-col">
       <span className="text-2xl uppercase font-bold pb-5 block text-[var(--text-basic)]">
         Where is it ?
       </span>
       <APIProvider apiKey="AIzaSyDSm7k73IyZy3zwC5IF7NFlm8Dgg0ufN5o">
-        <div className="h-[30rem] w-[30rem] rounded-2xl overflow-hidden shadow-md">
-          <Map zoom={15} center={position} mapId="47f763ca470bb735e2f7b04d">
-            <AdvancedMarker position={position} onClick={() => setOpen(true)}>
-              <Pin
-                background={"var(--text-orange)"}
-                borderColor={"var(--hover-orange)"}
-                glyphColor={"var(--text-basic)"}
-              />
-            </AdvancedMarker>
+        <div className="w-full flex justify-center">
+          <div className="h-[20rem] w-[20rem] sm:w-[30rem] sm:h-[30rem] flex flex-col items-center rounded-2xl overflow-hidden shadow-md">
+            <Map zoom={15} center={position} mapId="47f763ca470bb735e2f7b04d">
+              <AdvancedMarker position={position} onClick={() => setOpen(true)}>
+                <Pin
+                  background={"var(--text-orange)"}
+                  borderColor={"var(--hover-orange)"}
+                  glyphColor={"var(--text-basic)"}
+                />
+              </AdvancedMarker>
 
-            {open && (
-              <InfoWindow
-                position={position}
-                onCloseClick={() => setOpen(false)}
-              >
-                <p>I'm there</p>
-              </InfoWindow>
-            )}
-          </Map>
+              {open && (
+                <InfoWindow
+                  position={position}
+                  onCloseClick={() => setOpen(false)}
+                >
+                  <p>I'm there</p>
+                </InfoWindow>
+              )}
+            </Map>
+          </div>
         </div>
       </APIProvider>
     </div>

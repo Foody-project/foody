@@ -32,18 +32,18 @@ export function Card({ id }: CardProps) {
   if (!place) return;
 
   return (
-    <div className="text-white bg-white/70 w-[25rem] h-[22.5rem] mt-10 [box-shadow:10px_10px_6px_rgba(0,0,0,0.07)] rounded-xl transition-transform duration-300 hover:scale-101 cursor-pointer">
+    <div className="text-white bg-white/70 w-full max-w-[25rem] h-auto mt-10 pb-2 shadow-[0px_10px_10px_rgba(0,0,0,0.05)] rounded-xl transition-transform duration-300 hover:scale-101 cursor-pointer">
       <div onClick={() => redirectToItemPage(place.name, place.id)}>
         {images && images.length > 0 && (
           <img
             src={images[0]?.url}
             alt={place.name}
-            className="w-[27rem] h-60 rounded-t-xl object-cover"
+            className="w-full h-60 rounded-t-xl object-cover"
           />
         )}
-        <div className="flex flex-cols justify-between pr-1">
+        <div className="flex flex-col sm:flex-row justify-between pr-1">
           <div className="pl-2 pr-2">
-            <h1 className="text-xl pt-3 text-[var(--text-basic)] font-medium">
+            <h1 className="text-lg sm:text-xl pt-3 text-[var(--text-basic)] font-medium">
               {place.name}
             </h1>
             <p className="text-sm font-[400] text-gray-400">{place.district}</p>
@@ -52,7 +52,7 @@ export function Card({ id }: CardProps) {
             {Array.from({ length: 5 }).map((_, index) => (
               <RatingButton
                 key={index}
-                className="w-5 h-6 text-[var(--text-orange)]"
+                className="w-5 h-6 text-[var(--text-orange)] pl-1"
               />
             ))}
           </Rating>

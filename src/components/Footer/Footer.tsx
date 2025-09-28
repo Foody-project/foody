@@ -1,6 +1,5 @@
 import { cn } from "@/utils/utils";
 import ReportAProblem from "./ReportAProblem";
-
 import { Footer, FooterBottom } from "@/components/ui/footer";
 
 interface FooterLink {
@@ -23,7 +22,7 @@ export default function FooterSection({
   className,
 }: FooterProps) {
   return (
-    <footer className={cn("w-full px-4", className)}>
+    <footer className={cn("w-full px-4 z-50", className)}>
       <div className="max-w-container mx-auto">
         <Footer className="bg-transparent">
           <FooterBottom>

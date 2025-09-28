@@ -105,27 +105,27 @@ export default function DiscoverMenu({ place }: DiscoverMenuProps) {
         Discover the menu
       </span>
 
-      <div className="flex flex-row gap-10">
-        <div className="flex flex-col cursor-pointer">
+      <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-5 md:gap-10">
+        <div className="flex flex-col cursor-pointer items-center">
           <img
             src={menu.urls[0]}
             alt={menu.title}
             className="w-[20rem] h-[15rem] mb-2 object-cover rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105"
             onClick={() => setSelectedMenuIndex(0)}
           />
-          <span className="text-md text-[var(--text-basic)]">
+          <span className="text-md text-[var(--text-basic)] text-center">
             Photos of the menu
           </span>
         </div>
 
         {images && images.length > 0 && (
-          <div className="flex flex-col cursor-pointer">
+          <div className="flex flex-col cursor-pointer items-center">
             <img
               src={images[0].url}
               className="w-[20rem] h-[15rem] mb-2 object-cover rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105"
               onClick={() => setSelectedImageIndex(0)}
             />
-            <span className="text-md text-[var(--text-basic)]">
+            <span className="text-md text-[var(--text-basic)] text-center">
               Other photos
             </span>
           </div>

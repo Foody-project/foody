@@ -10,7 +10,6 @@ import Navbar from "@/components/Navbar/Navbar";
 import { Card } from "@/components/PreviewCards/Card";
 import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumb";
 import Loader from "@/components/PreviewCards/Loader";
-import Toast from "@/features/Toasts/Toast";
 
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import type { Place } from "@/types";
@@ -23,7 +22,6 @@ type Filters = {
   stars: number;
 };
 
-// ✅ Convertit "€", "€€", "€€€" en niveau numérique
 const priceToLevel = (price: string): number => {
   if (price === "€") return 1;
   if (price === "€€") return 2;
@@ -92,14 +90,14 @@ export default function ItemTypePage() {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="w-4/5 mx-auto">
+    <div className="sm:w-4/5 mx-auto">
       <Navbar />
 
-      <div className="mt-5 pb-3">
+      <div className="mt-5 pl-3 sm:pl-0 pb-3">
         <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
       </div>
 
-      <section className="flex flex-row justify-between">
+      <section className="flex flex-row justify-between px-3 sm:px-0">
         <div>
           <h1
             className="uppercase font-bold text-3xl bg-clip-text text-transparent"
@@ -130,15 +128,13 @@ export default function ItemTypePage() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
-          className="flex flex-row flex-wrap justify-between w-full"
+          className="flex flex-row flex-wrap justify-center sm:gap-12 w-full px-3 sm:px-0"
         >
           {filteredPlaces.map((place: Place, index: number) => (
             <Card key={index} id={place.id} />
           ))}
         </motion.div>
       </section>
-
-      <Toast title="Success" subtitle="This is a subtitle" type="Success" />
       <Footer />
     </div>
   );

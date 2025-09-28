@@ -17,8 +17,8 @@ export default function ProgressBarCircle({ place }: ReviewRecapProps) {
     "At Foody, we test the restaurants we feature and give them a rating. We don't cheat, we don't give them the rating they ask for, we judge them as ordinary users would.";
 
   return (
-    <div className="flex flex-row items-start gap-8">
-      <div className="flex flex-row gap-8">
+    <div className="w-full flex justify-center">
+      <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
         <div className="flex flex-col items-center">
           <div className="relative w-20 h-20">
             <CircularProgress
@@ -40,6 +40,7 @@ export default function ProgressBarCircle({ place }: ReviewRecapProps) {
           </span>
         </div>
 
+        {/* Note Foody */}
         <div className="flex flex-col items-center">
           <div className="relative w-20 h-20">
             <CircularProgress

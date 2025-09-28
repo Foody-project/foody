@@ -67,7 +67,7 @@ export default function LoginModal() {
 
   return (
     <div className="w-4/5 mx-auto">
-      <div className="w-2/5 h-screen flex flex-col justify-center items-center mx-auto">
+      <div className="sm:w-2/5 h-screen flex flex-col justify-center items-center mx-auto">
         <div className="w-full flex justify-start mb-6">
           <Button
             variant="outline"

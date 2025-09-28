@@ -37,21 +37,25 @@ const PresentationPart = forwardRef<
       </div>
       */}
 
-      <div className="flex flex-row justify-between gap-15">
-        <div ref={(el) => setRef("headerMenu", el)} className="w-[60%]">
+      <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-10">
+        <div
+          ref={(el) => setRef("headerMenu", el)}
+          className="w-full md:w-[60%] order-1"
+        >
           <HeaderPresentationPart place={place} />
           <DiscoverMenu place={place} />
         </div>
+
         <div
           ref={(el) => setRef("sidebar", el)}
-          className="w-[40%] h-[100%] bg-white/40 p-2 rounded-xl flex items-center"
+          className="w-full md:w-[40%] h-auto bg-white/40 p-2 rounded-xl flex items-center order-2"
         >
           <Schedules place={place} />
         </div>
       </div>
 
-      <div className="flex flex-row items-start gap-6">
-        <div className="flex-1 pr-10">
+      <div className="flex flex-row flex-wrap items-start gap-6">
+        <div className="flex-1 sm:pr-10">
           <CommentSection place={place} />
         </div>
 
