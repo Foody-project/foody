@@ -91,9 +91,9 @@ export default function RegisterModal() {
   }, [success, router]);
 
   return (
-    <div className="w-4/5 mx-auto">
+    <div className="w-full sm:w-4/5 mx-auto">
       {!showAvatarSelection && !success && (
-        <div className="w-2/5 h-screen flex flex-col justify-center mx-auto">
+        <div className="w-4/5 sm:w-2/5 h-screen flex flex-col justify-center mx-auto">
           <div className="w-full flex justify-start mb-6">
             <Button
               variant="outline"
