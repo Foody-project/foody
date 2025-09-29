@@ -7,6 +7,7 @@ export interface Place {
   type: string;
   price?: string;
   flag?: string;
+  keywords?: string[];
   cuisine?: string;
   stars?: number;
   totalNotation?: number;
@@ -24,7 +25,6 @@ export interface Place {
   openingHours?: OpeningHour[];
   categoryId?: number;
   userId?: number;
-  keywords?: { name: string }[];
   createdAt?: string;
   updatedAt?: string;
 }

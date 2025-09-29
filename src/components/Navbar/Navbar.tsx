@@ -27,9 +27,12 @@ const getFilteredPlaces = (query: string, items: Place[]): Place[] => {
   return items.filter((place: Place) => {
     const nameMatch = place.name?.toLowerCase().includes(lowerQuery);
     const districtMatch = place.district?.toLowerCase().includes(lowerQuery);
-    const keywordMatch = place.keywords?.some((kw) =>
-      kw.name?.toLowerCase().includes(lowerQuery)
-    );
+    const keywordMatch =
+      Array.isArray(place.keywords) &&
+      place.keywords.some((kw) =>
+        kw.toLowerCase().includes(lowerQuery)
+      );
+
     return nameMatch || districtMatch || keywordMatch;
   });
 };
