@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { CommentItem } from "./CommentItem";
 import { Button } from "../ui/button";
-import Filters from "./Filter";
 import { ChevronDown } from "lucide-react";
 import { getAllComments } from "@/hooks/places/comments/useAllComments";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,6 +22,10 @@ export default function CommentSection({ place }: { place: Place }) {
   const placeholderReview = `What did you think of ${place.name} ?`;
   const placeId = place.id;
   const userId = 1;
+
+  const hasAlreadyCommented = comments.some(
+    (c) => c.userId === userId && c.placeId === placeId
+  );
 
   const handleSubmit = () => {
     if (comment.trim() === "") return;
@@ -59,12 +62,18 @@ export default function CommentSection({ place }: { place: Place }) {
 
       <div className="w-full flex flex-col gap-2 h-[17rem] sm:h-[15rem] p-5 bg-[var(--background-secondary)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.05)] rounded-lg">
         <span className="text-xl text-[var(--text-basic)]">Add a review</span>
-        <Textarea
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          placeholder={placeholderReview}
-          className="min-h-[6rem] sm:min-h-[4rem] placeholder:font-thin border border-black/25 placeholder:text-sm"
-        />
+        {hasAlreadyCommented ? (
+          <div className="min-h-[6rem] sm:min-h-[4rem] flex items-center justify-center bg-[var(--background-secondary)] border border-black/25 rounded-md opacity-50 text-sm text-muted-foreground">
+            You have already commented
+          </div>
+        ) : (
+          <Textarea
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder={placeholderReview}
+            className="min-h-[6rem] sm:min-h-[4rem] placeholder:font-thin border border-black/25 placeholder:text-sm"
+          />
+        )}
         <span className="text-[var(--text-basic)]">Assign a rating</span>
         <Rating onValueChange={(value) => setRating(value)}>
           {Array.from({ length: 5 }).map((_, index) => (
@@ -74,13 +83,15 @@ export default function CommentSection({ place }: { place: Place }) {
         <div className="w-full flex flex-row justify-end">
           <Button
             onClick={handleSubmit}
-            disabled={isPending || comment.trim() === ""}
+            disabled={
+              isPending || comment.trim() === "" || hasAlreadyCommented
+            }
             size="sm"
             className="text-white font-[300] w-20 h-10 text-sm cursor-pointer flex items-center justify-center"
             style={{
               background: "var(--background-button)",
               boxShadow: "4px 4px 6px rgba(0,0,0,0.1)",
-              opacity: isPending ? 0.6 : 1,
+              opacity: isPending || hasAlreadyCommented ? 0.6 : 1,
             }}
           >
             <span className="flex items-center gap-1">Send</span>
