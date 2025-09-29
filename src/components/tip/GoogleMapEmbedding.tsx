@@ -38,7 +38,6 @@ export default function GoogleMapEmbedding({ place }: GoogleMapsProps) {
                   glyphColor={"var(--text-basic)"}
                 />
               </AdvancedMarker>
-
               {open && (
                 <InfoWindow
                   position={position}
