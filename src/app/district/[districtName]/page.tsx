@@ -155,7 +155,7 @@ export default function DistrictPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="flex flex-row flex-wrap justify-between w-full"
+            className="flex flex-row flex-wrap justify-start gap-x-15 gap-y-5 w-full"
           >
             {displayPlaces.map((place: Place, index: number) => (
               <Card key={index} id={place.id} />

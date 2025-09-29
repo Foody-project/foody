@@ -12,6 +12,7 @@ import { ConnectedIcon } from "@/features/ConnectedIcon/ConnectedIcon";
 
 import "../../app/globals.css";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
+import { getUserById } from "@/hooks/places/user/getUserById";
 
 const lexend = Lexend({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -42,6 +43,8 @@ export default function Navbar() {
 
   const filteredPlaces = getFilteredPlaces(query, places ?? []);
   const showSearch = isHovered || isFocused;
+
+  const { data: user } = getUserById(10)
 
   return (
     <nav className="relative z-[9] w-full">
@@ -95,7 +98,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <ConnectedIcon />
+          <ConnectedIcon avatar={user?.avatar || ''} />
           <Button
             size="sm"
             className={`${lexend.className} text-white font-[300] w-25 h-10 text-md cursor-pointer flex items-center justify-center whitespace-nowrap`}

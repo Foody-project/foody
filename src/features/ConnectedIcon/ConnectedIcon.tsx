@@ -12,12 +12,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { LogOut } from "lucide-react";
 
-export function ConnectedIcon() {
+interface ConnectedIconProps{
+  avatar: string
+}
+
+export function ConnectedIcon({avatar}: ConnectedIconProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarImage src={avatar} alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>

@@ -128,7 +128,7 @@ export default function ItemTypePage() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
-          className="flex flex-row flex-wrap justify-center sm:gap-12 w-full px-3 sm:px-0"
+          className="flex flex-row flex-wrap justify-start gap-x-15 gap-y-5 sm:gap-12 w-full px-3 sm:px-0"
         >
           {filteredPlaces.map((place: Place, index: number) => (
             <Card key={index} id={place.id} />

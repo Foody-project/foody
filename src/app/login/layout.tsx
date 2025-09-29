@@ -1,7 +1,7 @@
 import { Funnel_Display } from "next/font/google";
 
 export const metadata = {
-  title: "Login - Find",
+  title: "Login - Foody",
 };
 
 const funnel = Funnel_Display({

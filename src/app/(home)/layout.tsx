@@ -4,7 +4,7 @@ import ReactQueryProvider from "@/utils/ReactQueryComponent";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Home - Find",
+  title: "Home - Foody",
 };
 
 const funnel = Funnel_Display({

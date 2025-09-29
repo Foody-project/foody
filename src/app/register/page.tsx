@@ -32,12 +32,7 @@ export default function RegisterModal() {
   const [selectedLink, setSelectedLink] = useState("");
 
   const images = [
-    "https://media.ouest-france.fr/v1/pictures/7ea2b00556db4e16afb296c1fb8d22e8-arthur-fils.jpg?client_id=cmsfront&sign=d940045f134d79a9180d01b30fffbb1117e3fc9b812764ceac55abce689f93b8",
-    "https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D",
-    "https://media.ouest-france.fr/v1/pictures/7ea2b00556db4e16afb296c1fb8d22e8-arthur-fils.jpg?client_id=cmsfront&sign=d940045f134d79a9180d01b30fffbb1117e3fc9b812764ceac55abce689f93b8",
-    "https://media.ouest-france.fr/v1/pictures/7ea2b00556db4e16afb296c1fb8d22e8-arthur-fils.jpg?client_id=cmsfront&sign=d940045f134d79a9180d01b30fffbb1117e3fc9b812764ceac55abce689f93b8",
-    "https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/396e9/MainBefore.jpg",
-    "https://media.ouest-france.fr/v1/pictures/7ea2b00556db4e16afb296c1fb8d22e8-arthur-fils.jpg?client_id=cmsfront&sign=d940045f134d79a9180d01b30fffbb1117e3fc9b812764ceac55abce689f93b8",
+    "https://i.postimg.cc/GhSkVmY7/7fb8324b-cd09-45e4-8c58-556a8a4e8344.png", "https://i.postimg.cc/XYsdd7Ns/Design-sans-titre-6.png", "https://i.postimg.cc/MTvDvfy4/8d8ae03f-4a2b-46d1-bd59-00c1db4d63aa.png"
   ];
 
   const [formData, setFormData] = React.useState({
