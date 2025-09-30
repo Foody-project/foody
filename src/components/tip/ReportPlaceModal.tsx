@@ -57,7 +57,7 @@ export function ReportPlaceModal({ userId, placeId }: ReportPlaceModalProps) {
               setOtherText("");
             }}
           >
-            <Warning size={32} color="var(--icon-basic)" />
+            <Warning size={32} color="var(--icon-basic)" className="hover:text-[var(--text-orange)]" />
           </Button>
         </AlertDialogTrigger>
 

@@ -1,6 +1,7 @@
 import { Separator } from "../ui/separator";
 import { Comment } from "@/types";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
+import { PenOff, Trash2 } from "lucide-react"
 
 interface CommentProps {
   comment: Comment;
@@ -34,6 +35,10 @@ export function CommentItem({ comment }: CommentProps) {
             </div>
           </div>
           <div className="flex flex-col">
+            <div className="flex flex-row justify-end gap-2 pb-2">
+              <PenOff color="var(--icon-basic)" size={17}/>
+              <Trash2 color="var(--icon-basic)" size={17}/>
+            </div>
             <Rating defaultValue={comment.rating} readOnly>
               {Array.from({ length: 5 }).map((_, index) => (
                 <RatingButton

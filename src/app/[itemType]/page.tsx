@@ -100,7 +100,7 @@ export default function ItemTypePage() {
       <section className="flex flex-row justify-between px-3 sm:px-0">
         <div>
           <h1
-            className="uppercase font-bold text-3xl bg-clip-text text-transparent"
+            className="uppercase font-bold text-4xl bg-clip-text text-transparent"
             style={{ backgroundImage: "var(--background-linear-texte)" }}
           >
             {itemTypeLabel} in Paris

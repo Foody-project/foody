@@ -43,7 +43,7 @@ export default function ItemPage() {
         {!isLoading && (
           <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
         )}
-      </div>
+    </div>
 
       {place && (
         <div className="p-3 sm:pd-0">

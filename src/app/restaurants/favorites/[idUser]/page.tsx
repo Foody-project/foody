@@ -9,12 +9,12 @@ import Footer from "@/components/Footer/Footer";
 import { motion } from "framer-motion";
 import { Card } from "@/components/PreviewCards/Card";
 
-import { Lexend } from "next/font/google";
+import { Funnel_Display } from "next/font/google";
 import { getFavoritesPlaces } from "@/hooks/places/useFavoritesPlace";
 
 import { Place } from "@/types";
 
-const lexend = Lexend({
+const funnel = Funnel_Display({
   weight: ["300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
@@ -37,22 +37,29 @@ export default function ItemPage() {
 
   if (isLoading) return <Loader />;
 
-  console.log('FAVORITES', favoritesPlace)
-
   return (
-    <div className={`${lexend.className} sm:w-4/5 mx-auto`}>
-      <Navbar />
-      <div className="pb-3">
-        {isLoading && <Loader />}
-        {!isLoading && (
-          <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
-        )}
-      </div>
+    <div className={`${funnel.className} sm:w-4/5 mx-auto`}>
+          <Navbar />
+          <div className="mt-5 pl-3 sm:pl-0 pb-3">
+            <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
+          </div>
 
-      <div className='flex flex-col'>
-        <span className="uppercase font-bold text-4xl text-[var(--text-basic)]">Your favorites</span>
-        <span className="font-thin text-sm">You saved {favoritesPlace.length} spot(s)!</span>
-      </div>
+      <section className="flex flex-row justify-between px-3 sm:px-0">
+        <div>
+          <h1
+            className="uppercase font-bold text-4xl bg-clip-text text-transparent"
+            style={{ backgroundImage: "var(--background-linear-texte)" }}
+          >
+            Favorites
+          </h1>
+
+          <div className="flex flex-row gap-1 items-center mt-2">
+            <h4 className="text-gray-500 text-sm font-normal">
+              <span>{favoritesPlace.length} spots saved !</span>
+            </h4>
+          </div>
+        </div>
+      </section>
 
       <section>
         <motion.div
