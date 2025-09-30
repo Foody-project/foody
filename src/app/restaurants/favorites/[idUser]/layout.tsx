@@ -1,8 +1,8 @@
-import { Funnel_Display, Lexend } from "next/font/google";
 import ReactQueryProvider from "@/utils/ReactQueryComponent";
+import { Funnel_Display, Lexend } from "next/font/google";
 
 export const metadata = {
-  title: "Discover - Foody",
+  title: "Your favorites - Foody",
 };
 
 const funnel = Funnel_Display({
