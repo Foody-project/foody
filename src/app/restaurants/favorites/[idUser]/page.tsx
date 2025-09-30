@@ -26,7 +26,7 @@ export default function ItemPage() {
   const userId = 1;
 
   const { data, isLoading } = getFavoritesPlaces(userId);
-  const favoritesPlace = data ?? [];
+  const favoritesPlace = (data ?? []) as Place[];
 
 
   const itemsBreadcrumb = [
@@ -51,7 +51,7 @@ export default function ItemPage() {
 
       <div className='flex flex-col'>
         <span className="uppercase font-bold text-4xl text-[var(--text-basic)]">Your favorites</span>
-        <span className="font-thin text-sm">You saved {favoritesPlace.length} spot(s) !</span>
+        <span className="font-thin text-sm">You saved {favoritesPlace.length} spot(s)!</span>
       </div>
 
       <section>
