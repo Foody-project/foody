@@ -25,7 +25,9 @@ export default function ItemPage() {
   const idString = searchParams ? searchParams.get("extraInfo") : "";
   const userId = 1;
 
-  const { data: favoritesPlace = [], isLoading } = getFavoritesPlaces(userId);
+  const { data, isLoading } = getFavoritesPlaces(userId);
+  const favoritesPlace = data ?? [];
+
 
   const itemsBreadcrumb = [
     { label: "Home", href: "/" },
