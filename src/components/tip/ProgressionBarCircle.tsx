@@ -40,7 +40,6 @@ export default function ProgressBarCircle({ place }: ReviewRecapProps) {
           </span>
         </div>
 
-        {/* Note Foody */}
         <div className="flex flex-col items-center">
           <div className="relative w-20 h-20">
             <CircularProgress
