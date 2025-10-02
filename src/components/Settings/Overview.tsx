@@ -112,7 +112,7 @@ export default function Overview({ user }: OverviewProps) {
               type="text"
               id="first_name"
               placeholder={user?.first_name}
-              className="border !border-gray-300 rounded-sm placeholder:font-thin placeholder:text-gray-500/80"
+              className="border !border-gray-300 rounded-sm placeholder:font-thin placeholder:text-gray-500/80 placeholder:text-sm"
               readOnly
             />
           </div>
@@ -124,7 +124,7 @@ export default function Overview({ user }: OverviewProps) {
               type="text"
               id="last_name"
               placeholder={user?.last_name}
-              className="border !border-gray-300 rounded-sm placeholder:font-thin placeholder:text-gray-500/80"
+              className="border !border-gray-300 rounded-sm placeholder:font-thin placeholder:text-gray-500/80 placeholder:text-sm"
               readOnly
             />
           </div>
@@ -196,7 +196,7 @@ export default function Overview({ user }: OverviewProps) {
               type="email"
               placeholder={user?.email}
               readOnly
-              className="border !border-gray-300 rounded-sm placeholder:font-thin placeholder:text-[var(--text-basic)]"
+              className="border !border-gray-300 rounded-sm placeholder:font-thin placeholder:text-[var(--text-basic)] placeholder:text-sm"
             />
           </div>
           {passwordError && (

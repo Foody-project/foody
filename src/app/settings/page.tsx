@@ -162,7 +162,7 @@ export default function ItemPage() {
       <div
         className={`${funnel.className} max-w-screen-xl mx-auto min-h-193 lg:min-h-screen sm:px-0 px-5 flex items-center justify-center`}
       >
-        <div className="flex flex-col lg:flex-row items-start gap-16 w-full">
+        <div className="flex flex-col lg:flex-row items-start lg:gap-16 w-full">
           <section className="hidden lg:block lg:w-2/4 w-full">
             <SettingsMenu user={user} setActiveSection={setActiveSection} />
           </section>
