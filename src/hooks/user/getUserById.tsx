@@ -12,13 +12,9 @@ const fetchUserByID = async (userId: number): Promise<User> => {
 };
 
 export const getUserById = (userId: number) => {
-  return useQuery<User, Error>(
-    ["user", userId],
-    () => fetchUserByID(userId),
-    {
-      staleTime: 5 * 60 * 1000,
-      cacheTime: 10 * 60 * 1000,
-      enabled: !!userId,
-    }
-  );
+  return useQuery<User, Error>(["user", userId], () => fetchUserByID(userId), {
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
+    enabled: !!userId,
+  });
 };

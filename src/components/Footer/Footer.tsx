@@ -24,7 +24,7 @@ export default function FooterSection({
   return (
     <footer className={cn("w-full px-4 z-50", className)}>
       <div className="max-w-container mx-auto">
-        <Footer className="bg-transparent">
+        <Footer className="bg-transparent pt-0">
           <FooterBottom>
             <div>{copyright}</div>
             <div className="flex flex-row justify-around gap-4">

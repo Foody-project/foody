@@ -13,17 +13,21 @@ import { useRouter } from "next/navigation";
 
 import { LogOut } from "lucide-react";
 
-interface ConnectedIconProps{
-  avatar: string
+interface ConnectedIconProps {
+  avatar: string;
 }
 
-const userId = 1
+const userId = 1;
 
-export function ConnectedIcon({avatar}: ConnectedIconProps) {
+export function ConnectedIcon({ avatar }: ConnectedIconProps) {
   const router = useRouter();
 
   const favoritesRedirect = () => {
     router.push(`/restaurants/favorites/${userId}`);
+  };
+
+  const settingsRedirect = () => {
+    router.push(`/settings`);
   };
 
   return (
@@ -36,11 +40,15 @@ export function ConnectedIcon({avatar}: ConnectedIconProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 mt-2" align="start">
         <DropdownMenuGroup>
-          <DropdownMenuItem onClick={favoritesRedirect}>Your favorites</DropdownMenuItem>
+          <DropdownMenuItem onClick={favoritesRedirect}>
+            Your favorites
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuItem onClick={settingsRedirect}>
+            Settings
+          </DropdownMenuItem>
           <DropdownMenuItem>
             Log out
             <DropdownMenuShortcut>
