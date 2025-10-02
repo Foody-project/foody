@@ -37,7 +37,7 @@ export default function TabDescription({ place }: TabProps) {
 
   return (
     <div className="w-full">
-      <div className="flex sticky top-0 z-10 backdrop-blur-sm pt-1 mb-3">
+      <div className="flex sticky !bg-white/20 top-16 z-50 backdrop-blur-md rounded-lg pt-1 mb-3">
         {tabs.map((tab, index) => (
           <button
             key={index}

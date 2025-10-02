@@ -8,7 +8,8 @@ import Header from "@/components/tip/Header";
 import Loader from "@/components/PreviewCards/Loader";
 import TabDescription from "@/components/tip/TabDescription";
 import Footer from "@/components/Footer/Footer";
-
+import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
+import ButtonTips from "@/components/tip/ButtonsTips";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import { Lexend } from "next/font/google";
 
@@ -33,6 +34,8 @@ export default function ItemPage() {
     { label: place?.name || "" },
   ];
 
+  const userId = 1;
+
   if (isLoading) return <Loader />;
 
   return (
@@ -43,10 +46,35 @@ export default function ItemPage() {
         {!isLoading && (
           <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
         )}
-    </div>
+      </div>
 
       {place && (
         <div className="p-3 sm:pd-0">
+          <div className="sticky top-0 z-50 rounded-md bg-white/20 backdrop-blur-md px-2 py-4 flex flex-row items-end justify-between">
+            <div className="flex flex-row items-end gap-3">
+              <span className="uppercase font-bold text-4xl text-[var(--text-basic)]">
+                {place.name}
+              </span>
+              <Rating
+                defaultValue={place.stars}
+                number={place.totalNotation}
+                readOnly
+              >
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <RatingButton
+                    key={index}
+                    className="w-[1rem] h-6 text-[var(--text-orange)]"
+                  />
+                ))}
+              </Rating>
+            </div>
+
+            <ButtonTips
+              userId={userId}
+              placeId={place.id}
+              placeName={place.name}
+            />
+          </div>
           <Header place={place} />
           <TabDescription place={place} />
         </div>
