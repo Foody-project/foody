@@ -70,7 +70,6 @@ export default function Home() {
       <div className="w-full sm:w-4/5 sm:mx-auto">
         <Navbar />
         <div className="relative h-[40rem] sm:h-[60rem] flex items-center justify-center overflow-hidden">
-          {/* Ronds flous */}
           <div className="absolute inset-0 z-0 flex items-center justify-center scale-[1.025] blur-[36px]">
             <div className="grid grid-cols-2 grid-rows-2 gap-1 w-[20rem] h-[20rem] sm:w-[40rem] sm:h-[40rem] animate-[spin_20s_linear_infinite]">
               <div className="bg-[var(--text-orange)]/80 rounded-[50rem] hover:scale-[1.35] transition-all duration-1000 ease-in-out"></div>
@@ -113,7 +112,6 @@ export default function Home() {
             />
           </div>
 
-          {/* Texte principal */}
           <div className="relative z-1 flex flex-col items-center justify-center text-center px-4">
             <div className="font-bold">
               <span className="text-7xl sm:text-8xl uppercase text-[var(--text-basic)]">

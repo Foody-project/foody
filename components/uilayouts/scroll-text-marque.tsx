@@ -68,7 +68,7 @@ export default function ScrollBaseAnimation({
   });
 
   return (
-    <div className="overflow-hidden whitespace-nowrap flex flex-nowrap">
+    <div className="overflow-hidden whitespace-nowrap flex flex-nowrap pb-[1.3rem]">
       <motion.div
         className="flex whitespace-nowrap gap-10 flex-nowrap hover:[animation-play-state:paused]"
         style={{ x }}

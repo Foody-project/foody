@@ -8,13 +8,24 @@ import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 function Texts() {
   const { data: places = [] } = getAllPlaces();
 
+  function formatSlug(name: string, id: number): string {
+    const slugifiedName = name
+      .toLowerCase()
+      .replace(/\s+/g, "-") // espaces → tirets
+      .replace(/[^\w-]/g, "") // supprime caractères spéciaux
+      .replace(/-+/g, "-") // évite les tirets doublés
+      .trim();
+
+    return `${slugifiedName}?extraInfo=${id}`;
+  }
+
   const topRestaurants = places.slice(0, 10).map((place) => ({
     name: place.name,
-    slug: place.name,
+    itemName: formatSlug(place.name, place.id),
   }));
 
   return (
-    <div className="h-[500px] w-full scale-[1.055] grid place-content-center rotate-[-10deg]">
+    <div className="h-[500px] w-full scale-[1.1] grid place-content-center rotate-[-10deg] py-2">
       <ScrollBaseAnimation
         delay={500}
         baseVelocity={-0.4}
@@ -23,7 +34,7 @@ function Texts() {
         {topRestaurants.map((place, index) => (
           <React.Fragment key={index}>
             <Link
-              href={`/restaurant/${place.slug}`}
+              href={`/restaurants/${place.itemName}`}
               className="hover:text-[var(--text-orange)] duration-200"
             >
               {place.name}
@@ -35,10 +46,20 @@ function Texts() {
 
       <ScrollBaseAnimation
         delay={500}
-        baseVelocity={3}
-        clasname="font-medium tracking-[-0.07em] leading-[90%] sm:!text-[5vw]"
+        baseVelocity={0.6}
+        clasname="font-medium tracking-[-0.07em] leading-[90%] sm:!text-[3vw]"
       >
-        You can only find it here.
+        {topRestaurants.map((place, index) => (
+          <React.Fragment key={index}>
+            <Link
+              href={`/restaurants/${place.itemName}`}
+              className="hover:text-[var(--text-orange)] duration-200"
+            >
+              {place.name}
+            </Link>
+            <span> - </span>
+          </React.Fragment>
+        ))}
       </ScrollBaseAnimation>
     </div>
   );
