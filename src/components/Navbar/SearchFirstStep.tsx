@@ -51,7 +51,7 @@ export default function SearchFirstStep({
   };
 
   return (
-    <div className="p-3">
+    <div className="p-3 z-[999]">
       {query.trim() === "" ? (
         <>
           <div className="flex flex-row flex-wrap gap-3 pb-2">

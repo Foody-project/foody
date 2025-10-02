@@ -1,6 +1,9 @@
 "use client";
+
+import React from "react";
 import "../../globals.css";
 import { useSearchParams } from "next/navigation";
+import { clsx } from "clsx";
 
 import Navbar from "@/components/Navbar/Navbar";
 import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumb";
@@ -25,7 +28,6 @@ export default function ItemPage() {
   const idNumber = idString ? parseInt(idString, 10) : 0;
 
   const { data: places = [], isLoading } = getAllPlaces();
-
   const place = places.find((p) => p.id === idNumber);
 
   const itemsBreadcrumb = [
@@ -34,7 +36,22 @@ export default function ItemPage() {
     { label: place?.name || "" },
   ];
 
-  const userId = 1;
+  const [isSticky, setIsSticky] = React.useState(false);
+  const sentinelRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsSticky(!entry.isIntersecting),
+      { rootMargin: "0px", threshold: 0 }
+    );
+
+    const sentinel = sentinelRef.current;
+    if (sentinel) observer.observe(sentinel);
+
+    return () => {
+      if (sentinel) observer.unobserve(sentinel);
+    };
+  }, []);
 
   if (isLoading) return <Loader />;
 
@@ -42,7 +59,6 @@ export default function ItemPage() {
     <div className={`${lexend.className} sm:w-4/5 mx-auto`}>
       <Navbar />
       <div className="pb-3">
-        {isLoading && <Loader />}
         {!isLoading && (
           <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
         )}
@@ -50,7 +66,14 @@ export default function ItemPage() {
 
       {place && (
         <div className="p-3 sm:pd-0">
-          <div className="sticky top-0 z-50 rounded-md bg-white/20 backdrop-blur-md px-2 py-4 flex flex-row items-end justify-between">
+          <div ref={sentinelRef} className="h-1" />
+
+          <div
+            className={clsx(
+              "sticky top-0 z-50 w-full px-4 py-4 flex flex-row items-end justify-between transition-all duration-300",
+              isSticky && "bg-white/20 backdrop-blur-md rounded-md"
+            )}
+          >
             <div className="flex flex-row items-end gap-3">
               <span className="uppercase font-bold text-4xl text-[var(--text-basic)]">
                 {place.name}
@@ -68,17 +91,13 @@ export default function ItemPage() {
                 ))}
               </Rating>
             </div>
-
-            <ButtonTips
-              userId={userId}
-              placeId={place.id}
-              placeName={place.name}
-            />
           </div>
+
           <Header place={place} />
           <TabDescription place={place} />
         </div>
       )}
+
       <Footer />
     </div>
   );
