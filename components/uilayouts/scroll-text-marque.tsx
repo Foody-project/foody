@@ -1,4 +1,5 @@
 "use client";
+
 import { useRef, useEffect } from "react";
 import {
   motion,
@@ -13,19 +14,19 @@ import { wrap } from "@motionone/utils";
 import { cn } from "@/utils/utils";
 
 interface ParallaxProps {
-  children: string;
+  children: React.ReactNode;
   baseVelocity: number;
   clasname?: string;
-  scrollDependent?: boolean; // Toggle scroll-dependent behavior
-  delay?: number; // Delay before animation starts
+  scrollDependent?: boolean;
+  delay?: number;
 }
 
 export default function ScrollBaseAnimation({
   children,
   baseVelocity = -5,
   clasname,
-  scrollDependent = false, // Default to false
-  delay = 0, // Default delay is 0 (no delay)
+  scrollDependent = false,
+  delay = 0,
 }: ParallaxProps) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
@@ -39,24 +40,21 @@ export default function ScrollBaseAnimation({
   });
 
   const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
-
   const directionFactor = useRef<number>(1);
-  const hasStarted = useRef(false); // Track animation start status
+  const hasStarted = useRef(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      hasStarted.current = true; // Start animation after the delay
+      hasStarted.current = true;
     }, delay);
-
-    return () => clearTimeout(timer); // Cleanup on unmount
+    return () => clearTimeout(timer);
   }, [delay]);
 
   useAnimationFrame((t, delta) => {
-    if (!hasStarted.current) return; // Skip if delay hasn't passed
+    if (!hasStarted.current) return;
 
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
-    // Reverse direction if scrollDependent is true
     if (scrollDependent) {
       if (velocityFactor.get() < 0) {
         directionFactor.current = -1;
@@ -66,14 +64,13 @@ export default function ScrollBaseAnimation({
     }
 
     moveBy += directionFactor.current * moveBy * velocityFactor.get();
-
     baseX.set(baseX.get() + moveBy);
   });
 
   return (
     <div className="overflow-hidden whitespace-nowrap flex flex-nowrap">
       <motion.div
-        className="flex whitespace-nowrap gap-10 flex-nowrap"
+        className="flex whitespace-nowrap gap-10 flex-nowrap hover:[animation-play-state:paused]"
         style={{ x }}
       >
         <span className={cn(`block sm:text-[8vw] text-[11vw]`, clasname)}>

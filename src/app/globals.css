@@ -125,3 +125,20 @@
   background-size: 200% 200%;
   animation: gradient-slide 8s ease infinite;
 }
+
+@keyframes wiggle {
+  0%   { transform: rotate(30deg); }
+  50%  { transform: rotate(40deg); }
+  100% { transform: rotate(30deg); }
+}
+.wiggle {
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.pulse-opacity {
+  animation: pulseOpacity 3s ease-in-out infinite;
+}
