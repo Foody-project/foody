@@ -32,7 +32,7 @@ export function Card({ id }: CardProps) {
   if (!place) return;
 
   return (
-    <div className="text-white bg-white/70 w-full max-w-[25rem] h-[23rem] mt-10 pb-2 shadow-[0px_10px_10px_rgba(0,0,0,0.05)] rounded-xl transition-transform duration-300 hover:scale-101 cursor-pointer">
+    <div className="text-white bg-white/70 w-full max-w-[25rem] h-[24rem] lg:h-[22rem] mt-10 pb-2 shadow-[0px_10px_10px_rgba(0,0,0,0.05)] rounded-xl transition-transform duration-300 hover:scale-101 cursor-pointer">
       <div onClick={() => redirectToItemPage(place.name, place.id)}>
         {images && images.length > 0 && (
           <img
