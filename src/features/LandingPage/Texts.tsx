@@ -4,16 +4,17 @@ import React from "react";
 import Link from "next/link";
 import ScrollBaseAnimation from "../../../components/uilayouts/scroll-text-marque";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
+import Error from "@/components/Error";
 
 function Texts() {
-  const { data: places = [] } = getAllPlaces();
+  const { data: places = [], isError } = getAllPlaces();
 
   function formatSlug(name: string, id: number): string {
     const slugifiedName = name
       .toLowerCase()
-      .replace(/\s+/g, "-") // espaces → tirets
-      .replace(/[^\w-]/g, "") // supprime caractères spéciaux
-      .replace(/-+/g, "-") // évite les tirets doublés
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]/g, "")
+      .replace(/-+/g, "-")
       .trim();
 
     return `${slugifiedName}?extraInfo=${id}`;
@@ -23,6 +24,8 @@ function Texts() {
     name: place.name,
     itemName: formatSlug(place.name, place.id),
   }));
+
+  if (isError) return <Error />;
 
   return (
     <div className="h-[500px] w-full scale-[1.1] grid place-content-center rotate-[-10deg] py-2">

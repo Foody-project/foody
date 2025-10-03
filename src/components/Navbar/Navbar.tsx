@@ -12,8 +12,6 @@ import { ConnectedIcon } from "@/features/ConnectedIcon/ConnectedIcon";
 
 import "../../app/globals.css";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
-import { getUserById } from "@/hooks/user/getUserById";
-import { useConnectedUser } from "@/hooks/useIsAuthenticated";
 
 const lexend = Lexend({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -37,10 +35,11 @@ const getFilteredPlaces = (query: string, items: Place[]): Place[] => {
 };
 
 import { useAuth } from "../../contexts/AuthContext";
+import Error from "../Error";
 
 export default function Navbar() {
   const { user } = useAuth();
-  const { data: places } = getAllPlaces();
+  const { data: places, isError } = getAllPlaces();
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -48,6 +47,8 @@ export default function Navbar() {
 
   const filteredPlaces = getFilteredPlaces(query, places ?? []);
   const showSearch = isHovered || isFocused;
+
+  if (isError) return <Error />;
 
   return (
     <nav className="relative z-[9] w-full">

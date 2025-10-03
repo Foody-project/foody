@@ -14,6 +14,7 @@ import Footer from "@/components/Footer/Footer";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import { Lexend } from "next/font/google";
+import Error from "@/components/Error";
 
 const lexend = Lexend({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -26,7 +27,7 @@ export default function ItemPage() {
   const idString = searchParams ? searchParams.get("extraInfo") : "";
   const idNumber = idString ? parseInt(idString, 10) : 0;
 
-  const { data: places = [], isLoading } = getAllPlaces();
+  const { data: places = [], isLoading, isError } = getAllPlaces();
   const place = places.find((p) => p.id === idNumber);
 
   const itemsBreadcrumb = [
@@ -53,6 +54,7 @@ export default function ItemPage() {
   }, []);
 
   if (isLoading) return <Loader />;
+  if (isError) return <Error />;
 
   return (
     <div className={`${lexend.className} sm:w-4/5 mx-auto`}>

@@ -9,10 +9,18 @@ interface ReportPayload {
 }
 
 const sendReport = async ({ userId, placeId, motif }: ReportPayload) => {
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("authToken") : null;
+
+  if (!token) {
+    throw new Error("Token d'authentification manquant");
+  }
+
   const res = await fetch(`${apiUrl}/reportPlace/${userId}/${placeId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ motif }),
   });

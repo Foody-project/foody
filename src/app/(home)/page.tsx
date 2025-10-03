@@ -25,9 +25,9 @@ const password = process.env.NEXT_PUBLIC_PASSWORD_ENTER;
 
 export default function Home() {
   const router = useRouter();
-  const { data: places = [], isLoading } = getAllPlaces();
+  const { data: places = [], isLoading, isError } = getAllPlaces();
 
-  const [input, setInput] = useState("");
+  if (isError) return <Error />;
 
   return (
     <div className="overflow-x-hidden">

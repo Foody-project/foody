@@ -13,6 +13,7 @@ import { Card } from "@/components/PreviewCards/Card";
 import { FiltersModal } from "@/components/tip/FiltersModal";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import { Lexend } from "next/font/google";
+import Error from "@/components/Error";
 
 type Filters = {
   districts: string[];
@@ -47,7 +48,7 @@ export default function DistrictPage() {
   const districtSlug =
     typeof params?.districtName === "string" ? params.districtName : "";
 
-  const { data: places = [], isLoading } = getAllPlaces();
+  const { data: places = [], isLoading, isError } = getAllPlaces();
 
   const [placesAfterFilters, setPlacesAfterFilters] = useState<Place[]>([]);
   const [activeFilters, setActiveFilters] = useState<Filters>({
@@ -115,6 +116,8 @@ export default function DistrictPage() {
     { label: "Restaurants", href: "/Restaurants" },
     { label: districtLabel },
   ];
+
+  if (isError) return <Error />;
 
   return (
     <div className={`${lexend.className} `}>

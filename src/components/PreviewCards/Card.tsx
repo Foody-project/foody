@@ -3,13 +3,13 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 
 import { getImagesByPlaceId } from "@/hooks/places/useImagesByID";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import { Separator } from "../ui/separator";
 import { useAuth } from "@/contexts/AuthContext";
+import Error from "../Error";
 
 interface CardProps {
   id: number;
@@ -17,7 +17,7 @@ interface CardProps {
 
 export function Card({ id }: CardProps) {
   const router = useRouter();
-  const { data: places = [] } = getAllPlaces();
+  const { data: places = [], isError } = getAllPlaces();
   const { data: images } = getImagesByPlaceId(id);
   const { user } = useAuth();
 
@@ -35,7 +35,7 @@ export function Card({ id }: CardProps) {
       )}`
     );
   };
-
+  if (isError) return <Error />;
   if (!place) return;
 
   return (

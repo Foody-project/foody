@@ -6,6 +6,7 @@ import { Pen } from "lucide-react";
 import { useUpdateComment } from "@/hooks/places/comments/useUpdateComment";
 import { DeleteComment } from "./DeleteComment";
 import { useAuth } from "@/contexts/AuthContext";
+import Error from "../Error";
 
 interface CommentProps {
   comment: Comment;
@@ -35,6 +36,9 @@ export function CommentItem({ comment, onRefresh }: CommentProps) {
         onSuccess: () => {
           setIsEditing(false);
           onRefresh?.();
+        },
+        onError: () => {
+          <Error />;
         },
       }
     );

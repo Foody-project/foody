@@ -14,6 +14,7 @@ import Loader from "@/components/PreviewCards/Loader";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import type { Place } from "@/types";
 import { FiltersModal } from "@/components/tip/FiltersModal";
+import Error from "@/components/Error";
 
 type Filters = {
   districts: string[];
@@ -33,7 +34,7 @@ export default function ItemTypePage() {
   const params = useParams();
   const { itemType } = params;
 
-  const { data: places = [], isLoading } = getAllPlaces();
+  const { data: places = [], isLoading, isError } = getAllPlaces();
 
   const itemTypeLabel =
     typeof itemType === "string"
@@ -88,6 +89,7 @@ export default function ItemTypePage() {
   };
 
   if (isLoading) return <Loader />;
+  if (isError) return <Error />;
 
   return (
     <div className="sm:w-4/5 mx-auto">

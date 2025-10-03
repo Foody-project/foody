@@ -34,7 +34,7 @@ export default function ItemPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  const { data, isLoading } = getFavoritesPlaces(userId);
+  const { data, isLoading, isError } = getFavoritesPlaces(userId);
   const favoritesPlace = (data ?? []) as Place[];
 
   const itemsBreadcrumb = [
@@ -54,6 +54,8 @@ export default function ItemPage() {
   if (isLoading) {
     return <Loader />;
   }
+
+  if (isError) return <Error />;
 
   return (
     <div className={`${funnel.className} sm:w-4/5 mx-auto`}>
