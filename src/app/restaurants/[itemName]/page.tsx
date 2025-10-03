@@ -57,14 +57,14 @@ export default function ItemPage() {
   return (
     <div className={`${lexend.className} sm:w-4/5 mx-auto`}>
       <Navbar />
-      <div className="pb-3">
+      <div className="lg:pb-3">
         {!isLoading && (
           <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
         )}
       </div>
 
       {place && (
-        <div className="p-3 sm:pd-0">
+        <div className="lg:p-3 pl-3 pr-3 pt-0 sm:pd-0">
           <div ref={sentinelRef} className="h-1" />
 
           <div

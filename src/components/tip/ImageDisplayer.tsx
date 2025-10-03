@@ -42,7 +42,7 @@ export default function ImageDisplayer({ images, place }: ImageDisplayerProps) {
   };
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       <div className="flex flex-row gap-4">
         {images.length > 0 && (
           <img
@@ -70,7 +70,7 @@ export default function ImageDisplayer({ images, place }: ImageDisplayerProps) {
                   <img
                     src={img.url}
                     alt={`${place.name} - ${index + 1}`}
-                    className={`w-[9.5rem] h-[6.85rem] object-cover rounded-lg shadow-md hover:scale-105 duration-300 ${
+                    className={`w-[20rem] lg:w-[9.5rem] lg:h-[6.85rem] object-cover rounded-lg shadow-md hover:scale-105 duration-300 ${
                       isLast ? "opacity-60" : ""
                     }`}
                   />
@@ -102,7 +102,7 @@ export default function ImageDisplayer({ images, place }: ImageDisplayerProps) {
           <img
             src={images[selectedIndex].url}
             alt="Agrandie"
-            className="max-w-[50%] rounded-xl shadow-2xl transform transition-all duration-300 scale-100"
+            className="lg:max-w-[50%] max-w-[75%] rounded-xl shadow-2xl transform transition-all duration-300 scale-100"
             onClick={(e) => e.stopPropagation()}
           />
 
@@ -115,6 +115,6 @@ export default function ImageDisplayer({ images, place }: ImageDisplayerProps) {
           </button>
         </div>
       )}
-    </>
+    </div>
   );
 }

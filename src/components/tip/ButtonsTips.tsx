@@ -77,7 +77,7 @@ export default function ButtonTips({
           weight={saved ? "fill" : "regular"}
           color={saved ? "red" : "var(--icon-basic)"}
         />
-        Save
+        <span className="hidden lg:block">Save</span>
       </Button>
 
       {savedPlace && <Toast title="You have saved this spot !" />}
