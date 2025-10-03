@@ -1,4 +1,8 @@
+"use client";
+
 import { Funnel_Display } from "next/font/google";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 
 export const metadata = {
   title: "Login - Foody",
@@ -15,10 +19,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
     <html lang="en" className={funnel.className}>
       <body style={{ minHeight: "100vh" }} className="dark">
-        {children}
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
       </body>
     </html>
   );
