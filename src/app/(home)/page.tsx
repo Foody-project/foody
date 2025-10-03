@@ -20,6 +20,7 @@ import Frites from "../../../public/frites.png";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import Texts from "@/features/LandingPage/Texts";
 import Loader from "@/components/PreviewCards/Loader";
+import Error from "@/components/Error";
 
 const lexend = Lexend({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -33,36 +34,10 @@ export default function Home() {
   const router = useRouter();
   const { data: places = [], isLoading } = getAllPlaces();
 
-  const [accessGranted, setAccessGranted] = useState(false);
   const [input, setInput] = useState("");
 
-  const handleSubmit = () => {
-    if (input === password) {
-      setAccessGranted(true);
-    } else {
-      alert("Incorrect password");
-    }
-  };
-
-  if (!accessGranted) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white gap-4">
-        <h1 className="text-xl font-bold">Enter password to access Foody</h1>
-        <input
-          type="password"
-          value={input}
-          placeholder="Write the password here..."
-          onChange={(e) => setInput(e.target.value)}
-          className="w-60 px-2 py-2 rounded text-black bg-white/50 text-sm placeholder:text-sm"
-        />
-        <button
-          onClick={handleSubmit}
-          className="px-4 py-2 bg-orange-500 rounded text-white"
-        >
-          Submit
-        </button>
-      </div>
-    );
+  if (1 + 1 == 2) {
+    return <Error />;
   }
 
   return (
