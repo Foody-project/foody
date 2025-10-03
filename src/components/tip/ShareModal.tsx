@@ -51,6 +51,7 @@ export function ShareModal() {
         <PopoverTrigger asChild>
           <Button
             variant="link"
+            className="hover:cursor-pointer"
             style={{ color: "var(--text-basic)", fontWeight: 400 }}
           >
             <Export size={32} color="var(--icon-basic)" /> Share

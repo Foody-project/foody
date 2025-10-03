@@ -9,6 +9,7 @@ import ImageDisplayer from "./ImageDisplayer";
 import IsOpen from "./IsOpen";
 import { getOpenPlaces } from "@/hooks/places/useIsOpeningNow";
 import ButtonTips from "./ButtonsTips";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface HeaderProps {
   place?: Place;
@@ -16,8 +17,7 @@ interface HeaderProps {
 
 export default function Header({ place }: HeaderProps) {
   if (!place) return null;
-
-  const userId = 1;
+  const { user } = useAuth();
 
   const { data: images } = getImagesByPlaceId(place.id);
   const { data: openPlaces } = getOpenPlaces();
@@ -29,7 +29,6 @@ export default function Header({ place }: HeaderProps) {
   return (
     <div className="relative w-full flex flex-col gap-6">
       <div className="px-2 flex flex-row justify-between items-center text-[0.9rem] opacity-90">
-        {/* ✅ Partie gauche : IsOpen + infos */}
         <div className="flex flex-row items-center gap-3">
           <IsOpen isOpen={isOpen} />
           <div className="flex flex-row items-center gap-2 pl-3 text-base">
@@ -48,17 +47,15 @@ export default function Header({ place }: HeaderProps) {
           </div>
         </div>
 
-        {/* ✅ Partie droite : ButtonTips */}
         <div>
           <ButtonTips
-            userId={userId}
+            userId={user?.id}
             placeId={place.id}
             placeName={place.name}
           />
         </div>
       </div>
 
-      {/* ✅ Image gallery */}
       <ImageDisplayer images={images} place={place} />
     </div>
   );

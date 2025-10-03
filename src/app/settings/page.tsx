@@ -16,7 +16,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-import { Router } from "next/router";
 import { useDeleteUser } from "@/hooks/user/deleteUser";
 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";

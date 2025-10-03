@@ -19,9 +19,10 @@ import { Warning } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useReportPlace } from "@/hooks/places/useReportPlace";
 import Toast from "@/features/Toasts/Toast";
+import { useRouter } from "next/navigation";
 
 interface ReportPlaceModalProps {
-  userId: number;
+  userId?: number;
   placeId: number;
 }
 
@@ -39,7 +40,13 @@ export function ReportPlaceModal({ userId, placeId }: ReportPlaceModalProps) {
     if (reason !== "other") setOtherText("");
   };
 
+  const router = useRouter();
+
   const handleReport = () => {
+    if (!userId) {
+      router.push("/login");
+      return null;
+    }
     const reasonToSend = selectedReason === "close" ? "Close" : otherText;
     reportPlace({ userId, placeId, motif: reasonToSend });
     setReported(true);
@@ -52,12 +59,18 @@ export function ReportPlaceModal({ userId, placeId }: ReportPlaceModalProps) {
         <AlertDialogTrigger asChild>
           <Button
             variant="link"
-            onClick={() => {
+            className="hover:cursor-pointer"
+            onClick={(e) => {
+              if (!userId) {
+                e.preventDefault();
+                router.push("/login");
+                return;
+              }
               setSelectedReason(null);
               setOtherText("");
             }}
           >
-            <Warning size={32} color="var(--icon-basic)" className="hover:text-[var(--text-orange)]" />
+            <Warning size={32} color="var(--icon-basic)" />
           </Button>
         </AlertDialogTrigger>
 

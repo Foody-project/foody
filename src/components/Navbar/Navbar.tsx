@@ -39,7 +39,7 @@ const getFilteredPlaces = (query: string, items: Place[]): Place[] => {
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function Navbar() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { data: places } = getAllPlaces();
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);

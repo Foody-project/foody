@@ -8,6 +8,8 @@ import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
 
 import { getImagesByPlaceId } from "@/hooks/places/useImagesByID";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
+import { Separator } from "../ui/separator";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface CardProps {
   id: number;
@@ -17,10 +19,15 @@ export function Card({ id }: CardProps) {
   const router = useRouter();
   const { data: places = [] } = getAllPlaces();
   const { data: images } = getImagesByPlaceId(id);
+  const { user } = useAuth();
 
   const place = places.find((p) => p.id === id);
 
   const redirectToItemPage = (name: string, id: number) => {
+    if (!user) {
+      router.push("/login");
+      return;
+    }
     const redirectName = name.trim().toLowerCase().replace(/\s+/g, "-");
     router.push(
       `/restaurants/${redirectName}?extraInfo=${encodeURIComponent(
@@ -63,10 +70,11 @@ export function Card({ id }: CardProps) {
           className="flex gap-2"
           onClick={() => redirectToItemPage(place.name, place.id)}
         >
-          <Button variant="outline">{place.flag}</Button>
-          <Button variant="outline" className="text-gray-500">
-            {place.price}
-          </Button>
+          <div className="flex items-center gap-2 px-1">
+            <span className="text-[var(--text-basic)]">{place.flag}</span>
+            <Separator orientation="vertical" className="h-4 bg-gray-300" />
+            <span className="text-[var(--text-basic)]">{place.price}</span>
+          </div>
         </div>
       </div>
     </div>

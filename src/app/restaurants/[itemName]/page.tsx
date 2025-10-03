@@ -12,7 +12,6 @@ import Loader from "@/components/PreviewCards/Loader";
 import TabDescription from "@/components/tip/TabDescription";
 import Footer from "@/components/Footer/Footer";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
-import ButtonTips from "@/components/tip/ButtonsTips";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import { Lexend } from "next/font/google";
 
@@ -70,7 +69,7 @@ export default function ItemPage() {
 
           <div
             className={clsx(
-              "sticky top-0 z-50 w-full px-4 py-4 flex flex-row items-end justify-between transition-all duration-300",
+              "top-0 z-50 w-full px-0 py-4 flex flex-row items-end justify-between transition-all duration-300",
               isSticky && "bg-white/20 backdrop-blur-md rounded-md"
             )}
           >

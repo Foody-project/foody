@@ -8,8 +8,6 @@ import { User } from "@/types";
 import { Pencil } from "lucide-react";
 import { useUpdateUser } from "@/hooks/user/updateUser";
 import { useUpdatePassword } from "@/hooks/user/updatePassword";
-import { useDeleteUser } from "@/hooks/user/deleteUser";
-import { useRouter } from "next/navigation";
 
 import Toast from "@/features/Toasts/Toast";
 

@@ -37,7 +37,7 @@ export default function LoginModal() {
     e.preventDefault();
     mutate(formData, {
       onSuccess: () => {
-        router.replace("/");
+        router.replace("/restaurants");
       },
     });
   };

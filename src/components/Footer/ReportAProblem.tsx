@@ -9,6 +9,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useRouter } from "next/navigation";
+
+import { useAuth } from "@/contexts/AuthContext";
 
 import Toast from "@/features/Toasts/Toast";
 
@@ -17,10 +20,33 @@ import { useState } from "react";
 
 export default function ReportAProblem() {
   const [reported, setReported] = useState(false);
+  const router = useRouter();
+
+  const { user } = useAuth();
+
+  const redirectToLogin = () => {
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+  };
+
   return (
     <>
       <AlertDialog>
-        <AlertDialogTrigger>Report a problem ?</AlertDialogTrigger>
+        <AlertDialogTrigger asChild>
+          <span
+            onClick={(e) => {
+              if (!user) {
+                e.preventDefault();
+                router.push("/login");
+              }
+            }}
+            className="hover:cursor-pointer"
+          >
+            Report a problem ?
+          </span>
+        </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle className="text-2xl pb-3">
