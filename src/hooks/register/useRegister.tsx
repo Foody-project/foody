@@ -9,6 +9,7 @@ interface RegisterData {
   terms: boolean;
   newsletter: boolean;
   avatar: string;
+  birth_date: string;
 }
 
 export const useRegister = () => {
@@ -35,6 +36,7 @@ export const useRegister = () => {
             password: data.password,
             role: "user",
             avatar: data.avatar,
+            birth_date: data.birth_date,
           }),
         }
       );

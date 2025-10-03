@@ -2,15 +2,21 @@
 import * as React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import { PasswordInput } from "@/features/Login/PasswordInput";
-import Footer from "@/components/Footer/Footer";
-import { CornerUpLeft } from "lucide-react";
+import { CornerUpLeft, ChevronDownIcon } from "lucide-react";
 import "../../app/globals.css";
 import CircularProgress from "@mui/material/CircularProgress";
+
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 import { useRegister } from "@/hooks/register/useRegister";
 import { Lexend } from "next/font/google";
@@ -25,11 +31,14 @@ export default function RegisterModal() {
   const router = useRouter();
 
   const { registerUser, loading, error, success } = useRegister();
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   const [showAvatarSelection, setShowAvatarSelection] = useState(false);
-
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedLink, setSelectedLink] = useState("");
+
+  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState<Date | null>(null);
 
   const images = [
     "https://i.postimg.cc/GhSkVmY7/7fb8324b-cd09-45e4-8c58-556a8a4e8344.png",
@@ -40,6 +49,7 @@ export default function RegisterModal() {
   const [formData, setFormData] = React.useState({
     firstName: "",
     lastName: "",
+    birth_date: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -63,14 +73,66 @@ export default function RegisterModal() {
     setFormData((prev) => ({ ...prev, avatar: images[index] }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const errors: Record<string, string> = {};
 
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
+    // First name
+    if (!formData.firstName.trim()) {
+      errors.firstName = "First name is required";
+    }
+
+    // Last name
+    if (!formData.lastName.trim()) {
+      errors.lastName = "Last name is required";
+    }
+
+    // Email
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Invalid email format";
+    }
+
+    // Password
+    if (!formData.password) {
+      errors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
+
+    // Confirm password
+    if (!formData.confirmPassword) {
+      errors.confirmPassword = "Please confirm your password";
+    } else if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = "Passwords do not match";
+    }
+
+    // Date of birth
+    if (!date) {
+      errors.birth_date = "Please select your date of birth";
+    }
+
+    // Terms
+    if (!formData.terms) {
+      errors.terms = "You must accept the terms";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
       return;
     }
 
+    const birthDate = date ? date.toISOString().split("T")[0] : "";
+
+    const finalData = {
+      ...formData,
+      birth_date: birthDate,
+      avatar: formData.avatar || images[0],
+    };
+
+    setFormData(finalData);
+    setFormErrors({});
     setShowAvatarSelection(true);
   };
 
@@ -80,7 +142,10 @@ export default function RegisterModal() {
       setFormData((prev) => ({ ...prev, avatar: defaultAvatar }));
     }
 
-    await registerUser({ ...formData, avatar: formData.avatar || images[0] });
+    await registerUser({
+      ...formData,
+      avatar: formData.avatar || images[0],
+    });
   };
 
   React.useEffect(() => {
@@ -110,43 +175,113 @@ export default function RegisterModal() {
               value={formData.firstName}
               onChange={handleChange}
               placeholder="First name"
-              className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] placeholder:text-[0.8rem]"
+              className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem]"
             />
+            {formErrors.firstName && (
+              <p className="text-red-500 text-xs mt-1">
+                {formErrors.firstName}
+              </p>
+            )}
             <Input
               type="text"
               placeholder="Last name"
-              className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] placeholder:text-[0.8rem]"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
+              className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem]"
             />
+            {formErrors.lastName && (
+              <p className="text-red-500 text-xs mt-1">{formErrors.lastName}</p>
+            )}
+
+            <div className="mt-5 mb-3">
+              <Label htmlFor="birth_date" className="px-1 text-[0.8rem]">
+                Date of birth
+              </Label>
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    id="birth_date"
+                    className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] 
+        focus:border-[var(--text-orange)] placeholder:text-[0.8rem] justify-between my-2 placeholder:text-black/40"
+                  >
+                    {formData.birth_date
+                      ? new Date(formData.birth_date).toLocaleDateString()
+                      : "Select date"}
+                    <ChevronDownIcon className="ml-2 h-4 w-4 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="w-auto p-0 border-[var(--text-orange)]"
+                  align="start"
+                >
+                  <Calendar
+                    mode="single"
+                    selected={date ?? undefined}
+                    onSelect={(selectedDate) => {
+                      const safeDate = selectedDate ?? null;
+                      setDate(safeDate);
+
+                      if (safeDate) {
+                        const formatted = safeDate.toLocaleDateString("fr-CA");
+                        setFormData((prev) => ({
+                          ...prev,
+                          birth_date: formatted,
+                        }));
+                      }
+                    }}
+                    className="rounded-md shadow-sm"
+                    captionLayout="dropdown"
+                  />
+                </PopoverContent>
+              </Popover>
+              {formErrors.birth_date && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formErrors.birth_date}
+                </p>
+              )}
+            </div>
+
             <Input
               type="email"
               placeholder="Email"
-              className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] placeholder:text-[0.8rem]"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem]"
             />
+            {formErrors.email && (
+              <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>
+            )}
+
             <PasswordInput
               placeholder="Password"
-              className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] placeholder:text-[0.8rem]"
               name="password"
               value={formData.password}
               onChange={handleChange}
+              className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem]"
             />
+            {formErrors.password && (
+              <p className="text-red-500 text-xs mt-1">{formErrors.password}</p>
+            )}
             <PasswordInput
               placeholder="Rewrite your password"
-              className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem] font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] placeholder:text-[0.8rem]"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
+              className="w-full rounded-md mt-5 mb-3 text-black text-[0.8rem]"
             />
+            {formErrors.confirmPassword && (
+              <p className="text-red-500 text-xs mt-1">
+                {formErrors.confirmPassword}
+              </p>
+            )}
+
             <div className="flex flex-col gap-2 mt-5">
               <div className="flex gap-3 items-center">
                 <Checkbox
                   id="terms"
-                  className="!border-[var(--text-orange)] data-[state=checked]:border-[var(--text-orange)]"
                   checked={formData.terms}
                   onCheckedChange={(checked) =>
                     handleCheckboxChange("terms", Boolean(checked))
@@ -159,10 +294,12 @@ export default function RegisterModal() {
                   Accept terms and conditions
                 </Label>
               </div>
+              {formErrors.terms && (
+                <p className="text-red-500 text-xs mt-1">{formErrors.terms}</p>
+              )}
               <div className="flex gap-3 items-center">
                 <Checkbox
                   id="newsletter"
-                  className="!border-[var(--text-orange)] data-[state=checked]:border-[var(--text-orange)]"
                   checked={formData.newsletter}
                   onCheckedChange={(checked) =>
                     handleCheckboxChange("newsletter", Boolean(checked))
@@ -176,11 +313,12 @@ export default function RegisterModal() {
                 </Label>
               </div>
             </div>
+
             <div className="mt-5 flex flex-col justify-center items-center">
               <Button
                 type="submit"
                 variant="secondary"
-                className={`${lexend.className} text-white [background-image:var(--background-button)] [box-shadow:4px_4px_6px_rgba(0,0,0,0.2)] font-[400] flex items-center justify-center gap-2`}
+                className={`${lexend.className} text-white [background-image:var(--background-button)]`}
                 disabled={loading}
               >
                 <span className="relative flex items-center justify-center w-[5rem] h-[1.5rem]">
@@ -196,7 +334,6 @@ export default function RegisterModal() {
                   </span>
                 </span>
               </Button>
-
               {error && <p className="text-red-500 mt-2">{error}</p>}
               <span
                 className="block text-center mt-2 text-[12px] font-thin text-black cursor-pointer hover:underline"
@@ -226,7 +363,7 @@ export default function RegisterModal() {
                 src={src}
                 alt={`image-${index}`}
                 onClick={() => handleAvatarChange(index)}
-                className={`w-25 h-25 sm:w-43 sm:h-43 object-cover rounded-full border-4 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 ${
+                className={`w-25 h-25 object-cover rounded-full border-4 cursor-pointer ${
                   selectedIndex === index
                     ? "border-[var(--text-orange)] scale-110"
                     : "border-gray-300/0"
@@ -237,7 +374,6 @@ export default function RegisterModal() {
           <div className="flex flex-row justify-end mt-6">
             <Button
               variant="ghost"
-              className="font-normal border-1 border-[var(--text-orange)]"
               disabled={loading}
               onClick={async () => {
                 await handleStart();
