@@ -13,6 +13,7 @@ import { ConnectedIcon } from "@/features/ConnectedIcon/ConnectedIcon";
 import "../../app/globals.css";
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
 import { getUserById } from "@/hooks/user/getUserById";
+import { useConnectedUser } from "@/hooks/useIsAuthenticated";
 
 const lexend = Lexend({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -35,7 +36,10 @@ const getFilteredPlaces = (query: string, items: Place[]): Place[] => {
   });
 };
 
+import { useAuth } from "../../contexts/AuthContext";
+
 export default function Navbar() {
+  const { user, logout } = useAuth();
   const { data: places } = getAllPlaces();
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
@@ -44,8 +48,6 @@ export default function Navbar() {
 
   const filteredPlaces = getFilteredPlaces(query, places ?? []);
   const showSearch = isHovered || isFocused;
-
-  const { data: user } = getUserById(10);
 
   return (
     <nav className="relative z-[9] w-full">
@@ -99,21 +101,26 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <ConnectedIcon avatar={user?.avatar || ""} />
-          <Button
-            size="sm"
-            className={`${lexend.className} text-white font-[300] w-25 h-10 text-md cursor-pointer flex items-center justify-center whitespace-nowrap`}
-            style={{
-              background: "var(--background-button)",
-              boxShadow: "4px 4px 6px rgba(0,0,0,0.1)",
-            }}
-            onClick={() => router.replace("/login")}
-          >
-            <span className="flex items-center gap-1">
-              Login
-              <ChevronRight size={20} strokeWidth={2} />
-            </span>
-          </Button>
+          {user ? (
+            <>
+              <ConnectedIcon avatar={""} />
+            </>
+          ) : (
+            <Button
+              size="sm"
+              className={`${lexend.className} text-white font-[300] w-25 h-10 text-md cursor-pointer flex items-center justify-center whitespace-nowrap`}
+              style={{
+                background: "var(--background-button)",
+                boxShadow: "4px 4px 6px rgba(0,0,0,0.1)",
+              }}
+              onClick={() => router.replace("/login")}
+            >
+              <span className="flex items-center gap-1">
+                Login
+                <ChevronRight size={20} strokeWidth={2} />
+              </span>
+            </Button>
+          )}
         </div>
       </div>
 

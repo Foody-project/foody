@@ -8,8 +8,12 @@ type LoginPayload = {
 };
 
 type LoginResponse = {
-  user: any;
-  token?: string;
+  user: {
+    id: number;
+    email: string;
+    role?: string;
+  };
+  token: string;
   message?: string;
 };
 
@@ -26,11 +30,12 @@ const login = async ({
   });
 
   const result = await res.json();
-  console.log("Token:", result.token);
 
   if (!res.ok) {
     throw new Error(result?.message || `Erreur API : ${res.status}`);
   }
+
+  localStorage.setItem("authToken", result.token);
 
   return result;
 };

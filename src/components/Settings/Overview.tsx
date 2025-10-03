@@ -67,6 +67,8 @@ export default function Overview({ user }: OverviewProps) {
     );
   };
 
+  console.log("USER", user);
+
   const handlePasswordUpdate = () => {
     if (!user?.id || !currentPassword || !newPassword || !confirmPassword) {
       setPasswordError("Tous les champs sont requis");

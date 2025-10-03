@@ -1,4 +1,5 @@
 import { Funnel_Display } from "next/font/google";
+import ClientProviders from "@/ClientProviders";
 
 export const metadata = {
   title: "Register - Foody",
@@ -18,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={funnel.className}>
       <body style={{ minHeight: "100vh" }} className="dark">
-        {children}
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

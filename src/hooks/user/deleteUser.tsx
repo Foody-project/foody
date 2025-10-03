@@ -13,8 +13,13 @@ type DeleteUserResponse = {
 const deleteUser = async ({
   userId,
 }: DeleteUserPayload): Promise<DeleteUserResponse> => {
+  const token = localStorage.getItem("authToken");
+
   const res = await fetch(`${apiUrl}/user/delete/${userId}`, {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   const data = await res.json();
@@ -22,6 +27,8 @@ const deleteUser = async ({
   if (!res.ok) {
     throw new Error(data?.error || `Erreur API : ${res.status}`);
   }
+
+  localStorage.removeItem("authToken");
 
   return data;
 };

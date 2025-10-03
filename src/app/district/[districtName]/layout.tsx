@@ -1,5 +1,5 @@
-import ReactQueryProvider from "@/utils/ReactQueryComponent";
 import { Funnel_Display, Lexend } from "next/font/google";
+import ClientProviders from "@/ClientProviders";
 
 export const metadata = {
   title: "Discover - Foody",
@@ -24,9 +24,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${funnel.className} ${lexend.className}`}>
-      <ReactQueryProvider>
-        <body>{children}</body>
-      </ReactQueryProvider>
+      <body>
+        <ClientProviders>{children}</ClientProviders>
+      </body>
     </html>
   );
 }

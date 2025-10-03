@@ -36,7 +36,9 @@ export default function LoginModal() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     mutate(formData, {
-      onSuccess: () => {},
+      onSuccess: () => {
+        router.replace("/");
+      },
     });
   };
 

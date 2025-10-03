@@ -12,10 +12,13 @@ const updateUser = async ({
   userId,
   data,
 }: UpdateUserPayload): Promise<User> => {
+  const token = localStorage.getItem("authToken");
+
   const res = await fetch(`${apiUrl}/user/update/${userId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
   });

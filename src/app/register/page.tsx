@@ -32,7 +32,9 @@ export default function RegisterModal() {
   const [selectedLink, setSelectedLink] = useState("");
 
   const images = [
-    "https://i.postimg.cc/GhSkVmY7/7fb8324b-cd09-45e4-8c58-556a8a4e8344.png", "https://i.postimg.cc/XYsdd7Ns/Design-sans-titre-6.png", "https://i.postimg.cc/MTvDvfy4/8d8ae03f-4a2b-46d1-bd59-00c1db4d63aa.png"
+    "https://i.postimg.cc/GhSkVmY7/7fb8324b-cd09-45e4-8c58-556a8a4e8344.png",
+    "https://i.postimg.cc/XYsdd7Ns/Design-sans-titre-6.png",
+    "https://i.postimg.cc/MTvDvfy4/8d8ae03f-4a2b-46d1-bd59-00c1db4d63aa.png",
   ];
 
   const [formData, setFormData] = React.useState({
@@ -189,7 +191,9 @@ export default function RegisterModal() {
                       className="absolute"
                     />
                   )}
-                  <span className={`${loading ? "invisible" : ""}`}>Login</span>
+                  <span className={`${loading ? "invisible" : ""}`}>
+                    Register
+                  </span>
                 </span>
               </Button>
 
@@ -237,7 +241,7 @@ export default function RegisterModal() {
               disabled={loading}
               onClick={async () => {
                 await handleStart();
-                router.push("/restaurants");
+                router.push("/login");
               }}
             >
               Start

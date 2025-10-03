@@ -17,10 +17,13 @@ const updatePassword = async ({
   currentPassword,
   newPassword,
 }: UpdatePasswordPayload): Promise<UpdatePasswordResponse> => {
+  const token = localStorage.getItem("authToken");
+
   const res = await fetch(`${apiUrl}/user/update/password/${userId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ currentPassword, newPassword }),
   });

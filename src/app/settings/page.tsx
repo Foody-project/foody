@@ -16,23 +16,25 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
+import { Router } from "next/router";
 import { useDeleteUser } from "@/hooks/user/deleteUser";
 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
-import Loader from "@/components/PreviewCards/Loader";
+import { Button } from "@/components/ui/button";
+
 import Footer from "@/components/Footer/Footer";
 import {
   LaptopMinimal,
   UtensilsCrossed,
   Trash2,
   Menu as MenuIcon,
+  CornerUpLeft,
 } from "lucide-react";
 
 import { Funnel_Display } from "next/font/google";
 import { Separator } from "@/components/ui/separator";
 
-import { getUserById } from "@/hooks/user/getUserById";
 import Overview from "@/components/Settings/Overview";
 
 const funnel = Funnel_Display({
@@ -147,15 +149,15 @@ function SettingsMenu({
   );
 }
 
-export default function ItemPage() {
-  const userId = 1;
+import { useAuth } from "../../contexts/AuthContext";
 
-  const { data: user, isLoading } = getUserById(userId);
+export default function ItemPage() {
+  const { user, logout } = useAuth();
+
+  const router = useRouter();
 
   const [activeSection, setActiveSection] = useState<Section>("overview");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  if (isLoading) return <Loader />;
 
   return (
     <div>
@@ -164,6 +166,15 @@ export default function ItemPage() {
       >
         <div className="flex flex-col lg:flex-row items-start lg:gap-16 w-full">
           <section className="hidden lg:block lg:w-2/4 w-full">
+            <div className="w-full flex justify-start mb-6">
+              <Button
+                variant="outline"
+                className="text-white font-normal flex items-center gap-2 !border-[var(--text-orange)]"
+                onClick={() => router.replace("/restaurants")}
+              >
+                <CornerUpLeft size={18} color="black" />
+              </Button>
+            </div>
             <SettingsMenu user={user} setActiveSection={setActiveSection} />
           </section>
 
@@ -184,8 +195,10 @@ export default function ItemPage() {
             </Dialog>
           </section>
 
-          <section className="flex flex-col lg:w-3/4 w-full gap-6 px-10 ">
-            {activeSection === "overview" && <Overview user={user} />}
+          <section className="flex flex-col lg:w-3/4 w-full gap-6 px-10 mt-15">
+            {activeSection === "overview" && (
+              <Overview user={user ?? undefined} />
+            )}
 
             {activeSection === "pro" && (
               <div className="relative w-full h-[280px] rounded-lg overflow-hidden -mt-4">

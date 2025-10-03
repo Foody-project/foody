@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Funnel_Display } from "next/font/google";
-import ReactQueryProvider from "@/utils/ReactQueryComponent";
+import ClientProviders from "@/ClientProviders";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={funnel.className}>
       <body style={{ minHeight: "100vh" }} className="dark">
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

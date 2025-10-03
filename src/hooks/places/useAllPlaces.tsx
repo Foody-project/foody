@@ -4,7 +4,9 @@ import { Place } from "@/types";
 const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const fetchPlaces = async (): Promise<Place[]> => {
-  const res = await fetch(`${apiUrl}/places/get`);
+  const res = await fetch(`${apiUrl}/places/get`, {
+    credentials: "include",
+  });
   if (!res.ok) {
     throw new Error(`Erreur API : ${res.status}`);
   }
