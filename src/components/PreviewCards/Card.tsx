@@ -71,7 +71,7 @@ export function Card({ id }: CardProps) {
           onClick={() => redirectToItemPage(place.name, place.id)}
         >
           <div className="flex items-center gap-2 px-1">
-            <span className="text-[var(--text-basic)]">{place.flag}</span>
+            <span className="text-[var(--text-basic)]">{place.cuisine}</span>
             <Separator orientation="vertical" className="h-4 bg-gray-300" />
             <span className="text-[var(--text-basic)]">{place.price}</span>
           </div>
