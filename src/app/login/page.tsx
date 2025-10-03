@@ -26,15 +26,40 @@ export default function LoginModal() {
     password: "",
   });
 
-  const { mutate, isLoading, isError, error, isSuccess } = useLogin();
+  const [formErrors, setFormErrors] = React.useState<Record<string, string>>(
+    {}
+  );
+
+  const { mutate, isLoading, isError, error } = useLogin();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const errors: Record<string, string> = {};
+
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Invalid email format";
+    }
+
+    if (!formData.password) {
+      errors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    // Appel API  pas d'erreurs côté client
     mutate(formData, {
       onSuccess: () => {
         router.replace("/restaurants");
@@ -64,22 +89,24 @@ export default function LoginModal() {
             name="email"
             type="email"
             placeholder="Email"
-            className="w-full rounded-md mt-5 mb-3 text-black font-[400] border border-[#807f7e] focus:border-[var(--text-orange)]"
+            className="w-full rounded-md mt-5 mb-1 text-black font-[400] border border-[#807f7e] focus:border-[var(--text-orange)]"
             onChange={handleChange}
-            required
+            value={formData.email}
           />
+          {formErrors.email && (
+            <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>
+          )}
+
           <PasswordInput
             name="password"
             placeholder="Password"
-            className="w-full rounded-md text-black font-[400] border border-[#807f7e] focus:border-[var(--text-orange)]"
+            className="w-full rounded-md text-black font-[400] border border-[#807f7e] focus:border-[var(--text-orange)] mt-3"
             onChange={handleChange}
-            required
+            value={formData.password}
           />
-          <div className="w-full flex justify-end">
-            <span className="mt-2 text-[10px] font-thin text-black cursor-pointer hover:underline">
-              Password forgotten ?
-            </span>
-          </div>
+          {formErrors.password && (
+            <p className="text-red-500 text-xs mt-1">{formErrors.password}</p>
+          )}
 
           <div className="mt-5 flex flex-col justify-center items-center">
             <Button
@@ -100,7 +127,7 @@ export default function LoginModal() {
               </span>
             </Button>
 
-            {isError && (
+            {isError && !Object.keys(formErrors).length && (
               <p className="text-red-500 text-sm mt-2">{error?.message}</p>
             )}
 
