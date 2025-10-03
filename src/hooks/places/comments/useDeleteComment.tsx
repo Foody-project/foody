@@ -13,17 +13,27 @@ export function useDeleteComment() {
       commentId: number;
       placeId: number;
     }) => {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("authToken")
+          : null;
+
+      if (!token) {
+        throw new Error("Token d'authentification manquant");
+      }
+
       const response = await fetch(`${apiUrl}/comments/delete/${commentId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       });
 
       if (!response.ok) {
         const errorText = await response.text();
         console.error("Delete failed:", errorText);
-        throw new Error("Failed to delete comment");
+        throw new Error(`Erreur suppression commentaire : ${response.status}`);
       }
 
       return response.json();

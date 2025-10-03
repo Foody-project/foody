@@ -1,18 +1,18 @@
 "use client";
-import "../../../globals.css";
-import { useSearchParams } from "next/navigation";
 
+import "../../../globals.css";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumb";
 import Loader from "@/components/PreviewCards/Loader";
 import Footer from "@/components/Footer/Footer";
 import { motion } from "framer-motion";
 import { Card } from "@/components/PreviewCards/Card";
-
 import { Funnel_Display } from "next/font/google";
 import { getFavoritesPlaces } from "@/hooks/places/useFavoritesPlace";
-
 import { Place } from "@/types";
+import Error from "@/components/Error";
+import { useAuth } from "@/contexts/AuthContext";
 
 const funnel = Funnel_Display({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -21,28 +21,46 @@ const funnel = Funnel_Display({
 });
 
 export default function ItemPage() {
-  const searchParams = useSearchParams();
-  const idString = searchParams ? searchParams.get("extraInfo") : "";
-  const userId = 1;
+  const { user } = useAuth();
+  const userId = user?.id;
+
+  const [waiting, setWaiting] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setWaiting(false);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const { data, isLoading } = getFavoritesPlaces(userId);
   const favoritesPlace = (data ?? []) as Place[];
 
-
   const itemsBreadcrumb = [
     { label: "Home", href: "/" },
     { label: "Profile" },
-    { label: "Favorites"},
+    { label: "Favorites" },
   ];
 
-  if (isLoading) return <Loader />;
+  if (!userId && waiting) {
+    return <Loader />;
+  }
+
+  if (!userId && !waiting) {
+    return <Error />;
+  }
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className={`${funnel.className} sm:w-4/5 mx-auto`}>
-          <Navbar />
-          <div className="mt-5 pl-3 sm:pl-0 pb-3">
-            <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
-          </div>
+      <Navbar />
+      <div className="mt-5 pl-3 sm:pl-0 pb-3">
+        <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
+      </div>
 
       <section className="flex flex-row justify-between px-3 sm:px-0">
         <div>

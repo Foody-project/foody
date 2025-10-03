@@ -10,8 +10,10 @@ import { useCreateComment } from "@/hooks/places/comments/useCreateComment";
 import Label from "../Label";
 import Toast from "@/features/Toasts/Toast";
 import Tooltip from "@mui/material/Tooltip";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function CommentSection({ place }: { place: Place }) {
+  const { user } = useAuth();
   const { mutate, isPending } = useCreateComment();
   const { data: comments = [], refetch } = getAllComments();
   const [showToast, setShowToast] = useState(false);
@@ -22,7 +24,7 @@ export default function CommentSection({ place }: { place: Place }) {
 
   const placeholderReview = `What did you think of ${place.name} ?`;
   const placeId = place.id;
-  const userId = 1;
+  const userId = user?.id;
 
   const hasAlreadyCommented = comments.some(
     (c) => c.userId === userId && c.placeId === placeId
@@ -30,6 +32,7 @@ export default function CommentSection({ place }: { place: Place }) {
 
   const handleSubmit = () => {
     if (comment.trim() === "") return;
+    if (!userId) return;
 
     mutate(
       { userId, placeId, comment, rating },
@@ -51,7 +54,12 @@ export default function CommentSection({ place }: { place: Place }) {
         <div className="flex flex-row gap-2 items-center">
           <span className="text-2xl uppercase font-bold">Comments</span>
           <div>
-            <Label label={comments.length.toString()} color="red-500" />
+            <Label
+              label={comments
+                .filter((c) => c.placeId === place.id)
+                .length.toString()}
+              color="red-500"
+            />
           </div>
         </div>
         <Tooltip
@@ -74,12 +82,6 @@ export default function CommentSection({ place }: { place: Place }) {
             <Info size={16} />
           </span>
         </Tooltip>
-
-        {/**
-         * <div className="p-2 rounded-md">
-          <Filters />
-        </div>
-         */}
       </div>
 
       {!hasAlreadyCommented && (

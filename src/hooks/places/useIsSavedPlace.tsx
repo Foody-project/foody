@@ -4,10 +4,19 @@ import { Place } from "@/types";
 const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const fetchFavoritesByUser = async (userId: number): Promise<Place[]> => {
-  const res = await fetch(`${apiUrl}/favorite/${userId}`);
+  const token = localStorage.getItem("authToken");
+
+  const res = await fetch(`${apiUrl}/favorite/${userId}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
   if (!res.ok) {
     throw new Error(`Erreur récupération favoris : ${res.status}`);
   }
+
   return res.json();
 };
 

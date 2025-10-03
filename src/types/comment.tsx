@@ -9,6 +9,7 @@ export interface Comment {
     id: number;
     first_name: string;
     last_name: string;
+    avatar: string;
   };
   place: {
     id: number;

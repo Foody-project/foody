@@ -17,16 +17,23 @@ export function useCreateComment() {
       comment: string;
       rating: number;
     }) => {
+      const token = localStorage.getItem("authToken");
+
+      if (!token) {
+        throw new Error("Token d'authentification manquant");
+      }
+
       const response = await fetch(`${apiUrl}/comments/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ userId, placeId, comment, rating }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to create comment");
+        throw new Error(`Erreur ajout commentaire : ${response.status}`);
       }
 
       return response.json();
