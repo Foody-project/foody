@@ -96,11 +96,13 @@ export default function DiscoverMenu({ place }: DiscoverMenuProps) {
 
   return (
     <div>
-      <span className="text-2xl uppercase font-bold pb-5 block text-[var(--text-basic)]">
-        Discover the menu
-      </span>
+      {menuUrls.length > 0 && (
+        <span className="text-2xl uppercase font-bold pb-5 block text-[var(--text-basic)]">
+          Discover the menu
+        </span>
+      )}
 
-      <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-5 md:gap-10">
+      <div className="flex flex-col md:flex-row flex-wrap lg:justify-start justify-center items-center gap-5 md:gap-10">
         {menuUrls.length > 0 && (
           <div className="flex flex-col cursor-pointer items-center">
             <img
