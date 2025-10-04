@@ -49,7 +49,7 @@ export default function ImageDisplayer({ images, place }: ImageDisplayerProps) {
             ref={mainImageRef}
             src={images[0].url}
             alt={place.name}
-            className="w-[79rem] h-[30rem] rounded-xl shadow-[0px_0px_26px_rgba(0,0,0,0.4)] cursor-pointer object-cover"
+            className="w-[79rem] h-[30rem] rounded-xl cursor-pointer object-cover"
             onClick={() => setSelectedIndex(0)}
           />
         )}
@@ -70,7 +70,7 @@ export default function ImageDisplayer({ images, place }: ImageDisplayerProps) {
                   <img
                     src={img.url}
                     alt={`${place.name} - ${index + 1}`}
-                    className={`hidden lg:block w-[20rem] lg:w-[9.5rem] lg:h-[6.85rem] object-cover rounded-lg shadow-md hover:scale-105 duration-300 ${
+                    className={`hidden lg:block w-[20rem] lg:w-[9.5rem] lg:h-[6.85rem] object-cover rounded-lg hover:scale-105 duration-300 ${
                       isLast ? "opacity-60" : ""
                     }`}
                   />
