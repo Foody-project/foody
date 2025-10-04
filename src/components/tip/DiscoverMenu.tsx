@@ -14,7 +14,7 @@ interface DiscoverMenuProps {
 export default function DiscoverMenu({ place }: DiscoverMenuProps) {
   if (!place?.id) return;
 
-  const { data: menus, isLoading, error } = useMenusByPlaceId(place.id);
+  const { data: menus } = useMenusByPlaceId(place.id);
   const { data: images } = getImagesByPlaceId(place.id);
 
   const [selectedMenuIndex, setSelectedMenuIndex] = useState<number | null>(
@@ -64,10 +64,7 @@ export default function DiscoverMenu({ place }: DiscoverMenuProps) {
     };
   }, [selectedMenuIndex, selectedImageIndex, menus, images]);
 
-  if (isLoading) return <span>Loading...</span>;
-  if (error) return <span>Erreur lors du chargement</span>;
-  if (!menus || menus.length === 0 || menus[0].urls.length === 0)
-    return <span>No menu available</span>;
+  if (!menus || menus.length === 0 || menus[0].urls.length === 0) return;
 
   const menu = menus[0];
 

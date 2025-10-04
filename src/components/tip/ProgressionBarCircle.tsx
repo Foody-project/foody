@@ -17,7 +17,7 @@ export default function ProgressBarCircle({ place }: ReviewRecapProps) {
     "At Foody, we test the restaurants we feature and give them a rating. We don't cheat, we don't give them the rating they ask for, we judge them as ordinary users would.";
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center lg:justify-start lg:pt-7">
       <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
         <div className="flex flex-col items-center">
           <div className="relative w-20 h-20">
@@ -40,49 +40,51 @@ export default function ProgressBarCircle({ place }: ReviewRecapProps) {
           </span>
         </div>
 
-        <div className="flex flex-col items-center">
-          <div className="relative w-20 h-20">
-            <CircularProgress
-              variant="determinate"
-              value={valueFoody}
-              thickness={3}
-              size={80}
-              sx={{
-                color: "var(--text-orange-third)",
-                "& .MuiCircularProgress-circle": { strokeLinecap: "round" },
-              }}
-            />
-            <span className="absolute inset-0 flex items-center justify-center text-[var(--text-orange-third)] font-normal text-base">
-              {place.foodysNotation}/5
-            </span>
-          </div>
+        {place.foodysNotation !== "" && (
+          <div className="flex flex-col items-center">
+            <div className="relative w-20 h-20">
+              <CircularProgress
+                variant="determinate"
+                value={valueFoody}
+                thickness={3}
+                size={80}
+                sx={{
+                  color: "var(--text-orange-third)",
+                  "& .MuiCircularProgress-circle": { strokeLinecap: "round" },
+                }}
+              />
+              <span className="absolute inset-0 flex items-center justify-center text-[var(--text-orange-third)] font-normal text-base">
+                {place.foodysNotation}/5
+              </span>
+            </div>
 
-          <div className="mt-2 flex items-center">
-            <span className="text-sm text-[var(--text-orange-third)]">
-              Foody's review
-            </span>
-            <Tooltip
-              title={tooltipContent}
-              placement="right"
-              componentsProps={{
-                tooltip: {
-                  sx: {
-                    bgcolor: "rgba(var(--background-rgb), 0.7)",
-                    color: "rgba(var(--text-basic), 0.7)",
-                    opacity: "0.2",
-                    border: "1px solid var(--grey-opacity)",
-                    borderRadius: "8px",
-                    padding: "0.5rem 0.75rem",
+            <div className="mt-2 flex items-center">
+              <span className="text-sm text-[var(--text-orange-third)]">
+                Foody's review
+              </span>
+              <Tooltip
+                title={tooltipContent}
+                placement="right"
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: "rgba(var(--background-rgb), 0.7)",
+                      color: "rgba(var(--text-basic), 0.7)",
+                      opacity: "0.2",
+                      border: "1px solid var(--grey-opacity)",
+                      borderRadius: "8px",
+                      padding: "0.5rem 0.75rem",
+                    },
                   },
-                },
-              }}
-            >
-              <IconButton size="small" className="p-1">
-                <Info size={12} color="var(--text-orange-third)" />
-              </IconButton>
-            </Tooltip>
+                }}
+              >
+                <IconButton size="small" className="p-1">
+                  <Info size={12} color="var(--text-orange-third)" />
+                </IconButton>
+              </Tooltip>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
