@@ -20,6 +20,7 @@ export interface Place {
   instagram?: string;
   website?: string;
   phone?: string;
+  menu?: string[];
   spokenLanguages?: string[];
   paymentMethods?: string[];
   openingHours?: OpeningHour[];
