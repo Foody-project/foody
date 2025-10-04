@@ -1,8 +1,8 @@
 "use client";
 
 import "../../globals.css";
-import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumb";
 import Loader from "@/components/PreviewCards/Loader";
@@ -44,6 +44,7 @@ const slugify = (label: string) =>
     .replace(/^-+|-+$/g, "");
 
 export default function DistrictPage() {
+  const router = useRouter();
   const params = useParams();
   const districtSlug =
     typeof params?.districtName === "string" ? params.districtName : "";
@@ -58,8 +59,6 @@ export default function DistrictPage() {
     stars: 0,
   });
 
-  if (isLoading || places.length === 0) return <Loader />;
-
   const allDistricts = Array.from(
     new Set(places.map((p) => p.district).filter(Boolean))
   );
@@ -72,6 +71,16 @@ export default function DistrictPage() {
   const matchingDistrict = slugMap.find(
     (entry) => entry.slugified === districtSlug
   );
+
+  // ✅ Redirection si le district est inconnu
+  useEffect(() => {
+    if (!isLoading && places.length > 0 && !matchingDistrict) {
+      router.replace("/error");
+    }
+  }, [isLoading, places, matchingDistrict, router]);
+
+  if (isLoading || places.length === 0) return <Loader />;
+  if (isError) return <Error />;
 
   const districtLabel =
     matchingDistrict?.original.replace(/\s*\/\s*/g, " - ") ??
@@ -113,14 +122,12 @@ export default function DistrictPage() {
 
   const itemsBreadcrumb = [
     { label: "Home", href: "/" },
-    { label: "Restaurants", href: "/Restaurants" },
+    { label: "Restaurants", href: "/restaurants" },
     { label: districtLabel },
   ];
 
-  if (isError) return <Error />;
-
   return (
-    <div className={`${lexend.className} `}>
+    <div className={`${lexend.className}`}>
       <main className="flex-grow w-4/5 mx-auto">
         <Navbar />
         <div className="pb-3 pl-0">

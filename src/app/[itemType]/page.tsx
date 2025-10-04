@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "../globals.css";
@@ -10,11 +10,12 @@ import Navbar from "@/components/Navbar/Navbar";
 import { Card } from "@/components/PreviewCards/Card";
 import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumb";
 import Loader from "@/components/PreviewCards/Loader";
+import Error from "@/components/Error";
+import { FiltersModal } from "@/components/tip/FiltersModal";
 
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
+import { useAuth } from "@/contexts/AuthContext";
 import type { Place } from "@/types";
-import { FiltersModal } from "@/components/tip/FiltersModal";
-import Error from "@/components/Error";
 
 type Filters = {
   districts: string[];
@@ -32,7 +33,17 @@ const priceToLevel = (price: string): number => {
 
 export default function ItemTypePage() {
   const params = useParams();
+  const router = useRouter();
+
   const { itemType } = params;
+  const isRestaurantRoute =
+    typeof itemType === "string" && itemType.toLowerCase() === "restaurants";
+
+  useEffect(() => {
+    if (!isRestaurantRoute) {
+      router.replace("/error");
+    }
+  }, [isRestaurantRoute, router]);
 
   const { data: places = [], isLoading, isError } = getAllPlaces();
 

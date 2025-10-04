@@ -2,6 +2,7 @@
 
 import "../../../globals.css";
 import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar/Navbar";
 import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumb";
 import Loader from "@/components/PreviewCards/Loader";
@@ -11,8 +12,8 @@ import { Card } from "@/components/PreviewCards/Card";
 import { Funnel_Display } from "next/font/google";
 import { getFavoritesPlaces } from "@/hooks/places/useFavoritesPlace";
 import { Place } from "@/types";
-import Error from "@/components/Error";
 import { useAuth } from "@/contexts/AuthContext";
+import Unauthorized from "@/components/Unauthorized";
 
 const funnel = Funnel_Display({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -21,20 +22,35 @@ const funnel = Funnel_Display({
 });
 
 export default function ItemPage() {
-  const { user } = useAuth();
-  const userId = user?.id;
+  const router = useRouter();
+  const params = useParams();
+  const rawId = params?.idUser;
+  const urlUserId = typeof rawId === "string" ? parseInt(rawId, 10) : null;
 
-  const [waiting, setWaiting] = useState(true);
+  const { user } = useAuth();
+  const userId = typeof user?.id === "number" ? user.id : null;
+
+  const [authReady, setAuthReady] = useState(false);
+
+  // ✅ Attend que l'auth soit prête avant de vérifier
+  useEffect(() => {
+    if (userId !== null) {
+      setAuthReady(true);
+    }
+  }, [userId]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setWaiting(false);
-    }, 10000);
+    if (
+      authReady &&
+      urlUserId !== null &&
+      userId !== null &&
+      urlUserId !== userId
+    ) {
+      router.replace("/unauthorized");
+    }
+  }, [authReady, urlUserId, userId, router]);
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  const { data, isLoading, isError } = getFavoritesPlaces(userId);
+  const { data, isLoading, isError } = getFavoritesPlaces(user?.id);
   const favoritesPlace = (data ?? []) as Place[];
 
   const itemsBreadcrumb = [
@@ -43,19 +59,10 @@ export default function ItemPage() {
     { label: "Favorites" },
   ];
 
-  if (!userId && waiting) {
-    return <Loader />;
-  }
-
-  if (!userId && !waiting) {
-    return <Error />;
-  }
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (isError) return <Error />;
+  if (!authReady || urlUserId === null) return <Loader />;
+  if (urlUserId !== userId) return <Unauthorized />;
+  if (isLoading) return <Loader />;
+  if (isError) return <Unauthorized />;
 
   return (
     <div className={`${funnel.className} sm:w-4/5 mx-auto`}>
