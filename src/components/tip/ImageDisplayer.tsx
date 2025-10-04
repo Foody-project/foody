@@ -70,7 +70,7 @@ export default function ImageDisplayer({ images, place }: ImageDisplayerProps) {
                   <img
                     src={img.url}
                     alt={`${place.name} - ${index + 1}`}
-                    className={`w-[20rem] lg:w-[9.5rem] lg:h-[6.85rem] object-cover rounded-lg shadow-md hover:scale-105 duration-300 ${
+                    className={`hidden lg:block w-[20rem] lg:w-[9.5rem] lg:h-[6.85rem] object-cover rounded-lg shadow-md hover:scale-105 duration-300 ${
                       isLast ? "opacity-60" : ""
                     }`}
                   />
