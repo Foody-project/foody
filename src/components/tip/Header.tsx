@@ -28,7 +28,7 @@ export default function Header({ place }: HeaderProps) {
 
   return (
     <div className="relative w-full flex flex-col gap-6">
-      <div className="px-2 flex flex-row gap-10 lg:justify-between items-center text-[0.9rem] opacity-90">
+      <div className="px-2 flex flex-row justify-between items-center text-[0.9rem] opacity-90">
         <div className="flex flex-row items-center gap-3">
           <IsOpen isOpen={isOpen} />
           <div className="flex flex-row items-center gap-2 pl-3 text-base">

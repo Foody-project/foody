@@ -14,7 +14,6 @@ import Error from "@/components/Error";
 import { FiltersModal } from "@/components/tip/FiltersModal";
 
 import { getAllPlaces } from "@/hooks/places/useAllPlaces";
-import { useAuth } from "@/contexts/AuthContext";
 import type { Place } from "@/types";
 
 type Filters = {
@@ -106,7 +105,7 @@ export default function ItemTypePage() {
     <div className="sm:w-4/5 mx-auto">
       <Navbar />
 
-      <div className="mt-5 pl-3 sm:pl-0 pb-3">
+      <div className="mt-5 lg:pl-3 sm:pl-0 pb-3">
         <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
       </div>
 
@@ -141,7 +140,7 @@ export default function ItemTypePage() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
-          className="flex flex-row flex-wrap justify-start gap-x-15 gap-y-5 sm:gap-12 w-full px-3 sm:px-0"
+          className="flex flex-row flex-wrap justify-center lg:justify-start gap-x-15 gap-y-5 sm:gap-12 w-full px-3 sm:px-0"
         >
           {filteredPlaces.map((place: Place, index: number) => (
             <Card key={index} id={place.id} />

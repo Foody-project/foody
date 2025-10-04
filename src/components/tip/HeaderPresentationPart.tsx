@@ -17,7 +17,7 @@ export default function HeaderPresentationPart({
 
   return (
     <div className="flex flex-col justify-between mb-10">
-      <div className="flex flex-row flex-wrap gap-3 pb-3">
+      <div className="flex flex-col lg:flex-row flex-wrap gap-3 pb-3">
         <div
           onClick={() => {
             if (place?.address) {
@@ -39,23 +39,25 @@ export default function HeaderPresentationPart({
           </Badge>
         </div>
 
-        {place?.phone !== "" && (
-          <Badge
-            variant="secondary"
-            className="bg-[var(--text-orange)]/60 font-thin text-[0.9rem] h-8 px-3 flex items-center gap-2"
-          >
-            <Phone size={16} />
-            {place?.phone}
-          </Badge>
-        )}
+        <div className="flex flex-row gap-2">
+          {place?.phone !== "" && (
+            <Badge
+              variant="secondary"
+              className="bg-[var(--text-orange)]/60 font-thin text-[0.9rem] h-8 px-3 flex items-center gap-2"
+            >
+              <Phone size={16} />
+              {place?.phone}
+            </Badge>
+          )}
 
-        <Button
-          variant="ghost"
-          className="bg-[var(--text-orange)]/60 hover:cursor-pointer hover:bg-[var(--text-orange)]/90 h-8 px-3 flex items-center"
-          onClick={() => window.open(place?.website, "_blank")}
-        >
-          <Rss size={16} />
-        </Button>
+          <Button
+            variant="ghost"
+            className="bg-[var(--text-orange)]/60 hover:cursor-pointer hover:bg-[var(--text-orange)]/90 h-8 px-3 flex items-center"
+            onClick={() => window.open(place?.website, "_blank")}
+          >
+            <Rss size={16} />
+          </Button>
+        </div>
       </div>
 
       <DescriptionPart place={place} />

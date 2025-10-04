@@ -21,8 +21,6 @@ const lexend = Lexend({
   display: "swap",
 });
 
-const password = process.env.NEXT_PUBLIC_PASSWORD_ENTER;
-
 export default function Home() {
   const router = useRouter();
   const { data: places = [], isLoading, isError } = getAllPlaces();

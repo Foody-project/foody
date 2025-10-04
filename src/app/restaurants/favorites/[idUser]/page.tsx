@@ -67,7 +67,7 @@ export default function ItemPage() {
   return (
     <div className={`${funnel.className} sm:w-4/5 mx-auto`}>
       <Navbar />
-      <div className="mt-5 pl-3 sm:pl-0 pb-3">
+      <div className="mt-5 lg:pl-3 sm:pl-0 pb-3">
         <BreadcrumbWithCustomSeparator items={itemsBreadcrumb} />
       </div>
 

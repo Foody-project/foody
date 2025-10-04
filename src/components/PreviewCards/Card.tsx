@@ -39,7 +39,7 @@ export function Card({ id }: CardProps) {
   if (!place) return;
 
   return (
-    <div className="text-white bg-white/70 w-full max-w-[25rem] h-[24rem] lg:h-[22rem] mt-10 pb-2 shadow-[0px_10px_10px_rgba(0,0,0,0.05)] rounded-xl transition-transform duration-300 hover:scale-101 cursor-pointer">
+    <div className="text-white bg-white/70 w-full max-w-[21rem] md:max-w-[20rem] lg:max-w-[25rem] h-[22rem] lg:h-[22rem] lg:h-[18rem] mt-10 lg:pb-2 shadow-[0px_10px_10px_rgba(0,0,0,0.05)] rounded-xl transition-transform duration-300 hover:scale-101 cursor-pointer">
       <div onClick={() => redirectToItemPage(place.name, place.id)}>
         {images && images.length > 0 && (
           <img
@@ -48,7 +48,7 @@ export function Card({ id }: CardProps) {
             className="w-full h-60 rounded-t-xl object-cover"
           />
         )}
-        <div className="flex flex-col sm:flex-row justify-between pr-1">
+        <div className="flex flex-row justify-between pr-1">
           <div className="pl-2 pr-2">
             <h1 className="whitespace-nowrap text-lg sm:text-xl pt-3 text-[var(--text-basic)] font-medium">
               {place.name}

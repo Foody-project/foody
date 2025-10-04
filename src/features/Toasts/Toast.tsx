@@ -49,7 +49,7 @@ export default function Toast({
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 lg:left-auto lg:right-6 lg:translate-x-0">
       <div
         className={`transition-all duration-700 ease-in-out ${
           visible ? "opacity-100" : "opacity-0"
